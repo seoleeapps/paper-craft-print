@@ -1,0 +1,26 @@
+{
+  "publisherId": "pub-9932778305312246",
+  "androidAppId": "ca-app-pub-9932778305312246~2407625697",
+  "rewardedAdUnitId": "ca-app-pub-9932778305312246/4432077244",
+  "unitName": "draft_pattern_unlock",
+  "format": "rewarded",
+  "reward": {
+    "amount": 1,
+    "item": "draft_pattern"
+  },
+  "registeredAt": "2026-10-05",
+  "approval": "review_required",
+  "productionServing": "unverified",
+  "sdkIntegration": "test_reward_verified",
+  "frequencyCaps": {
+    "app": "none",
+    "unit": "none"
+  },
+  "ssv": "not_configured_local_only_unlock",
+  "testVerifiedAt": "2026-10-05T09:41:32+00:00",
+  "testEvidence": [
+    "artifacts/device/qa34-test-ad-status.png",
+    "artifacts/device/qa34-reward-restored-copy.png",
+    "docs/qa.md"
+  ]
+}

@@ -1,0 +1,242 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-10-05T09:41:32+00:00",
+  "appId": "paper-craft-print",
+  "name": "Paper Craft Print",
+  "scope": "Android 구현·설치·실행 검증. 스토어 제출·공개 제외.",
+  "candidate": {
+    "package": "com.seoleeapps.papercraftprint",
+    "versionName": "0.1.0",
+    "versionCode": 1,
+    "sourceCommit": null,
+    "branch": "feat/android-envelope",
+    "sourceSnapshot": {
+      "algorithm": "SHA-256 of canonical sorted input hashes and public AdMob identifiers",
+      "sha256": "aa814059fe4f8f243410e4d641ac03fb5daec2941c9cf6d030ac7bf562e03b2d",
+      "inputs": [
+        {
+          "path": "apps/mobile/App.tsx",
+          "sha256": "5ad33663feafa9b6dbb8b207dc311d1f4b63482ae5afd87816edba033eaef034"
+        },
+        {
+          "path": "apps/mobile/LICENSE",
+          "sha256": "fb3ca4a837f5779e83cef89b78253a8949cfb9429c340309f62d0465ec6610b4"
+        },
+        {
+          "path": "apps/mobile/app.config.ts",
+          "sha256": "fa284d12dc914f079d499c8e7bb2f68cbdba82de76d04f7eb68eb8ff2d0b0fd8"
+        },
+        {
+          "path": "apps/mobile/assets/adaptive-icon.png",
+          "sha256": "d55df97534f4e2c811349bd284430795bb6f41793b281ad9250ee2ea210a56ca"
+        },
+        {
+          "path": "apps/mobile/assets/fonts/CraftSans.ttf",
+          "sha256": "22fc72b49de71a9e1941d2e5b32865aec24806809d460e194333bc9caefc447c"
+        },
+        {
+          "path": "apps/mobile/assets/fonts/OFL.txt",
+          "sha256": "1c05c68c34f9708415aada51f17e1b0092d2cea709bf4a94cd38114f9e73d7d9"
+        },
+        {
+          "path": "apps/mobile/assets/icon.png",
+          "sha256": "f52777f136375a67db5ad83b15bf88dc7697b393fc817216eda512a35144c928"
+        },
+        {
+          "path": "apps/mobile/assets/splash-icon.png",
+          "sha256": "4cc60cf7a0da101db00810cc97fb3822d816df270b7686e30676435709353428"
+        },
+        {
+          "path": "apps/mobile/index.ts",
+          "sha256": "5c157f4d44972d9c84415e1e4bda595b3abcd8cf733f8a9cd20935bec3eccc42"
+        },
+        {
+          "path": "apps/mobile/package.json",
+          "sha256": "c42b51bbf284d742f6125c223b028b7beb3e62ba69602a7f87d8e3c80e814705"
+        },
+        {
+          "path": "apps/mobile/src/Preview.tsx",
+          "sha256": "9e885f01d263e199bd729060c0d4813b9b99800c9e379aaf6f2e3b68bb87f3c6"
+        },
+        {
+          "path": "apps/mobile/src/ads.ts",
+          "sha256": "124156cfac93d2b49e28f02a26e9e945db405593c59cf05f3ae9682626f2c8e5"
+        },
+        {
+          "path": "apps/mobile/src/export.ts",
+          "sha256": "00ea312b0c8090e0fca7b8227a674efb75d5abc06cd2cc5e459dfbaf8a128394"
+        },
+        {
+          "path": "apps/mobile/src/pdf-engine.ts",
+          "sha256": "498ebff79e3805663ba08e5d33b1fbc281872f1217f9f4bd2be62dcbc1d716a6"
+        },
+        {
+          "path": "apps/mobile/src/storage-schema.ts",
+          "sha256": "4e8a3352bbc63eb8542b0188450c45d3badf5016a924e510770024da051796d7"
+        },
+        {
+          "path": "apps/mobile/src/storage.ts",
+          "sha256": "794cf9bb2192ffd031c1338e30381be5f349b7cb37f81f6c00d3e1c928ac4205"
+        },
+        {
+          "path": "apps/mobile/tsconfig.json",
+          "sha256": "712583ff9cdb4b4e4f9b000a4a56d68db8dc1921cbfbc36d490a3a9f2be3dd72"
+        },
+        {
+          "path": "package-lock.json",
+          "sha256": "4e733a14cbf2c28fd958b55da89739ae8ca4b8b9bf1bb4709336c0ee07213398"
+        },
+        {
+          "path": "package.json",
+          "sha256": "89b4981415d2bf81018fe6a5bd07c4744ae917c0ecac6ff27dbc28c1941bcce3"
+        },
+        {
+          "path": "packages/product-core/package.json",
+          "sha256": "172c4a8b604b24f707dc57d79dd2dac2e83879560f95b6993fb18da85db4c620"
+        },
+        {
+          "path": "packages/product-core/src/index.ts",
+          "sha256": "f6d2c8b56987143e371df63199ddac66ba62c171e95b87d7a908770aa7014788"
+        },
+        {
+          "path": "scripts/build-android.sh",
+          "sha256": "e02f2668f0e9538c71936026c574acf55b4f610c4c5b68b85e9454aca10149c2"
+        }
+      ],
+      "admobPublicIdentifiers": {
+        "androidAppId": "ca-app-pub-9932778305312246~2407625697",
+        "rewardedAdUnitId": "ca-app-pub-9932778305312246/4432077244"
+      }
+    },
+    "artifact": {
+      "path": "artifacts/android/paper-craft-print-0.1.0-test-ads.apk",
+      "sha256": "deca99b56bc44fa44b60d8af1988731c732b0f98da3b8a4779fb2157df2eb971",
+      "bytes": 37268617,
+      "format": "apk",
+      "architecture": "arm64-v8a",
+      "minSdk": 24,
+      "targetSdk": 36,
+      "signing": "local_android_debug",
+      "signingCertificateSha256": "fac61745dc0903786fb9ede62a962b399f7348f0bb6f899b8332667591033b9c",
+      "adMode": "test",
+      "embeddedAdmobAppId": "ca-app-pub-3940256099942544~3347511713",
+      "delayAppMeasurementInit": true,
+      "allowBackup": false
+    },
+    "build": {
+      "status": "pass",
+      "toolchain": {
+        "node": "24",
+        "expo": "57.0.26",
+        "reactNative": "0.86.3",
+        "jdk": "21",
+        "androidSdk": "36"
+      },
+      "log": "artifacts/android/build.log",
+      "inspection": [
+        "artifacts/android/apk-badging.txt",
+        "artifacts/android/apk-manifest.txt",
+        "artifacts/android/apk-signature.txt"
+      ]
+    },
+    "automatedChecks": {
+      "tests": {
+        "status": "pass",
+        "count": 14
+      },
+      "typecheck": "pass",
+      "architecture": "pass",
+      "pdfDimensionsKoreanCalibration": "pass"
+    },
+    "qa": {
+      "status": "executed_with_documented_manual_gates",
+      "record": "docs/qa.md",
+      "finalCandidateDevice": {
+        "device": "PaperCraftPrint_QA_API34 / Pixel 4 emulator",
+        "serial": "emulator-5580",
+        "os": "Android 14 / API 34",
+        "installation": "adb install -r",
+        "baselineDp": "393×829",
+        "smallDp": "320×568",
+        "fontScaleTested": [
+          1,
+          1.5
+        ]
+      },
+      "earlierDevelopmentDevices": [
+        {
+          "model": "Samsung SM-N960N",
+          "os": "Android 10",
+          "scope": "제작·PDF·테스트 광고·복구. 최종 APK 전체 재검사 아님."
+        },
+        {
+          "model": "Seeker",
+          "os": "Android 16",
+          "scope": "설치·홈. 최종 APK 전체 재검사 아님."
+        }
+      ],
+      "passed": [
+        "photos_exif_crop",
+        "draft_persistence_duplicate_delete",
+        "folder_save_readback",
+        "share_print_dialog_cancel",
+        "offline_pdf",
+        "a4_letter_repeat_rotation",
+        "small_screen_large_font_keyboard",
+        "test_ad_reward_restart_copy"
+      ],
+      "partial": [
+        "talkback_service_focus_and_adb_flow"
+      ],
+      "pending": [
+        "physical_A4_Letter_print_50mm_within_1mm_and_assembly",
+        "TalkBack_human_audio_and_touch_gestures",
+        "native_forced_disk_full_write_failure_and_EEA_consent_denial",
+        "final_candidate_full_flows_on_Android_10_and_16"
+      ]
+    }
+  },
+  "admob": {
+    "registration": "complete",
+    "appId": "ca-app-pub-9932778305312246~2407625697",
+    "rewardedAdUnitId": "ca-app-pub-9932778305312246/4432077244",
+    "approval": "review_required",
+    "storeLink": "not_linked",
+    "sdkTestReward": "pass",
+    "productionServing": "unverified",
+    "record": "release/admob.json"
+  },
+  "markets": {
+    "google_play": {
+      "registration": "not_created",
+      "packageOwnership": "not_confirmed_globally",
+      "observedAccountListDuplicate": "not_found",
+      "upload": "not_performed",
+      "processing": "not_started",
+      "submission": "not_performed",
+      "approval": "not_requested",
+      "publicRelease": "not_authorized",
+      "publicAvailability": "not_published"
+    },
+    "app_store": {
+      "status": "out_of_scope"
+    },
+    "apps_in_toss": {
+      "status": "out_of_scope"
+    }
+  },
+  "releaseGates": [
+    "store_signing_and_AAB",
+    "package_ownership_registration",
+    "public_privacy_and_Play_policy_declarations",
+    "AdMob_approval_and_production_serving",
+    "physical_print_and_TalkBack_user_QA",
+    "dependency_security_updates",
+    "explicit_store_submission_and_public_release_approval"
+  ],
+  "repository": {
+    "remote": null,
+    "push": "not_performed",
+    "pullRequest": "not_created"
+  }
+}

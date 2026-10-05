@@ -1,0 +1,37 @@
+# Paper Craft Print Android 구축 계약
+
+사용자가 제공한 Android 구축 계획을 2026-10-05 승인된 구현 범위로 삼는다. 완료 목표는 설치 가능한 Android 빌드와 실행 검증이며 스토어 제출·공개 출시 승인은 포함하지 않는다.
+
+- 이름: Paper Craft Print. Android 패키지: `com.seoleeapps.papercraftprint`. 버전: 0.1.0 / 1.
+- 성인 취미 사용자, 영어·한국어. 납작 봉투 1종, 앞·뒷면 사진·문구·크기, A4·Letter PDF·공유·인쇄, SQLite 초안 복제·삭제.
+- 기본 60×90, 80×120, 85×150 mm. 폭 40–85, 높이 60–160, 탭 10 mm. 내부 공간은 실물 조립 전 추정값이다.
+- 앞·뒷면은 종이에 같은 위쪽 방향으로 배치하고 가운데 수직선을 접는다. 오른쪽 10 mm 탭과 아래쪽 10 mm 탭은 접착, 위쪽 10 mm 플랩은 개폐에 사용한다.
+- 펼친 도안: 폭 `2 × 폭 + 10`, 높이 `높이 + 20`. 기본 80×120은 170×140 mm.
+- 10 mm 종이 여백, 18 mm 안내·확인선 공간, 도안 사이 4 mm. 자동 축소·이어 붙이기 없음. 50 mm 선과 100% 인쇄 안내.
+- Noto Sans KR의 정적 Regular에서 라틴·한글·문장부호를 보존한 글꼴을 포함한다. SIL OFL 1.1. PDF-lib의 글자 치환·부분 삽입 시 실제 누락이 발생해 빌드 시 글꼴을 정리하고 PDF에는 그 전체를 삽입한다. 지원하지 않는 글자와 실제 문구 폭을 검사한다.
+- 단색·dots·stripes·grid 무료. waves·stars·diamonds는 사용자가 선택한 보상형 광고 완료 시 해당 초안에만 지급한다. 권한은 SQLite 트랜잭션과 고유 이벤트로 중복 방지하고 복제 시 유지한다.
+- 운영 광고 등록과 승인·실제 송출은 별개다. 개발·QA 빌드는 Google 테스트 광고 사용. 운영 빌드는 등록된 이 앱의 ID 두 개가 정확히 일치해야 한다.
+- iOS·앱인토스·Firebase·분석 SDK·결제·배너·전면 광고·사용자 모집·외부 연락 제외.
+- 원격 Git 저장소 없음. 로컬 `feat/android-envelope` 브랜치. 원격 생성·연결·push·PR·스토어 등록·제출은 수행하지 않는다.
+
+## 화면 기준
+
+| 화면 | 목적 | 주요 행동 | 시각 표현 |
+| --- | --- | --- | --- |
+| 홈 | 제작 시작 | 봉투 만들기 | 실제 도안 예시 |
+| 편집 | 한 초안 꾸미기 | 출력 배치 확인 | 앞·뒷면 실제 좌표, 사진 확대·이동 |
+| 출력 확인 | 종이·매수 확인 | PDF 만들기 | 종이 배치, 안전 여백, 50 mm 확인선 |
+| 완료 | 생성 파일 외부 저장 | 폴더에 저장 | 완료 표시; 공유·인쇄 보조 행동 |
+| 내 작업 | 초안 관리 | 해당 초안 열기 | 크기·문구·날짜; 복제·삭제 |
+| 설정 | 언어·광고 동의 관리 | 각 설정 조작 | 현재 선택 라벨 |
+
+입력은 즉시 순서대로 SQLite에 저장한다. 실행 종료 후 목록에서 초안을 다시 열 수 있다. 사진은 JPEG로 방향을 정규화해 지속 저장 폴더에 복사한다. 삭제 후 다른 초안이 참조하지 않는 사진만 정리한다. PDF 생성 성공은 지속 파일 존재·크기를 확인한다. 공유 창을 여는 것과 외부 저장 성공을 구분한다.
+
+## 공식 참고 자료
+
+- [Expo SQLite](https://docs.expo.dev/versions/latest/sdk/sqlite/)
+- [Expo FileSystem](https://docs.expo.dev/versions/latest/sdk/filesystem/)
+- [Expo Print](https://docs.expo.dev/versions/latest/sdk/print/)
+- [PDF-LIB](https://pdf-lib.js.org/)
+- [React Native Google Mobile Ads](https://docs.page/invertase/react-native-google-mobile-ads)
+- [UMP Android](https://developers.google.com/admob/android/privacy)

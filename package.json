@@ -1,0 +1,23 @@
+{
+  "name": "paper-craft-print",
+  "private": true,
+  "workspaces": [
+    "apps/mobile",
+    "packages/product-core"
+  ],
+  "scripts": {
+    "test": "tsx --test packages/product-core/test/*.test.ts scripts/*.test.ts",
+    "typecheck": "tsc -p apps/mobile --noEmit",
+    "check:architecture": "node scripts/check-architecture.mjs",
+    "android": "npm run android -w apps/mobile",
+    "test:core": "tsx --test packages/product-core/test/*.test.ts",
+    "test:adapters": "tsx --test scripts/*.test.ts",
+    "verify:pdf": "node scripts/verify-pdf.mjs",
+    "build:android": "./scripts/build-android.sh"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "prettier": "^3.9.9",
+    "tsx": "^4.20.0"
+  }
+}
