@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-05T09:41:32+00:00",
+  "updatedAt": "2026-10-05T09:50:26+00:00",
   "appId": "paper-craft-print",
   "name": "Paper Craft Print",
   "scope": "Android 구현·설치·실행 검증. 스토어 제출·공개 제외.",
@@ -8,7 +8,7 @@
     "package": "com.seoleeapps.papercraftprint",
     "versionName": "0.1.0",
     "versionCode": 1,
-    "sourceCommit": null,
+    "sourceCommit": "f8296f6689189e847be8e7caad8d442b606d7532",
     "branch": "feat/android-envelope",
     "sourceSnapshot": {
       "algorithm": "SHA-256 of canonical sorted input hashes and public AdMob identifiers",
