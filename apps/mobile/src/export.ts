@@ -3,17 +3,25 @@ import { File, Directory } from "expo-file-system";
 import * as Manipulator from "expo-image-manipulator";
 import * as Print from "expo-print";
 import * as Sharing from "expo-sharing";
-import { CraftProject, Face, photoCrop, FREE } from "@paper-craft/product-core";
+import {
+  CraftProject,
+  Face,
+  Rect,
+  net,
+  photoCrop,
+  FREE,
+} from "@paper-craft/product-core";
 import { makePDF } from "./pdf-engine";
 import { files, repository } from "./storage";
-async function crop(face: Face, p: CraftProject) {
+async function crop(face: Face, r: Rect) {
   if (!face.photo) return undefined;
+  const area = photoCrop(face.photo, r.width, r.height);
   const context = Manipulator.ImageManipulator.manipulate(face.photo.uri);
   context.crop({
-    originX: photoCrop(face.photo, p.width, p.height).x,
-    originY: photoCrop(face.photo, p.width, p.height).y,
-    width: photoCrop(face.photo, p.width, p.height).width,
-    height: photoCrop(face.photo, p.width, p.height).height,
+    originX: area.x,
+    originY: area.y,
+    width: area.width,
+    height: area.height,
   });
   const image = await context.renderAsync();
   const result = await image.saveAsync({
@@ -34,10 +42,11 @@ export async function exportPDF(
     throw new Error("PATTERN_LOCKED");
   const asset = Asset.fromModule(require("../assets/fonts/CraftSans.ttf"));
   await asset.downloadAsync();
+  const { faces } = net(p);
   const [font, front, back] = await Promise.all([
     new File(asset.localUri!).bytes(),
-    crop(p.front, p),
-    crop(p.back, p),
+    crop(p.front, faces.front),
+    crop(p.back, faces.back),
   ]);
   const bytes = await makePDF(p, paper, repeat, { font, front, back });
   const file = new File(files, `${p.id}-${Date.now()}.pdf`);

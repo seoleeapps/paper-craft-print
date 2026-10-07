@@ -10,6 +10,7 @@ import {
   CraftProject,
   Pattern,
   ProjectRepository,
+  normalizeProject,
 } from "@paper-craft/product-core";
 export const files = new Directory(Paths.document, "craft");
 files.create({ idempotent: true, intermediates: true });
@@ -36,7 +37,7 @@ export const repository: ProjectRepository = {
         await db
       ).getAllAsync<{ data: string }>("SELECT data FROM projects")
     )
-      .map((r) => JSON.parse(r.data) as CraftProject)
+      .map((r) => normalizeProject(JSON.parse(r.data)))
       .sort((a, b) => b.updatedAt - a.updatedAt);
   },
   save(p) {

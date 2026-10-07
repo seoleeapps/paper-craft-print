@@ -3,16 +3,18 @@ import fontkit from "@pdf-lib/fontkit";
 import {
   CraftProject,
   layout,
+  net,
   Rect,
   textError,
   patternMarks,
 } from "@paper-craft/product-core";
 export const MM = 72 / 25.4;
 export function validateText(project: CraftProject, font: PDFFont) {
-  return [project.front, project.back].map((face) =>
+  const { faces } = net(project);
+  return (["front", "back"] as const).map((face) =>
     textError(
-      face.text,
-      project.width,
+      project[face].text,
+      faces[face].width,
       (s) => font.widthOfTextAtSize(s, 11) / MM,
       (s) =>
         Array.from(s).every((c) =>
@@ -38,7 +40,7 @@ export async function makePDF(
   const errors = validateText(p, font);
   if (errors.some(Boolean)) throw new Error(`TEXT:${errors.find(Boolean)}`);
   const l = layout(p, paper, repeat),
-    g = l.geometry;
+    g = l.net;
   const page = doc.addPage([l.width * MM, l.height * MM]);
   const images = await Promise.all(
     [input.front, input.back].map((b) => (b ? doc.embedJpg(b) : undefined)),
@@ -91,9 +93,26 @@ export async function makePDF(
         color: ink,
       });
     };
-    for (const [index, r] of [g.front, g.back].entries()) {
+    const pattern = (r: Rect) => {
       rect(r);
+      for (const mark of patternMarks(p.pattern, r)) {
+        if (mark.kind === "line")
+          line(mark.x1, mark.y1, mark.x2, mark.y2, false, accent);
+        else {
+          const a = transform(mark.x, mark.y);
+          page.drawCircle({
+            x: a.x,
+            y: a.y,
+            size: mark.r * MM,
+            color: accent,
+          });
+        }
+      }
+    };
+    for (const r of g.panels) pattern(r);
+    for (const [index, r] of [g.faces.front, g.faces.back].entries()) {
       if (images[index]) {
+        rect(r);
         const a = transform(r.x, r.y + r.height);
         page.drawImage(images[index]!, {
           x: a.x,
@@ -102,21 +121,7 @@ export async function makePDF(
           height: r.height * MM,
           rotate: degrees(l.rotated ? -90 : 0),
         });
-      } else {
-        for (const mark of patternMarks(p.pattern, r)) {
-          if (mark.kind === "line")
-            line(mark.x1, mark.y1, mark.x2, mark.y2, false, accent);
-          else {
-            const a = transform(mark.x, mark.y);
-            page.drawCircle({
-              x: a.x,
-              y: a.y,
-              size: mark.r * MM,
-              color: accent,
-            });
-          }
-        }
-      }
+      } else pattern(r);
       const label = index === 0 ? p.front.text : p.back.text;
       if (label) {
         rect(

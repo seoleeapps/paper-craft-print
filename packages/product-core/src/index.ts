@@ -13,12 +13,14 @@ export type Face = {
     y: number;
   };
 };
-export type CraftProject = {
+export type TemplateKind = "envelope" | "tuckBox";
+export const TEMPLATE_KINDS: TemplateKind[] = ["envelope", "tuckBox"];
+export type Dimension = "width" | "height" | "depth";
+export type Size = Record<Dimension, number>;
+export type CraftProject = Size & {
   id: string;
+  kind: TemplateKind;
   name: string;
-  width: number;
-  height: number;
-  tab: number;
   pattern: Pattern;
   front: Face;
   back: Face;
@@ -32,11 +34,12 @@ export type Line = {
   y2: number;
   kind: "cut" | "fold";
 };
-export type EnvelopeGeometry = {
+export type Net = {
   width: number;
   height: number;
-  front: Rect;
-  back: Rect;
+  // Faces carry the user's photo and note; panels only show the pattern.
+  faces: Record<"front" | "back", Rect>;
+  panels: Rect[];
   glue: Rect[];
   lines: Line[];
 };
@@ -46,7 +49,7 @@ export type PageLayout = {
   rotated: boolean;
   copies: number;
   placements: { x: number; y: number }[];
-  geometry: EnvelopeGeometry;
+  net: Net;
 };
 export interface ProjectRepository {
   list(): Promise<CraftProject[]>;
@@ -65,89 +68,219 @@ export interface ExportPort {
 export interface RewardPort {
   unlock(projectId: string, pattern: Pattern): Promise<void>;
 }
-export function createProject(id: string, now = Date.now()): CraftProject {
+type Segment = [number, number, number, number];
+function lines(cuts: Segment[], folds: Segment[]): Line[] {
+  const of =
+    (kind: Line["kind"]) =>
+    ([x1, y1, x2, y2]: Segment) => ({
+      x1,
+      y1,
+      x2,
+      y2,
+      kind,
+    });
+  return [...cuts.map(of("cut")), ...folds.map(of("fold"))];
+}
+const ENVELOPE_TAB = 10;
+function envelopeNet({ width, height }: Size): Net {
+  const tab = ENVELOPE_TAB,
+    w = width * 2 + tab,
+    h = height + tab * 2;
+  return {
+    width: w,
+    height: h,
+    faces: {
+      front: { x: 0, y: tab, width, height },
+      back: { x: width, y: tab, width, height },
+    },
+    panels: [],
+    glue: [
+      { x: width * 2, y: tab, width: tab, height },
+      { x: width, y: tab + height, width, height: tab },
+    ],
+    lines: lines(
+      [
+        [0, tab, width, tab],
+        [width, tab, width, 0],
+        [width, 0, width * 2, 0],
+        [width * 2, 0, width * 2, tab],
+        [width * 2, tab, w, tab],
+        [w, tab, w, tab + height],
+        [w, tab + height, width * 2, tab + height],
+        [width * 2, tab + height, width * 2, h],
+        [width * 2, h, width, h],
+        [width, h, width, tab + height],
+        [width, tab + height, 0, tab + height],
+        [0, tab + height, 0, tab],
+      ],
+      [
+        [width, tab, width, tab + height],
+        [width, tab, width * 2, tab],
+        [width, tab + height, width * 2, tab + height],
+        [width * 2, tab, width * 2, tab + height],
+      ],
+    ),
+  };
+}
+const BOX_GLUE = 10;
+// Straight tuck end box: glue | front | side | back | side, with the lid and
+// the bottom both hinged on the back panel and dust flaps on the sides.
+function tuckBoxNet({ width: W, height: H, depth: D }: Size): Net {
+  const G = BOX_GLUE,
+    tuck = Math.min(15, Math.round(D * 0.6)),
+    dust = Math.min(20, Math.round(W * 0.4)),
+    dustInset = Math.min(D / 3, dust * 0.6),
+    tuckInset = Math.min(tuck, W / 4);
+  const a = G,
+    b = a + W,
+    c = b + D,
+    d = c + W,
+    e = d + D;
+  const top = tuck + D,
+    bottom = top + H,
+    h = bottom + D + tuck;
+  // Mirror a segment drawn above the body to the matching one below it.
+  const below = ([x1, y1, x2, y2]: Segment): Segment => [
+    x1,
+    top + bottom - y1,
+    x2,
+    top + bottom - y2,
+  ];
+  const dustFlap = (x0: number, x1: number): Segment[] => [
+    [x0, top, x0 + dustInset, top - dust],
+    [x0 + dustInset, top - dust, x1 - dustInset, top - dust],
+    [x1 - dustInset, top - dust, x1, top],
+  ];
+  const closureCuts: Segment[] = [
+    [a, top, b, top],
+    ...dustFlap(b, c),
+    [c, top, c, tuck],
+    [c, tuck, c + tuckInset, 0],
+    [c + tuckInset, 0, d - tuckInset, 0],
+    [d - tuckInset, 0, d, tuck],
+    [d, tuck, d, top],
+    ...dustFlap(d, e),
+  ];
+  const closureFolds: Segment[] = [
+    [b, top, c, top],
+    [c, top, d, top],
+    [c, tuck, d, tuck],
+    [d, top, e, top],
+  ];
+  return {
+    width: e,
+    height: h,
+    faces: {
+      front: { x: a, y: top, width: W, height: H },
+      back: { x: c, y: top, width: W, height: H },
+    },
+    panels: [
+      { x: b, y: top, width: D, height: H },
+      { x: d, y: top, width: D, height: H },
+      { x: c, y: tuck, width: W, height: D },
+      { x: c, y: bottom, width: W, height: D },
+    ],
+    glue: [{ x: 0, y: top + 2, width: G, height: H - 4 }],
+    lines: lines(
+      [
+        [a, top, 0, top + 2],
+        [0, top + 2, 0, bottom - 2],
+        [0, bottom - 2, a, bottom],
+        [e, top, e, bottom],
+        ...closureCuts,
+        ...closureCuts.map(below),
+      ],
+      [
+        [a, top, a, bottom],
+        [b, top, b, bottom],
+        [c, top, c, bottom],
+        [d, top, d, bottom],
+        ...closureFolds,
+        ...closureFolds.map(below),
+      ],
+    ),
+  };
+}
+export type TemplateSpec = {
+  // Input order shown in the editor; omitted dimensions are unused.
+  dims: Dimension[];
+  limits: Partial<Record<Dimension, [number, number]>>;
+  presets: Size[];
+  defaults: Size;
+  // Usable inside space, in the same order as `dims`.
+  inside(size: Size): number[];
+  net(size: Size): Net;
+};
+export const TEMPLATES: Record<TemplateKind, TemplateSpec> = {
+  envelope: {
+    dims: ["width", "height"],
+    limits: { width: [40, 85], height: [60, 160] },
+    presets: [
+      { width: 60, height: 90, depth: 0 },
+      { width: 80, height: 120, depth: 0 },
+      { width: 85, height: 150, depth: 0 },
+    ],
+    defaults: { width: 80, height: 120, depth: 0 },
+    inside: ({ width, height }) => [
+      width - ENVELOPE_TAB,
+      height - 2 * ENVELOPE_TAB,
+    ],
+    net: envelopeNet,
+  },
+  tuckBox: {
+    dims: ["width", "depth", "height"],
+    limits: { width: [30, 90], depth: [15, 60], height: [30, 120] },
+    presets: [
+      { width: 40, depth: 40, height: 40 },
+      { width: 50, depth: 50, height: 50 },
+      { width: 60, depth: 30, height: 90 },
+    ],
+    defaults: { width: 50, depth: 50, height: 50 },
+    inside: ({ width, depth, height }) => [width, depth, height],
+    net: tuckBoxNet,
+  },
+};
+export function createProject(
+  id: string,
+  kind: TemplateKind = "envelope",
+  now = Date.now(),
+): CraftProject {
   return {
     id,
+    kind,
     name: "",
-    width: 80,
-    height: 120,
-    tab: 10,
+    ...TEMPLATES[kind].defaults,
     pattern: "plain",
     front: { text: "" },
     back: { text: "" },
     updatedAt: now,
   };
 }
-export function geometry(
-  width: number,
-  height: number,
-  tab = 10,
-): EnvelopeGeometry {
-  if (
-    !Number.isFinite(width) ||
-    !Number.isFinite(height) ||
-    width < 40 ||
-    width > 85 ||
-    height < 60 ||
-    height > 160 ||
-    tab !== 10
-  )
-    throw new Error("SIZE");
-  const w = width * 2 + tab,
-    h = height + tab * 2;
-  const cuts: [number, number, number, number][] = [
-    [0, tab, width, tab],
-    [width, tab, width, 0],
-    [width, 0, width * 2, 0],
-    [width * 2, 0, width * 2, tab],
-    [width * 2, tab, w, tab],
-    [w, tab, w, tab + height],
-    [w, tab + height, width * 2, tab + height],
-    [width * 2, tab + height, width * 2, h],
-    [width * 2, h, width, h],
-    [width, h, width, tab + height],
-    [width, tab + height, 0, tab + height],
-    [0, tab + height, 0, tab],
-  ];
-  const folds: [number, number, number, number][] = [
-    [width, tab, width, tab + height],
-    [width, tab, width * 2, tab],
-    [width, tab + height, width * 2, tab + height],
-    [width * 2, tab, width * 2, tab + height],
-  ];
-  return {
-    width: w,
-    height: h,
-    front: { x: 0, y: tab, width, height },
-    back: { x: width, y: tab, width, height },
-    glue: [
-      { x: width * 2, y: tab, width: tab, height },
-      { x: width, y: tab + height, width, height: tab },
-    ],
-    lines: [
-      ...cuts.map(([x1, y1, x2, y2]) => ({
-        x1,
-        y1,
-        x2,
-        y2,
-        kind: "cut" as const,
-      })),
-      ...folds.map(([x1, y1, x2, y2]) => ({
-        x1,
-        y1,
-        x2,
-        y2,
-        kind: "fold" as const,
-      })),
-    ],
-  };
+// Drafts saved before templates existed have no kind and carry a `tab` field.
+export function normalizeProject(raw: unknown): CraftProject {
+  const { tab: _tab, ...p } = raw as Partial<CraftProject> & { tab?: number };
+  const kind = p.kind && TEMPLATE_KINDS.includes(p.kind) ? p.kind : "envelope";
+  return { ...TEMPLATES[kind].defaults, ...p, kind } as CraftProject;
 }
+function inRange(p: Pick<CraftProject, Dimension | "kind">) {
+  const spec = TEMPLATES[p.kind];
+  return spec.dims.every((dim) => {
+    const [min, max] = spec.limits[dim]!;
+    return Number.isFinite(p[dim]) && p[dim] >= min && p[dim] <= max;
+  });
+}
+export function net(p: Pick<CraftProject, Dimension | "kind">): Net {
+  if (!inRange(p)) throw new Error("SIZE");
+  return TEMPLATES[p.kind].net(p);
+}
+export const sizeLabel = (p: Pick<CraftProject, Dimension | "kind">) =>
+  TEMPLATES[p.kind].dims.map((dim) => p[dim]).join(" × ");
 export function layout(
-  p: Pick<CraftProject, "width" | "height" | "tab">,
+  p: Pick<CraftProject, Dimension | "kind">,
   paper: "A4" | "Letter",
   repeat = false,
 ): PageLayout {
-  const g = geometry(p.width, p.height, p.tab);
+  const g = net(p);
   const [width, height] = paper === "A4" ? [210, 297] : [215.9, 279.4];
   // Reserve 18 mm below each net for labels and the calibration line.
   const choices = [false, true].map((rotated) => {
@@ -169,12 +302,23 @@ export function layout(
     height,
     rotated: best.rotated,
     copies: count,
-    geometry: g,
+    net: g,
     placements: Array.from({ length: count }, (_, i) => ({
       x: 10 + (i % best.cols) * (best.w + 4),
       y: 10 + Math.floor(i / best.cols) * (best.h + 4),
     })),
   };
+}
+export function sizeError(
+  p: Pick<CraftProject, Dimension | "kind">,
+): "range" | "does_not_fit" | null {
+  if (!inRange(p)) return "range";
+  try {
+    for (const paper of ["A4", "Letter"] as const) layout(p, paper);
+  } catch {
+    return "does_not_fit";
+  }
+  return null;
 }
 export function photoCrop(
   photo: NonNullable<Face["photo"]>,

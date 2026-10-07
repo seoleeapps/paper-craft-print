@@ -1,14 +1,14 @@
 import { execFileSync } from "node:child_process";
 import { readFileSync } from "node:fs";
 import assert from "node:assert/strict";
-for (const paper of ["A4", "Letter"]) {
-  const path = `artifacts/pdf/${paper}.pdf`;
+for (const name of ["A4", "Letter", "tuckBox-A4", "tuckBox-Letter"]) {
+  const path = `artifacts/pdf/${name}.pdf`;
   const text = execFileSync("pdftotext", [path, "-"], { encoding: "utf8" });
   assert.ok(text.replace(/\s/g, "").includes("작은선물"));
   assert.ok(text.includes("Made with love"));
   assert.ok(text.includes("100%") && text.includes("50 mm"));
-  execFileSync("pdftocairo", ["-svg", path, `artifacts/pdf/${paper}.svg`]);
-  const svg = readFileSync(`artifacts/pdf/${paper}.svg`, "utf8");
+  execFileSync("pdftocairo", ["-svg", path, `artifacts/pdf/${name}.svg`]);
+  const svg = readFileSync(`artifacts/pdf/${name}.svg`, "utf8");
   const lines = [
     ...svg.matchAll(
       /<path[^>]*stroke-width="0.7"[^>]*d="M ([\d.]+) ([\d.]+) L ([\d.]+) ([\d.]+) /g,
@@ -20,6 +20,6 @@ for (const paper of ["A4", "Letter"]) {
     ),
   );
   console.log(
-    `${paper}: Korean, English, calibration text, 50 mm vector line verified`,
+    `${name}: Korean, English, calibration text, 50 mm vector line verified`,
   );
 }

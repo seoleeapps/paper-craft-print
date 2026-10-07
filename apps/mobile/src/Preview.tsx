@@ -12,30 +12,55 @@ import Svg, {
 } from "react-native-svg";
 import {
   CraftProject,
-  geometry,
+  Rect as RectArea,
+  net,
   photoCrop,
   patternMarks,
   layout,
+  sizeLabel,
 } from "@paper-craft/product-core";
+const MM = 72 / 25.4;
+function PatternFill({
+  project: p,
+  r,
+}: {
+  project: CraftProject;
+  r: RectArea;
+}) {
+  return (
+    <>
+      <Rect {...r} fill="#f5efe0" />
+      {patternMarks(p.pattern, r).map((mark, i) =>
+        mark.kind === "dot" ? (
+          <Circle key={i} cx={mark.x} cy={mark.y} r={mark.r} fill="#85a6a1" />
+        ) : (
+          <Line key={i} {...mark} stroke="#85a6a1" strokeWidth={0.5 / MM} />
+        ),
+      )}
+    </>
+  );
+}
 function Net({ project: p }: { project: CraftProject }) {
-  const g = geometry(p.width, p.height, p.tab);
+  const g = net(p),
+    clip = (face: "front" | "back") => `${p.kind}-${face}`;
   return (
     <G>
-      {" "}
       <Defs>
         {(["front", "back"] as const).map((face) => (
-          <ClipPath key={face} id={face}>
-            <Rect {...g[face]} />
+          <ClipPath key={face} id={clip(face)}>
+            <Rect {...g.faces[face]} />
           </ClipPath>
         ))}
       </Defs>
+      {g.panels.map((r, i) => (
+        <PatternFill key={i} project={p} r={r} />
+      ))}
       {(["front", "back"] as const).map((face) => {
-        const r = g[face],
+        const r = g.faces[face],
           f = p[face],
-          c = f.photo ? photoCrop(f.photo, p.width, p.height) : null;
+          c = f.photo ? photoCrop(f.photo, r.width, r.height) : null;
         return (
-          <G key={face} clipPath={`url(#${face})`}>
-            <Rect {...r} fill="#f5efe0" />
+          <G key={face} clipPath={`url(#${clip(face)})`}>
             {f.photo && c ? (
               <Image
                 href={{ uri: f.photo.uri }}
@@ -46,24 +71,7 @@ function Net({ project: p }: { project: CraftProject }) {
                 preserveAspectRatio="none"
               />
             ) : (
-              patternMarks(p.pattern, r).map((mark, i) =>
-                mark.kind === "dot" ? (
-                  <Circle
-                    key={i}
-                    cx={mark.x}
-                    cy={mark.y}
-                    r={mark.r}
-                    fill="#85a6a1"
-                  />
-                ) : (
-                  <Line
-                    key={i}
-                    {...mark}
-                    stroke="#85a6a1"
-                    strokeWidth={0.5 / (72 / 25.4)}
-                  />
-                ),
-              )
+              <PatternFill project={p} r={r} />
             )}
             {f.text ? (
               <>
@@ -78,7 +86,7 @@ function Net({ project: p }: { project: CraftProject }) {
                   x={r.x + r.width / 2}
                   y={r.y + r.height - 7}
                   fontFamily="CraftSans"
-                  fontSize={11 / (72 / 25.4)}
+                  fontSize={11 / MM}
                   textAnchor="middle"
                   fill="#2e4040"
                 >
@@ -100,13 +108,13 @@ function Net({ project: p }: { project: CraftProject }) {
               x2={Math.min(r.x + r.width, r.x + 3)}
               y2={Math.min(r.y + r.height, r.y + j * 3 + 3)}
               stroke="#85a6a1"
-              strokeWidth={0.5 / (72 / 25.4)}
+              strokeWidth={0.5 / MM}
             />
           ))}
           <SvgText
             x={r.x + 2}
             y={r.y + Math.min(r.height - 2, 6)}
-            fontSize={6 / (72 / 25.4)}
+            fontSize={6 / MM}
             fill="#2e4040"
           >
             {r.width <= 10 ? "G" : "GLUE"}
@@ -118,11 +126,9 @@ function Net({ project: p }: { project: CraftProject }) {
           key={i}
           {...l}
           stroke="#2e4040"
-          strokeWidth={0.5 / (72 / 25.4)}
+          strokeWidth={0.5 / MM}
           strokeDasharray={
-            l.kind === "fold"
-              ? `${3 / (72 / 25.4)} ${2 / (72 / 25.4)}`
-              : undefined
+            l.kind === "fold" ? `${3 / MM} ${2 / MM}` : undefined
           }
         />
       ))}
@@ -132,23 +138,25 @@ function Net({ project: p }: { project: CraftProject }) {
 export function Preview({
   project,
   faceOnly,
+  compact = false,
 }: {
   project: CraftProject;
   faceOnly?: "front" | "back";
+  compact?: boolean;
 }) {
-  const g = geometry(project.width, project.height, project.tab),
+  const g = net(project),
     bounds = faceOnly
-      ? g[faceOnly]
+      ? g.faces[faceOnly]
       : { x: 0, y: 0, width: g.width, height: g.height };
   return (
     <View
       accessible
-      accessibilityLabel={`${project.width} × ${project.height} mm, ${project.pattern}. ${project.front.text} ${project.back.text}`}
-      style={s.wrap}
+      accessibilityLabel={`${sizeLabel(project)} mm, ${project.pattern}. ${project.front.text} ${project.back.text}`}
+      style={[s.wrap, compact && s.compact]}
     >
       <Svg
         width="100%"
-        height={faceOnly ? 240 : 210}
+        height={faceOnly ? 240 : compact ? 110 : 210}
         viewBox={`${bounds.x - 2} ${bounds.y - 2} ${bounds.width + 4} ${bounds.height + 4}`}
       >
         <Defs>
@@ -160,7 +168,9 @@ export function Preview({
           <Net project={project} />
         </G>
       </Svg>
-      {!faceOnly ? <Text style={s.legend}>✂ ━ · - - · ///</Text> : null}
+      {!faceOnly && !compact ? (
+        <Text style={s.legend}>✂ ━ · - - · ///</Text>
+      ) : null}
     </View>
   );
 }
@@ -174,11 +184,11 @@ export function PagePreview({
   repeat: boolean;
 }) {
   const l = layout(project, paper, repeat),
-    g = l.geometry;
+    g = l.net;
   return (
     <View
       accessible
-      accessibilityLabel={`${paper}, ${l.copies} envelopes, 100%, 50 mm calibration`}
+      accessibilityLabel={`${paper}, ${l.copies} copies, 100%, 50 mm calibration`}
       style={s.wrap}
     >
       <Svg width="100%" height={280} viewBox={`0 0 ${l.width} ${l.height}`}>
@@ -209,7 +219,7 @@ export function PagePreview({
               <SvgText
                 x={pos.x}
                 y={bottom + 5}
-                fontSize={7 / (72 / 25.4)}
+                fontSize={7 / MM}
                 fill="#2e4040"
               >
                 Cut ━ Fold - - Glue /// · Print at 100%
@@ -220,12 +230,12 @@ export function PagePreview({
                 x2={pos.x + 50}
                 y2={bottom + 11}
                 stroke="#2e4040"
-                strokeWidth={0.7 / (72 / 25.4)}
+                strokeWidth={0.7 / MM}
               />
               <SvgText
                 x={pos.x + 52}
                 y={bottom + 12}
-                fontSize={7 / (72 / 25.4)}
+                fontSize={7 / MM}
                 fill="#2e4040"
               >
                 50 mm
@@ -244,5 +254,6 @@ const s = StyleSheet.create({
     borderRadius: 18,
     marginVertical: 12,
   },
+  compact: { padding: 10, marginVertical: 0 },
   legend: { textAlign: "center", color: "#536762", marginTop: 8 },
 });

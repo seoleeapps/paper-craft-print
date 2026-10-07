@@ -22,11 +22,16 @@ import { useFonts } from "expo-font";
 import * as Splash from "expo-splash-screen";
 import {
   CraftProject,
-  Face,
+  Dimension,
   createProject,
   PATTERNS,
   FREE,
   layout,
+  sizeError,
+  sizeLabel,
+  TEMPLATES,
+  TEMPLATE_KINDS,
+  TemplateKind,
 } from "@paper-craft/product-core";
 import {
   initialize,
@@ -43,7 +48,12 @@ void Splash.preventAutoHideAsync();
 type Screen = "home" | "list" | "edit" | "output" | "done" | "settings";
 const words = {
   en: {
-    new: "Create an envelope",
+    new: "Start a new craft",
+    pick: "Choose a template",
+    templates: { envelope: "Envelope", tuckBox: "Gift box" },
+    dims: { width: "Width", height: "Height", depth: "Depth" },
+    range: "Enter a size within the shown range.",
+    tooBig: "This size does not fit on A4 and Letter paper. Make it smaller.",
     title: "Your little paper studio",
     sub: "A photo. A note. Something to keep.",
     works: "My drafts",
@@ -64,13 +74,12 @@ const words = {
     print: "Print",
     paper: "Paper",
     repeat: "Repeat to fill page",
-    single: "One envelope",
     delete: "Delete",
     copy: "Duplicate",
     language: "Language",
     privacy: "Ad privacy choices",
     unlock: "Watch an ad for this draft",
-    estimate: "Inner space is an estimate. Test the assembled envelope.",
+    estimate: "Inner space is an estimate. Test the assembled piece.",
     legend: "Solid: cut · Dashed: fold · Hatched: glue",
     scale: "Print at 100% / Actual size. Measure the 50 mm line.",
     auto: "Saved on this device",
@@ -99,13 +108,18 @@ const words = {
       "Photos and drafts stay on this device. Deleting the app removes them.",
   },
   ko: {
-    new: "봉투 만들기",
+    new: "새 작품 만들기",
+    pick: "도안 고르기",
+    templates: { envelope: "봉투", tuckBox: "선물 상자" },
+    dims: { width: "폭", height: "높이", depth: "깊이" },
+    range: "허용 범위의 크기를 입력해 주세요.",
+    tooBig: "이 크기는 A4·Letter 종이에 들어가지 않아요. 크기를 줄여 주세요.",
     title: "나만의 작은 종이 작업실",
-    sub: "사진 한 장, 짧은 문구, 간직할 봉투.",
+    sub: "사진 한 장, 짧은 문구, 간직할 종이 선물.",
     works: "내 작업",
     settings: "설정",
     back: "뒤로",
-    edit: "나만의 봉투 꾸미기",
+    edit: "나만의 작품 꾸미기",
     front: "앞면",
     backFace: "뒷면",
     size: "크기 · mm",
@@ -120,7 +134,6 @@ const words = {
     print: "인쇄",
     paper: "종이",
     repeat: "종이에 반복 배치",
-    single: "봉투 하나",
     delete: "삭제",
     copy: "복제",
     language: "언어",
@@ -211,7 +224,11 @@ export default function App() {
     ),
     [error, setError] = useState(""),
     [message, setMessage] = useState(""),
-    [dimensions, setDimensions] = useState({ width: "80", height: "120" });
+    [dimensions, setDimensions] = useState<Record<Dimension, string>>({
+      width: "",
+      height: "",
+      depth: "",
+    });
   const current = useRef(p);
   current.current = p;
   const scroll = useRef<ScrollView>(null);
@@ -356,6 +373,7 @@ export default function App() {
     setDimensions({
       width: String(project.width),
       height: String(project.height),
+      depth: String(project.depth),
     });
     setRights(await repository.rights(project.id));
     setError("");
@@ -391,20 +409,35 @@ export default function App() {
       },
     });
   }
-  function changeDimension(key: "width" | "height", value: string) {
-    setDimensions((d) => ({ ...d, [key]: value }));
-    const n = Number(value);
-    if (
-      Number.isFinite(n) &&
-      n >= (key === "width" ? 40 : 60) &&
-      n <= (key === "width" ? 85 : 160)
-    )
-      update({ [key]: n });
+  const typed = (d: Record<Dimension, string>) =>
+    p && {
+      ...p,
+      width: Number(d.width),
+      height: Number(d.height),
+      depth: Number(d.depth),
+    };
+  function changeDimension(key: Dimension, value: string) {
+    const next = { ...dimensions, [key]: value },
+      candidate = typed(next);
+    setDimensions(next);
+    if (candidate && !sizeError(candidate))
+      update({
+        width: candidate.width,
+        height: candidate.height,
+        depth: candidate.depth,
+      });
   }
+  const typedProject = typed(dimensions);
+  const typedError = typedProject && sizeError(typedProject);
   const valid =
     p &&
-    Number(dimensions.width) === p.width &&
-    Number(dimensions.height) === p.height;
+    !typedError &&
+    TEMPLATES[p.kind].dims.every((dim) => Number(dimensions[dim]) === p[dim]);
+  async function create(kind: TemplateKind) {
+    const project = createProject(id(), kind);
+    await repository.save(project);
+    await open(project);
+  }
   function adjustPhoto(key: "zoom" | "x" | "y", delta: number) {
     if (!p?.[face].photo) return;
     const photo = p[face].photo!;
@@ -499,8 +532,29 @@ export default function App() {
             {screen === "home" ? (
               <>
                 <Text style={s.sub}>{t.sub}</Text>
-                <Preview project={createProject("sample")} />
-                <Text style={s.sub}>{t.empty}</Text>
+                <Text style={s.section}>{t.pick}</Text>
+                <View style={s.templates}>
+                  {TEMPLATE_KINDS.map((kind) => {
+                    const sample = createProject(`sample-${kind}`, kind);
+                    return (
+                      <Pressable
+                        key={kind}
+                        accessibilityRole="button"
+                        accessibilityLabel={`${t.templates[kind]} ${sizeLabel(sample)} mm`}
+                        disabled={busy}
+                        onPress={() => void run(() => create(kind))}
+                        style={({ pressed }) => [
+                          s.template,
+                          pressed && { opacity: 0.7 },
+                        ]}
+                      >
+                        <Preview project={sample} compact />
+                        <Text style={s.templateName}>{t.templates[kind]}</Text>
+                        <Text style={s.sub}>{sizeLabel(sample)} mm</Text>
+                      </Pressable>
+                    );
+                  })}
+                </View>
                 <View style={s.row}>
                   <Button
                     onPress={() =>
@@ -531,7 +585,7 @@ export default function App() {
                       >
                         <Text style={s.section}>
                           {project.name ||
-                            `${project.width} × ${project.height} mm`}
+                            `${t.templates[project.kind]} · ${sizeLabel(project)} mm`}
                         </Text>
                         <Text style={s.sub}>
                           {new Date(project.updatedAt).toLocaleDateString(lang)}{" "}
@@ -596,33 +650,27 @@ export default function App() {
                 <Preview project={p} faceOnly={face} />
                 <Text style={s.section}>{t.size}</Text>
                 <View style={s.row}>
-                  {[
-                    [60, 90],
-                    [80, 120],
-                    [85, 150],
-                  ].map(([w, h]) => (
+                  {TEMPLATES[p.kind].presets.map((preset) => (
                     <Button
-                      key={w}
+                      key={sizeLabel({ ...p, ...preset })}
                       onPress={() => {
-                        setDimensions({ width: String(w), height: String(h) });
-                        update({ width: w, height: h });
+                        setDimensions({
+                          width: String(preset.width),
+                          height: String(preset.height),
+                          depth: String(preset.depth),
+                        });
+                        update(preset);
                       }}
                     >
-                      {w}×{h}
+                      {sizeLabel({ ...p, ...preset }).replace(/ /g, "")}
                     </Button>
                   ))}
                 </View>
                 <View style={s.row}>
-                  {(["width", "height"] as const).map((key) => (
+                  {TEMPLATES[p.kind].dims.map((key) => (
                     <View key={key} style={{ flex: 1 }}>
                       <Text style={s.sub}>
-                        {key === "width"
-                          ? lang === "ko"
-                            ? "폭 40–85"
-                            : "Width 40–85"
-                          : lang === "ko"
-                            ? "높이 60–160"
-                            : "Height 60–160"}
+                        {t.dims[key]} {TEMPLATES[p.kind].limits[key]!.join("–")}
                       </Text>
                       <TextInput
                         ref={(input) => {
@@ -630,15 +678,7 @@ export default function App() {
                         }}
                         onFocus={() => focusInput(key)}
                         onBlur={() => blurInput(key)}
-                        accessibilityLabel={
-                          key === "width"
-                            ? lang === "ko"
-                              ? "폭 밀리미터"
-                              : "Width mm"
-                            : lang === "ko"
-                              ? "높이 밀리미터"
-                              : "Height mm"
-                        }
+                        accessibilityLabel={`${t.dims[key]} mm`}
                         style={s.input}
                         value={dimensions[key]}
                         keyboardType="decimal-pad"
@@ -649,13 +689,11 @@ export default function App() {
                 </View>
                 {!valid ? (
                   <Text accessibilityRole="alert" style={s.error}>
-                    {lang === "ko"
-                      ? "허용 범위의 크기를 입력해 주세요."
-                      : "Enter a size within the shown range."}
+                    {typedError === "does_not_fit" ? t.tooBig : t.range}
                   </Text>
                 ) : null}
                 <Text style={s.sub}>
-                  ≈ {p.width - p.tab} × {p.height - 2 * p.tab} mm · {t.estimate}
+                  ≈ {TEMPLATES[p.kind].inside(p).join(" × ")} mm · {t.estimate}
                 </Text>
                 <Text style={s.section}>{t.text}</Text>
                 <TextInput
@@ -795,7 +833,7 @@ export default function App() {
                   {t.repeat}
                 </Button>
                 <Text style={s.section}>
-                  {layout(p, paper, repeat).copies} × {p.width} × {p.height} mm
+                  {layout(p, paper, repeat).copies} × {sizeLabel(p)} mm
                 </Text>
                 <Text style={s.sub}>{t.scale}</Text>
               </>
@@ -884,18 +922,8 @@ export default function App() {
           </ScrollView>
           {busy ? <ActivityIndicator style={{ padding: 8 }} /> : null}
           <View style={s.footer}>
-            {screen === "home" || screen === "list" ? (
-              <Button
-                primary
-                disabled={busy}
-                onPress={() =>
-                  void run(async () => {
-                    const project = createProject(id());
-                    await repository.save(project);
-                    await open(project);
-                  })
-                }
-              >
+            {screen === "list" ? (
+              <Button primary disabled={busy} onPress={() => setScreen("home")}>
                 {t.new}
               </Button>
             ) : screen === "edit" ? (
@@ -997,6 +1025,19 @@ const s = StyleSheet.create({
     paddingTop: 4,
     borderTopWidth: 1,
     borderTopColor: "#e5e7db",
+  },
+  templates: { flexDirection: "row", gap: 12 },
+  template: {
+    flex: 1,
+    padding: 10,
+    backgroundColor: "white",
+    borderRadius: 16,
+  },
+  templateName: {
+    fontSize: 16,
+    color: "#273e36",
+    fontWeight: "600",
+    marginTop: 8,
   },
   card: {
     padding: 16,
