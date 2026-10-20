@@ -21,23 +21,31 @@ export function subscribeAds(listener: () => void) {
   };
 }
 function publish(canRequestAds: boolean) {
+  if (state.canRequestAds === canRequestAds) return;
   state = { canRequestAds, revision: state.revision + 1 };
   listeners.forEach((fn) => fn());
 }
 let sdk: Promise<unknown> | undefined;
 let checking: Promise<void> | undefined;
-export function consent(): Promise<void> {
+let gathered = false;
+export function consent(force = false): Promise<void> {
   if (checking) return checking;
+  if (!force && gathered)
+    return state.canRequestAds
+      ? Promise.resolve()
+      : Promise.reject(new Error("CONSENT"));
   publish(false);
   checking = (async () => {
     try {
       const info = await AdsConsent.gatherConsent();
+      gathered = true;
       if (!info.canRequestAds) throw new Error("CONSENT");
       if (!sdk)
         sdk = mobileAds()
           .initialize()
           .catch((error) => {
             sdk = undefined;
+            gathered = false;
             throw error;
           });
       await sdk;
@@ -67,7 +75,12 @@ export async function privacy() {
       AdsConsentPrivacyOptionsRequirementStatus.REQUIRED
     ) {
       await AdsConsent.showPrivacyOptionsForm();
-      await consent();
+      try {
+        await consent(true);
+      } catch (error) {
+        if (!(error instanceof Error) || error.message !== "CONSENT")
+          throw error;
+      }
       return true;
     }
     if (
@@ -75,7 +88,11 @@ export async function privacy() {
       AdsConsentPrivacyOptionsRequirementStatus.UNKNOWN
     )
       throw new Error("CONSENT");
-    await consent();
+    try {
+      await consent(true);
+    } catch (error) {
+      if (!(error instanceof Error) || error.message !== "CONSENT") throw error;
+    }
     return false;
   } catch (error) {
     publish(false);

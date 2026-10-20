@@ -13,7 +13,7 @@
   },
   "ledger": {
     "createdAt": "2026-10-05T07:23:18Z",
-    "updatedAt": "2026-10-05T09:41:32+00:00",
+    "updatedAt": "2026-10-20T15:53:08.791775+00:00",
     "currentReleaseLedger": "release/market-launch-state.json"
   },
   "sections": {
@@ -28,16 +28,16 @@
           ],
           "reviewCadence": "on_change",
           "status": "pass",
-          "value": "Android 구현·설치·QA 승인. 스토어 제출·공개 제외.",
+          "value": "사용자 승인: Google Play 무료1.0.0, 배포가능한전세계국가100% 공개. Android only, 로컬저장,6종무료, home/list배너와선택보상광고.",
           "owner": null,
           "evidence": [
             {
               "kind": "document",
-              "ref": "docs/product-spec.md",
-              "observedAt": "2026-10-05T08:04:59.553602+00:00"
+              "ref": "docs/design/2026-10-21-public-launch/design.md",
+              "observedAt": "2026-10-20T15:53:08.791775+00:00"
             }
           ],
-          "checkedAt": "2026-10-05T08:04:59.553602+00:00",
+          "checkedAt": "2026-10-20T15:53:08.791775+00:00",
           "reviewBy": null,
           "blocker": null,
           "notes": null
@@ -50,16 +50,16 @@
           ],
           "reviewCadence": "once",
           "status": "pass",
-          "value": "Android 구현·설치·QA 승인. 스토어 제출·공개 제외.",
+          "value": "사용자 승인: Google Play 무료1.0.0, 배포가능한전세계국가100% 공개. Android only, 로컬저장,6종무료, home/list배너와선택보상광고.",
           "owner": null,
           "evidence": [
             {
               "kind": "document",
-              "ref": "docs/product-spec.md",
-              "observedAt": "2026-10-05T08:04:59.553602+00:00"
+              "ref": "docs/design/2026-10-21-public-launch/design.md",
+              "observedAt": "2026-10-20T15:53:08.791775+00:00"
             }
           ],
-          "checkedAt": "2026-10-05T08:04:59.553602+00:00",
+          "checkedAt": "2026-10-20T15:53:08.791775+00:00",
           "reviewBy": null,
           "blocker": null,
           "notes": null
@@ -72,16 +72,16 @@
           ],
           "reviewCadence": "on_change",
           "status": "pass",
-          "value": "Android 구현·설치·QA 승인. 스토어 제출·공개 제외.",
+          "value": "사용자 승인: Google Play 무료1.0.0, 배포가능한전세계국가100% 공개. Android only, 로컬저장,6종무료, home/list배너와선택보상광고.",
           "owner": null,
           "evidence": [
             {
               "kind": "document",
-              "ref": "docs/product-spec.md",
-              "observedAt": "2026-10-05T08:04:59.553602+00:00"
+              "ref": "docs/design/2026-10-21-public-launch/design.md",
+              "observedAt": "2026-10-20T15:53:08.791775+00:00"
             }
           ],
-          "checkedAt": "2026-10-05T08:04:59.553602+00:00",
+          "checkedAt": "2026-10-20T15:53:08.791775+00:00",
           "reviewBy": null,
           "blocker": null,
           "notes": null
@@ -93,11 +93,17 @@
             "all"
           ],
           "reviewCadence": "per_release",
-          "status": "pending",
-          "value": "확정 필요",
+          "status": "pass",
+          "value": "사용자 승인: Google Play 무료1.0.0, 배포가능한전세계국가100% 공개. Android only, 로컬저장,6종무료, home/list배너와선택보상광고.",
           "owner": null,
-          "evidence": [],
-          "checkedAt": null,
+          "evidence": [
+            {
+              "kind": "document",
+              "ref": "docs/design/2026-10-21-public-launch/design.md",
+              "observedAt": "2026-10-20T15:53:08.791775+00:00"
+            }
+          ],
+          "checkedAt": "2026-10-20T15:53:08.791775+00:00",
           "reviewBy": null,
           "blocker": null,
           "notes": null

@@ -22,5 +22,9 @@
     "artifacts/device/qa34-test-ad-status.png",
     "artifacts/device/qa34-reward-restored-copy.png",
     "docs/qa.md"
-  ]
+  ],
+  "bannerAdUnitId": "ca-app-pub-9932778305312246/1325597400",
+  "bannerUnitName": "home_drafts_banner",
+  "bannerRegisteredAt": "2026-10-21",
+  "bannerSdkIntegration": "native_unrun"
 }

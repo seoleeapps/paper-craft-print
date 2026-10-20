@@ -24,6 +24,7 @@ jobs:
       - run: npm run typecheck
       - run: npm run check:architecture
       - run: sudo apt-get update && sudo apt-get install -y poppler-utils
+      - run: python3 -m unittest discover -s scripts/tests -v
       - run: npm test
       - run: npm run verify:pdf
       - run: npm run export:web -w apps/mobile

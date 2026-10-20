@@ -20,3 +20,9 @@ adb -s DEVICE_SERIAL shell am start -n com.seoleeapps.papercraftprint/.MainActiv
 `apps/mobile`은 React Native 화면과 기기 서비스, `packages/product-core`는 순수 도안·배치·사진 자르기 계산과 포트입니다. 제품 범위는 [구축 계약](docs/product-spec.md), 실행 증거와 남은 검증은 [QA 기록](docs/qa.md), 광고 상태는 [AdMob 원장](release/admob.json), 제품 상태는 [제품 원장](release/app-launch-ledger.json), 현재 APK와 마켓 단계는 [후보 원장](release/market-launch-state.json)을 참조하세요. PDF 검사에는 Poppler의 `pdftotext`·`pdftocairo`가 필요합니다. APK·PDF·화면 증거는 로컬 `artifacts/`에 보관하며 Git에 포함하지 않습니다.
 
 서버·계정·Firebase·이용 분석·결제는 사용하지 않습니다. 데이터는 기기에 보관되며 앱 삭제 시 없어집니다. 선택적 광고는 동의 상태가 허용할 때만 요청합니다. 무료 제작은 광고 없이 이용할 수 있습니다.
+
+## 공개 출시 작업
+
+Google Play 1.0.0 무료 공개를 준비합니다. 현재 앱 등록을 마쳤으며 빌드, 내부 테스트, 필수 네이티브 검수와 심사, 공개는 별도 상태입니다. 최신 상태는 `release/market-launch-state.json`, 상세 범위는 `docs/design/2026-10-21-public-launch/design.md`를 참조하세요. 이전 0.1.0 APK 검수는 현재 후보의 통과 근거가 아닙니다.
+
+개발 검수는 `npm ci`, `npm run check:dev`와 `npm run web -w apps/mobile`를 사용합니다. 실제 App을 실행하는 `scripts/web-journey.py`가 사진, 문구,6종PDF, 저장과재시작,오류와동의변경을확인합니다. 네이티브광고SDK와OS기능은웹대역과구분합니다.

@@ -17,37 +17,72 @@ const empty = (): Store => ({
   events: [],
   settings: {},
 });
-function read(): Store {
-  const raw = localStorage.getItem(KEY);
-  return raw ? JSON.parse(raw) : empty();
+// IndexedDB keeps development photo drafts durable without localStorage's small quota.
+const database = new Promise<IDBDatabase>((resolve, reject) => {
+  const request = indexedDB.open("paper-craft-print.dev", 1);
+  request.onupgradeneeded = () => request.result.createObjectStore("data");
+  request.onerror = () => reject(request.error);
+  request.onsuccess = () => resolve(request.result);
+});
+async function read(): Promise<Store> {
+  const db = await database;
+  return new Promise((resolve, reject) => {
+    const request = db.transaction("data").objectStore("data").get("store");
+    request.onsuccess = () => resolve(request.result ?? empty());
+    request.onerror = () => reject(request.error);
+  });
 }
-function change(fn: (store: Store) => void) {
-  const store = read();
-  fn(store);
-  localStorage.setItem(KEY, JSON.stringify(store));
+async function save(store: Store) {
+  const db = await database;
+  return new Promise<void>((resolve, reject) => {
+    const transaction = db.transaction("data", "readwrite");
+    transaction.objectStore("data").put(store, "store");
+    transaction.oncomplete = () => resolve();
+    transaction.onerror = () => reject(transaction.error);
+    transaction.onabort = () =>
+      reject(transaction.error ?? new Error("STORAGE_ABORTED"));
+  });
+}
+let writes = Promise.resolve();
+function change(fn: (store: Store) => void): Promise<void> {
+  const next = writes.then(async () => {
+    const store = await read();
+    fn(store);
+    await save(store);
+  });
+  writes = next.catch(() => {});
+  return next;
 }
 export async function initialize() {
-  read();
+  // Import earlier web drafts and isolated QA fixtures once; native SQLite is unchanged.
+  const previous = localStorage.getItem(KEY);
+  if (previous) {
+    await save(JSON.parse(previous));
+    localStorage.removeItem(KEY);
+  }
+  await read();
 }
 export const repository: ProjectRepository = {
   async list() {
-    return Object.values(read().projects)
+    await writes;
+    return Object.values((await read()).projects)
       .map(normalizeProject)
       .sort((a, b) => b.updatedAt - a.updatedAt);
   },
   async save(p) {
-    change((s) => {
-      s.projects[p.id] = p;
+    const snapshot = structuredClone(p);
+    await change((s) => {
+      s.projects[p.id] = snapshot;
     });
   },
   async remove(id) {
-    change((s) => {
+    await change((s) => {
       delete s.projects[id];
       delete s.rights[id];
     });
   },
   async grant(id, pattern, event) {
-    change((s) => {
+    await change((s) => {
       if (!s.projects[id]) throw new Error("DRAFT_MISSING");
       if (s.events.includes(event)) return;
       s.events.push(event);
@@ -55,12 +90,13 @@ export const repository: ProjectRepository = {
     });
   },
   async rights(id) {
-    return read().rights[id] ?? [];
+    await writes;
+    return (await read()).rights[id] ?? [];
   },
 };
 export async function duplicate(p: CraftProject, id: string) {
   const copy = { ...p, id, updatedAt: Date.now() };
-  change((s) => {
+  await change((s) => {
     s.projects[id] = copy;
     s.rights[id] = [...(s.rights[p.id] ?? [])];
   });
@@ -68,10 +104,11 @@ export async function duplicate(p: CraftProject, id: string) {
 }
 export async function setting(key: string, value?: string) {
   if (value !== undefined)
-    change((s) => {
+    await change((s) => {
       s.settings[key] = value;
     });
-  return read().settings[key];
+  await writes;
+  return (await read()).settings[key];
 }
 export async function persistPhoto(uri: string) {
   const blob = await (await fetch(uri)).blob();
@@ -83,5 +120,5 @@ export async function persistPhoto(uri: string) {
   });
 }
 export async function cleanup() {
-  /* Photos belong to the serialized draft; no separate files. */
+  /* Draft deletion also releases its unreferenced embedded photos. */
 }

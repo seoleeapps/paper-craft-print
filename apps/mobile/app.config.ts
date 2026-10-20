@@ -9,7 +9,7 @@ if (
   (appId !== registered.androidAppId ||
     unitId !== registered.rewardedAdUnitId ||
     !bannerId ||
-    bannerId !== (registered as { bannerAdUnitId?: string }).bannerAdUnitId)
+    bannerId !== registered.bannerAdUnitId)
 )
   throw new Error("Production requires verified Paper Craft Print AdMob IDs");
 const config: ExpoConfig = {

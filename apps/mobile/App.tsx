@@ -954,7 +954,6 @@ export default function App() {
           </ScrollView>
           {screen === "home" || screen === "list" ? (
             <AdBanner
-              key={screen}
               label={lang === "ko" ? "광고" : "Advertisement"}
             />
           ) : null}

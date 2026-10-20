@@ -1,0 +1,26 @@
+{
+  "out_dir": "play-store/assets",
+  "background": "#faf7f0",
+  "brand": "Existing Paper Craft Print envelope mark, forest green and warm paper. Adult hobby craft app. Feature graphic uses real paper net preview.",
+  "items": [
+    {
+      "id": "play-icon",
+      "kind": "icon",
+      "path": "icon-512.png",
+      "width": 512,
+      "height": 512,
+      "source": "apps/mobile/assets/icon.png",
+      "fit": "contain",
+      "background": "#faf7f0"
+    },
+    {
+      "id": "feature-graphic",
+      "kind": "feature",
+      "path": "feature-graphic-1024x500.png",
+      "width": 1024,
+      "height": 500,
+      "source": "play-store/assets/feature-graphic-1024x500.png",
+      "background": "#faf7f0"
+    }
+  ]
+}

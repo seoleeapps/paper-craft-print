@@ -240,3 +240,28 @@ test("every template has closed cuts and repeat placements including labels stay
         }
   }
 });
+
+test("bag bottom flaps are separated all the way to the body with closed 1mm notches", () => {
+  const p = createProject("bag", "paperBag"),
+    g = net(p),
+    bottom = 10 + p.height;
+  for (const boundary of [
+    10 + p.width,
+    10 + p.width + p.depth,
+    10 + 2 * p.width + p.depth,
+  ]) {
+    for (const x of [boundary - 0.5, boundary + 0.5]) {
+      assert.ok(
+        g.lines.some(
+          (l) =>
+            l.kind === "cut" &&
+            l.x1 === x &&
+            l.x2 === x &&
+            Math.min(l.y1, l.y2) === bottom &&
+            Math.max(l.y1, l.y2) >= bottom + p.depth / 2,
+        ),
+      );
+    }
+  }
+  assertClosed(g.lines);
+});

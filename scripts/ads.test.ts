@@ -10,7 +10,8 @@ function fixture(canRequestAds = true, saveFailure = false) {
   const grants: unknown[][] = [];
   let initialized = 0,
     loaded = 0,
-    shown = 0;
+    shown = 0,
+    gathered = 0;
   let timeout: (() => void) | undefined;
   const exports: Record<string, any> = {};
   const ad = {
@@ -37,6 +38,7 @@ function fixture(canRequestAds = true, saveFailure = false) {
           canRequestAds = false;
         },
         async gatherConsent() {
+          gathered++;
           return { canRequestAds, privacyOptionsRequirementStatus: "required" };
         },
       },
@@ -93,6 +95,7 @@ function fixture(canRequestAds = true, saveFailure = false) {
       revision: number;
     },
     bannerUnit: exports.bannerUnitId,
+    gathered: () => gathered,
     unlock: exports.rewards.unlock as (
       id: string,
       pattern: string,
@@ -172,11 +175,12 @@ test("parallel consent calls initialize the SDK only once; banner is gated until
   assert.equal(f.adState().canRequestAds, true);
   await f.consent();
   assert.equal(f.state().initialized, 1);
+  assert.equal(f.gathered(), 1);
 });
 test("privacy revocation removes existing banner permission and prevents another request", async () => {
   const f = fixture();
   await f.consent();
-  await assert.rejects(f.privacy(), /CONSENT/);
+  assert.equal(await f.privacy(), true);
   assert.equal(f.adState().canRequestAds, false);
   await assert.rejects(f.unlock("p", "stars"), /CONSENT/);
   assert.equal(f.state().loaded, 0);
