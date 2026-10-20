@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "features": [
+    {
+      "id": "templates",
+      "name": "도안 6종과 치수",
+      "core": true,
+      "foundation": false,
+      "paths": [
+        "packages/product-core/**"
+      ]
+    },
+    {
+      "id": "editing",
+      "name": "사진과 문구 편집",
+      "core": true,
+      "foundation": false,
+      "paths": [
+        "apps/mobile/App.tsx"
+      ]
+    },
+    {
+      "id": "preview",
+      "name": "전개도와 반복 배치",
+      "core": true,
+      "foundation": false,
+      "paths": [
+        "apps/mobile/src/Preview.tsx"
+      ]
+    },
+    {
+      "id": "pdf",
+      "name": "PDF 생성과 OS 출력",
+      "core": true,
+      "foundation": true,
+      "paths": [
+        "apps/mobile/src/export*"
+      ]
+    },
+    {
+      "id": "drafts",
+      "name": "로컬 저장과 복제 및 복구",
+      "core": true,
+      "foundation": true,
+      "paths": [
+        "apps/mobile/src/storage*"
+      ]
+    },
+    {
+      "id": "ads",
+      "name": "배너와 선택형 보상 및 동의",
+      "core": true,
+      "foundation": true,
+      "paths": [
+        "apps/mobile/src/ads*"
+      ]
+    },
+    {
+      "id": "locale",
+      "name": "한국어와 영어 및 접근성",
+      "core": true,
+      "foundation": false,
+      "paths": [
+        "apps/mobile/App.tsx"
+      ]
+    }
+  ]
+}
