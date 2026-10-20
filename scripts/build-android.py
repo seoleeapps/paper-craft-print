@@ -52,8 +52,8 @@ class BuildError(Exception):
     pass
 
 
-def run(args, cwd=ROOT, env=None, log=None, secrets=()):
-    result = subprocess.run(args, cwd=cwd, env=env, capture_output=True)
+def run(args, cwd=ROOT, env=None, log=None, secrets=(), input_bytes=None):
+    result = subprocess.run(args, cwd=cwd, env=env, capture_output=True, input=input_bytes)
     output = result.stdout.decode("utf-8", errors="replace")
     diagnostic = result.stderr.decode("utf-8", errors="replace")
     for secret in sorted(set(secrets), key=len, reverse=True):
@@ -154,6 +154,18 @@ def fingerprint(pem):
     return hashlib.sha256(base64.b64decode(certificates[0])).hexdigest()
 
 
+def aab_certificate(path, env):
+    # Read the public signing certificate from the verified JAR's PKCS7 block.
+    # keytool -printcert -jarfile can consult a missing default user keystore.
+    with zipfile.ZipFile(path) as archive:
+        blocks = [name for name in archive.namelist()
+                  if re.fullmatch(r"META-INF/[^/]+\.(RSA|DSA|EC)", name, re.I)]
+        if len(blocks) != 1:
+            raise BuildError("Expected one AAB signature block")
+        return fingerprint(run(["openssl", "pkcs7", "-inform", "DER", "-print_certs"],
+                               env=env, input_bytes=archive.read(blocks[0])))
+
+
 def manifest_identity(text):
     manifest = ET.fromstring(text)
     identity = {"package": manifest.get("package"), "versionName": manifest.get(ANDROID + "versionName"),
@@ -221,12 +233,16 @@ def build(root, mode, env):
         run(["./gradlew", ":app:bundleRelease", ":app:assembleRelease", "-I", str(init),
              "-PreactNativeArchitectures=" + ",".join(sorted(ABIS)), "--no-daemon", "--no-configuration-cache",
              "--no-build-cache", "--console=plain"], cwd=native, env=signed, log=output / "gradle.log", secrets=secrets)
-        aab = native / "app/build/outputs/bundle/release/app-release.aab"
-        apk = native / "app/build/outputs/apk/release/app-release.apk"
+        # Preserve completed builds even if a later static verification fails.
+        # Only build-report.json marks an artifact as an accepted candidate.
+        aab = output / f"paper-craft-print-{VERSION}-{CODE}-{mode}-ads.aab"
+        apk = output / f"paper-craft-print-{VERSION}-{CODE}-{mode}-ads.apk"
+        shutil.copyfile(native / "app/build/outputs/bundle/release/app-release.aab", aab)
+        shutil.copyfile(native / "app/build/outputs/apk/release/app-release.apk", apk)
         signature = run(["jarsigner", "-verify", str(aab)], env=env, log=output / "aab-signature.txt")
         if "jar verified." not in signature or "unsigned entries" in signature.lower():
             raise BuildError("AAB JAR signature was not verified")
-        actual_cert = fingerprint(run(["keytool", "-printcert", "-rfc", "-jarfile", str(aab)], env=env))
+        actual_cert = aab_certificate(aab, env)
         apk_signature = run([str(tools / "apksigner"), "verify", "--print-certs", str(apk)], env=env, log=output / "apk-signature.txt")
         apk_certs = re.findall(r"Signer #\d+ certificate SHA-256 digest: ([0-9a-fA-F]+)", apk_signature)
         if actual_cert != expected_cert or [value.lower() for value in apk_certs] != [expected_cert]:
@@ -250,11 +266,8 @@ def build(root, mode, env):
         artifacts = []
         for path, prefix in ((aab, "base/lib"), (apk, "lib")):
             abis = artifact_abis(path, prefix)
-            name = f"paper-craft-print-{VERSION}-{CODE}-{mode}-ads{path.suffix}"
-            target = output / name
-            shutil.copyfile(path, target)
-            artifacts.append({"file": name, "sha256": hashlib.sha256(target.read_bytes()).hexdigest(),
-                              "bytes": target.stat().st_size, "abis": abis, "certificateSha256": actual_cert})
+            artifacts.append({"file": path.name, "sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
+                              "bytes": path.stat().st_size, "abis": abis, "certificateSha256": actual_cert})
         if clean_head(root) != sha:
             raise BuildError("Checkout changed during build; artifacts are not accepted as a candidate")
         report = {"status": "built-and-statically-verified", "revision": sha, "policyRevision": policy_sha,

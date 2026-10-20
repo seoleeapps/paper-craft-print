@@ -1,8 +1,10 @@
 """Boundary checks use synthetic data and never read credentials or start builds."""
 import importlib.util
+import hashlib
 import json
 from pathlib import Path
 import tempfile
+import subprocess
 import unittest
 from unittest.mock import patch
 import zipfile
@@ -13,6 +15,25 @@ SPEC.loader.exec_module(builder)
 
 
 class BuildBoundaries(unittest.TestCase):
+    def test_aab_certificate_reads_pkcs7_without_default_keystore(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            subprocess.run(["openssl", "req", "-x509", "-newkey", "rsa:2048", "-nodes", "-days", "1",
+                            "-subj", "/CN=Synthetic Build Test", "-keyout", str(root / "key.pem"),
+                            "-out", str(root / "cert.pem")], check=True, capture_output=True)
+            block = subprocess.run(["openssl", "crl2pkcs7", "-nocrl", "-certfile", str(root / "cert.pem"),
+                                    "-outform", "DER"], check=True, capture_output=True).stdout
+            der = subprocess.run(["openssl", "x509", "-in", str(root / "cert.pem"), "-outform", "DER"],
+                                 check=True, capture_output=True).stdout
+            path = root / "synthetic.aab"
+            with zipfile.ZipFile(path, "w") as archive:
+                archive.writestr("META-INF/UPLOAD.RSA", block)
+            self.assertEqual(builder.aab_certificate(path, {}), hashlib.sha256(der).hexdigest())
+            with zipfile.ZipFile(path, "a") as archive:
+                archive.writestr("META-INF/SECOND.RSA", block)
+            with self.assertRaises(builder.BuildError):
+                builder.aab_certificate(path, {})
+
     def test_missing_gate_inputs_stop_before_subprocess(self):
         with patch.object(builder, "run") as command:
             with self.assertRaises(builder.BuildError):
