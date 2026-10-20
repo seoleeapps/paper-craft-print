@@ -1,6 +1,7 @@
 """Actual RN Web journey; platform SDK results are explicitly development substitutes."""
 from pathlib import Path
 import json, re, time, base64
+from playwright.async_api import expect
 
 async def run(page, output, url='http://localhost:8087'):
     output=Path(output);output.mkdir(parents=True,exist_ok=True)
@@ -9,6 +10,8 @@ async def run(page, output, url='http://localhost:8087'):
     page.on('pageerror',lambda e:errors.append(str(e)))
     await page.set_viewport_size({'width':390,'height':844})
     await page.goto(url,wait_until='networkidle')
+    # Finish asynchronous storage boot before replacing isolated QA data.
+    await page.get_by_role('heading').first.wait_for()
     legacy={'id':'legacy','name':'Legacy envelope','width':60,'height':90,'tab':10,'pattern':'waves','front':{'text':'Legacy'},'back':{'text':''},'updatedAt':1}
     await page.evaluate('''legacy=>{localStorage.setItem('paper-craft-print.dev.v1',JSON.stringify({projects:{legacy},rights:{legacy:['waves']},events:[],settings:{language:'en'}}));sessionStorage.setItem('paper-craft.qa.ads','available')}''',legacy)
     await page.reload(wait_until='networkidle')
@@ -79,10 +82,10 @@ async def run(page, output, url='http://localhost:8087'):
     await page.get_by_role('button',name=re.compile('Stars.*Free')).wait_for()
     await button('Back');await button('My drafts')
     await page.get_by_text('Legacy envelope',exact=True).locator('..').locator('..').get_by_role('button',name='Duplicate',exact=True).click()
-    assert await page.get_by_text('Legacy envelope',exact=True).count()==2
+    await expect(page.get_by_text('Legacy envelope',exact=True)).to_have_count(2)
     page.once('dialog',lambda d:d.accept())
     await page.get_by_text('Legacy envelope',exact=True).last.locator('..').locator('..').get_by_role('button',name='Delete',exact=True).click()
-    assert await page.get_by_text('Legacy envelope',exact=True).count()==1
+    await expect(page.get_by_text('Legacy envelope',exact=True)).to_have_count(1)
     await page.reload(wait_until='networkidle')
     await button('My drafts');await page.get_by_text('Legacy envelope',exact=True).click()
     assert await page.get_by_role('button',name=re.compile('Stars.*Free')).count()==1
