@@ -3,3 +3,12 @@ artifacts/
 .DS_Store
 *.log
 .env*
+
+.serena/
+*.jks
+*.keystore
+*.p12
+*.mobileprovision
+
+__pycache__/
+*.pyc

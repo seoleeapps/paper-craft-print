@@ -1,0 +1,58 @@
+{
+  "packageName": "com.seoleeapps.papercraftprint",
+  "defaultLanguage": "en-US",
+  "appType": "app",
+  "freeOrPaid": "free",
+  "contactEmail": "cs@seorilabs.com",
+  "contactWebsite": "https://www.seorilabs.com/",
+  "contactPhone": "+821050675746",
+  "privacyPolicyUrl": "https://www.seorilabs.com/apps/paper-craft-print/privacy/",
+  "privacyPolicyVerification": "pending: planned URL; public page has not been deployed or read back",
+  "storeListing": {
+    "appName": {
+      "ko-KR": "Paper Craft Print",
+      "en-US": "Paper Craft Print"
+    },
+    "shortDescription": {
+      "ko-KR": "사진과 문구로 꾸미는 6종 종이 도안. A4와 Letter PDF로 저장하세요.",
+      "en-US": "Personalize 6 paper crafts with photos and notes. Export A4 and Letter PDFs."
+    },
+    "fullDescription": {
+      "ko-KR": "사진 한 장과 짧은 문구로 나만의 종이 선물을 만들어 보세요. Paper Craft Print는 성인 취미 사용자를 위한 종이 도안 편집 앱입니다.\n\n무료 도안 6종\n봉투, 선물 상자, 접이식 카드, 선물 태그, 책갈피, 종이 쇼핑백을 제공합니다. 선물 태그와 책갈피는 한 면에 인쇄한 뒤 반으로 접어 붙입니다. 종이 쇼핑백은 손잡이 없이 접착해 만드는 형태입니다.\n\n사진과 문구로 꾸미기\n앞면과 뒷면에 사진과 문구를 넣고 사진의 확대와 위치를 조절하세요. 도안별 허용 범위 안에서 크기를 바꾸고 출력 배치를 미리 볼 수 있습니다.\n\nA4와 Letter PDF\n종이에 들어가는 크기로 도안을 배치하고 같은 도안을 반복할 수 있습니다. 자르는 선, 접는 선, 접착 영역과 짧은 조립 안내가 PDF에 들어갑니다. 인쇄할 때 100% 또는 실제 크기를 선택하고 50 mm 확인선을 재어 보세요. 프린터와 용지는 별도로 필요합니다.\n\n초안은 이 기기에 저장\n초안이 자동 저장되며 다시 열기, 복제, 삭제를 지원합니다. 앱에 로그인할 필요가 없습니다. 선택한 사진과 초안은 앱의 서버로 전송하지 않습니다. 생성한 PDF는 폴더에 저장하거나 시스템 공유와 인쇄 기능으로 전달할 수 있습니다.\n\n광고 안내\n홈과 내 작업 화면에 배너 광고가 표시될 수 있습니다. 단색, 점무늬, 줄무늬, 격자 패턴과 모든 도안은 무료입니다. 물결, 별, 마름모 패턴은 선택한 보상형 광고를 완료하면 해당 초안에 사용할 수 있습니다. 광고를 사용할 수 없어도 무료 패턴으로 제작하고 PDF를 만들 수 있습니다.\n\n한국어와 영어를 지원합니다. 잘라 붙이는 작업에는 가위와 접착제가 필요하며 도안 크기와 재료에 맞춰 조립 상태를 확인하세요.",
+      "en-US": "Turn a photo and a short note into a paper gift. Paper Craft Print is a paper template editor for adult hobbyists.\n\nSix free templates\nMake an envelope, gift box, folded card, gift tag, bookmark or paper bag. Gift tags and bookmarks print on one side, then fold and glue into a two-sided piece. The paper bag has glue tabs and no handles.\n\nAdd your own details\nPlace photos and notes on the front and back. Adjust photo zoom and position, change dimensions within each template's limits and preview the print layout.\n\nA4 and Letter PDFs\nArrange your craft at its chosen size and repeat it across the page. PDFs include cut lines, fold lines, glue areas and short assembly instructions. Print at 100% or Actual size, then measure the 50 mm check line. A printer and paper are required separately.\n\nDrafts stay on your device\nYour edits save automatically. Reopen, duplicate or delete a draft when you need to. No account is required. Your selected photos and drafts are not uploaded to an app server. Save a PDF to a folder or use your device's sharing and printing features.\n\nAbout ads\nBanner ads may appear on Home and My drafts. All six templates and the plain, dots, stripes and grid patterns are free. Choose to complete a rewarded ad to use waves, stars or diamonds in that draft. If ads are unavailable, you can continue with free patterns and create PDFs.\n\nAvailable in English and Korean. Cutting and assembly require scissors and glue. Check the assembled result for the paper and dimensions you choose."
+    }
+  },
+  "assets": {
+    "playIcon": "play-store/assets/icon-512.png",
+    "featureGraphic": "play-store/assets/feature-graphic-1024x500.png",
+    "phoneScreenshots": [
+      "play-store/screenshots/phone/home.png",
+      "play-store/screenshots/phone/editor.png",
+      "play-store/screenshots/phone/print-layout.png"
+    ],
+    "sevenInchTabletScreenshots": [],
+    "tenInchTabletScreenshots": []
+  },
+  "contentDeclarations": {
+    "dataSafety": "확정 필요: final Android SDK dependency review and Play Console declaration",
+    "contentRating": "확정 필요: IARC questionnaire and rating readback",
+    "targetAudience": "18-and-over-not-children",
+    "ads": "yes",
+    "koreaDistribution": "yes",
+    "koreaGameRating": "not-applicable: non-game paper craft editor"
+  },
+  "release": {
+    "versionName": "1.0.0",
+    "versionCode": 1,
+    "countries": "all-available",
+    "rollout": "full",
+    "releaseNotes": {
+      "ko-KR": "첫 버전입니다. 봉투, 선물 상자, 접이식 카드, 선물 태그, 책갈피, 종이 쇼핑백을 사진과 문구로 꾸미고 A4 또는 Letter PDF로 저장하세요.",
+      "en-US": "First release. Personalize envelopes, gift boxes, folded cards, gift tags, bookmarks and paper bags with photos and notes, then export A4 or Letter PDFs."
+    }
+  },
+  "manualEvidence": [
+    "docs/google-play-release.md",
+    "docs/privacy-data.md"
+  ]
+}

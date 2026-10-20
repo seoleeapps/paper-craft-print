@@ -33,8 +33,11 @@ function fixture(canRequestAds = true, saveFailure = false) {
     }),
     {
       AdsConsent: {
+        async showPrivacyOptionsForm() {
+          canRequestAds = false;
+        },
         async gatherConsent() {
-          return { canRequestAds };
+          return { canRequestAds, privacyOptionsRequirementStatus: "required" };
         },
       },
       AdsConsentPrivacyOptionsRequirementStatus: {
@@ -44,7 +47,7 @@ function fixture(canRequestAds = true, saveFailure = false) {
       RewardedAd: { createForAdRequest: () => ad },
       RewardedAdEventType: { LOADED: "loaded", EARNED_REWARD: "earned" },
       AdEventType: { CLOSED: "closed", ERROR: "error" },
-      TestIds: { REWARDED: "test-rewarded" },
+      TestIds: { REWARDED: "test-rewarded", BANNER: "test-banner" },
     },
   );
   const javascript = ts.transpileModule(
@@ -83,6 +86,13 @@ function fixture(canRequestAds = true, saveFailure = false) {
     },
   });
   return {
+    consent: exports.consent as () => Promise<void>,
+    privacy: exports.privacy as () => Promise<boolean>,
+    adState: exports.getAdState as () => {
+      canRequestAds: boolean;
+      revision: number;
+    },
+    bannerUnit: exports.bannerUnitId,
     unlock: exports.rewards.unlock as (
       id: string,
       pattern: string,
@@ -151,4 +161,24 @@ test("a failed durable reward save cannot report success", async () => {
   f.emit("closed");
   await assert.rejects(completion, /SQLITE_WRITE_FAILED/);
   assert.equal(f.grants.length, 1);
+});
+
+test("parallel consent calls initialize the SDK only once; banner is gated until allowed", async () => {
+  const f = fixture();
+  assert.equal(f.adState().canRequestAds, false);
+  assert.equal(f.bannerUnit, "test-banner");
+  await Promise.all([f.consent(), f.consent()]);
+  assert.equal(f.state().initialized, 1);
+  assert.equal(f.adState().canRequestAds, true);
+  await f.consent();
+  assert.equal(f.state().initialized, 1);
+});
+test("privacy revocation removes existing banner permission and prevents another request", async () => {
+  const f = fixture();
+  await f.consent();
+  await assert.rejects(f.privacy(), /CONSENT/);
+  assert.equal(f.adState().canRequestAds, false);
+  await assert.rejects(f.unlock("p", "stars"), /CONSENT/);
+  assert.equal(f.state().loaded, 0);
+  assert.equal(f.state().initialized, 1);
 });

@@ -1,7 +1,20 @@
 import { execFileSync } from "node:child_process";
 import { readFileSync } from "node:fs";
 import assert from "node:assert/strict";
-for (const name of ["A4", "Letter", "tuckBox-A4", "tuckBox-Letter"]) {
+for (const name of [
+  "A4",
+  "Letter",
+  "tuckBox-A4",
+  "tuckBox-Letter",
+  "card-A4",
+  "card-Letter",
+  "giftTag-A4",
+  "giftTag-Letter",
+  "bookmark-A4",
+  "bookmark-Letter",
+  "paperBag-A4",
+  "paperBag-Letter",
+]) {
   const path = `artifacts/pdf/${name}.pdf`;
   const text = execFileSync("pdftotext", [path, "-"], { encoding: "utf8" });
   assert.ok(text.replace(/\s/g, "").includes("작은선물"));

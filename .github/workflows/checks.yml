@@ -1,0 +1,35 @@
+name: Checks
+on:
+  push:
+    branches: [main]
+  pull_request:
+permissions:
+  contents: read
+concurrency:
+  group: checks-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24.16.0
+          cache: npm
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm run check:architecture
+      - run: sudo apt-get update && sudo apt-get install -y poppler-utils
+      - run: npm test
+      - run: npm run verify:pdf
+      - run: npm run export:web -w apps/mobile
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: development-${{ github.sha }}
+          path: artifacts/pdf
+          retention-days: 3

@@ -3,15 +3,19 @@ import registered from "../../release/admob.json";
 const production = process.env.CRAFT_AD_MODE === "production";
 const appId = process.env.ADMOB_APP_ID;
 const unitId = process.env.ADMOB_REWARDED_AD_UNIT_ID;
+const bannerId = process.env.ADMOB_BANNER_AD_UNIT_ID;
 if (
   production &&
-  (appId !== registered.androidAppId || unitId !== registered.rewardedAdUnitId)
+  (appId !== registered.androidAppId ||
+    unitId !== registered.rewardedAdUnitId ||
+    !bannerId ||
+    bannerId !== (registered as { bannerAdUnitId?: string }).bannerAdUnitId)
 )
   throw new Error("Production requires verified Paper Craft Print AdMob IDs");
 const config: ExpoConfig = {
   name: "Paper Craft Print",
   slug: "paper-craft-print",
-  version: "0.1.0",
+  version: "1.0.0",
   orientation: "portrait",
   icon: "./assets/icon.png",
   userInterfaceStyle: "light",
@@ -67,6 +71,7 @@ const config: ExpoConfig = {
   extra: {
     adMode: production ? "production" : "test",
     rewardedAdUnitId: production ? unitId : null,
+    bannerAdUnitId: production ? bannerId : null,
   },
 };
 export default config;

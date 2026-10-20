@@ -7,6 +7,7 @@ import {
   Rect,
   textError,
   patternMarks,
+  ASSEMBLY,
 } from "@paper-craft/product-core";
 export const MM = 72 / 25.4;
 export function validateText(project: CraftProject, font: PDFFont) {
@@ -175,6 +176,24 @@ export async function makePDF(
       thickness: 0.7,
       color: ink,
     });
+    const maxWidth = Math.max(65, l.rotated ? g.height : g.width) * MM;
+    const words = ASSEMBLY[p.kind].pdf.split(" ");
+    const guidance: string[] = [""];
+    for (const word of words) {
+      const i = guidance.length - 1;
+      const next = `${guidance[i]} ${word}`.trim();
+      if (font.widthOfTextAtSize(next, 6) > maxWidth) guidance.push(word);
+      else guidance[i] = next;
+    }
+    guidance.forEach((value, i) =>
+      page.drawText(value, {
+        x: pos.x * MM,
+        y: (l.height - bottom - 17 - i * 3) * MM,
+        font,
+        size: 6,
+        color: ink,
+      }),
+    );
     page.drawText("50 mm", {
       x: (pos.x + 52) * MM,
       y: (l.height - bottom - 12) * MM,

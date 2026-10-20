@@ -1,6 +1,6 @@
 # Paper Craft Print
 
-성인 취미 사용자의 사진과 짧은 문구로 봉투·선물 상자 도안을 만들고 A4·Letter PDF를 저장·공유·인쇄하는 Android 앱입니다.
+성인 취미 사용자의 사진과 짧은 문구로 봉투·선물 상자·접이식 카드 도안을 만들고 A4·Letter PDF를 저장·공유·인쇄하는 Android 앱입니다.
 
 ```sh
 npm ci
