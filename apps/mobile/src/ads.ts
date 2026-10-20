@@ -10,26 +10,94 @@ import Constants from "expo-constants";
 import { Pattern, RewardPort } from "@paper-craft/product-core";
 import { repository } from "./storage";
 const test = Constants.expoConfig?.extra?.adMode !== "production";
-export async function consent() {
-  const result = await AdsConsent.gatherConsent();
-  if (!result.canRequestAds) throw new Error("CONSENT");
-  await mobileAds().initialize();
+export type AdState = { canRequestAds: boolean; revision: number };
+let state: AdState = { canRequestAds: false, revision: 0 };
+const listeners = new Set<() => void>();
+export const getAdState = () => state;
+export function subscribeAds(listener: () => void) {
+  listeners.add(listener);
+  return () => {
+    listeners.delete(listener);
+  };
 }
+function publish(canRequestAds: boolean) {
+  if (state.canRequestAds === canRequestAds) return;
+  state = { canRequestAds, revision: state.revision + 1 };
+  listeners.forEach((fn) => fn());
+}
+let sdk: Promise<unknown> | undefined;
+let checking: Promise<void> | undefined;
+let gathered = false;
+export function consent(force = false): Promise<void> {
+  if (checking) return checking;
+  if (!force && gathered)
+    return state.canRequestAds
+      ? Promise.resolve()
+      : Promise.reject(new Error("CONSENT"));
+  publish(false);
+  checking = (async () => {
+    try {
+      const info = await AdsConsent.gatherConsent();
+      gathered = true;
+      if (!info.canRequestAds) throw new Error("CONSENT");
+      if (!sdk)
+        sdk = mobileAds()
+          .initialize()
+          .catch((error) => {
+            sdk = undefined;
+            gathered = false;
+            throw error;
+          });
+      await sdk;
+      publish(true);
+    } finally {
+      checking = undefined;
+    }
+  })();
+  return checking;
+}
+export const bannerUnitId: string | undefined = test
+  ? TestIds.BANNER
+  : Constants.expoConfig?.extra?.bannerAdUnitId;
 export async function privacy() {
-  const info = await AdsConsent.gatherConsent();
-  if (
-    info.privacyOptionsRequirementStatus ===
-    AdsConsentPrivacyOptionsRequirementStatus.REQUIRED
-  ) {
-    await AdsConsent.showPrivacyOptionsForm();
-    return true;
+  // Remove previously loaded inventory before changing the user's choices.
+  publish(false);
+  if (checking) {
+    try {
+      await checking;
+    } catch {}
+    publish(false);
   }
-  if (
-    info.privacyOptionsRequirementStatus ===
-    AdsConsentPrivacyOptionsRequirementStatus.UNKNOWN
-  )
-    throw new Error("CONSENT");
-  return false;
+  try {
+    const info = await AdsConsent.gatherConsent();
+    if (
+      info.privacyOptionsRequirementStatus ===
+      AdsConsentPrivacyOptionsRequirementStatus.REQUIRED
+    ) {
+      await AdsConsent.showPrivacyOptionsForm();
+      try {
+        await consent(true);
+      } catch (error) {
+        if (!(error instanceof Error) || error.message !== "CONSENT")
+          throw error;
+      }
+      return true;
+    }
+    if (
+      info.privacyOptionsRequirementStatus ===
+      AdsConsentPrivacyOptionsRequirementStatus.UNKNOWN
+    )
+      throw new Error("CONSENT");
+    try {
+      await consent(true);
+    } catch (error) {
+      if (!(error instanceof Error) || error.message !== "CONSENT") throw error;
+    }
+    return false;
+  } catch (error) {
+    publish(false);
+    throw error;
+  }
 }
 export const rewards: RewardPort = {
   async unlock(projectId: string, pattern: Pattern) {

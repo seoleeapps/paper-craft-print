@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import {
-  Alert,
   AppState,
   BackHandler,
   KeyboardAvoidingView,
   Keyboard,
   Pressable,
+  Platform,
   ScrollView,
   StyleSheet,
   Text,
@@ -27,11 +27,13 @@ import {
   PATTERNS,
   FREE,
   layout,
+  envelopeFor,
   sizeError,
   sizeLabel,
   TEMPLATES,
   TEMPLATE_KINDS,
   TemplateKind,
+  ASSEMBLY,
 } from "@paper-craft/product-core";
 import {
   initialize,
@@ -44,13 +46,25 @@ import {
 import { Preview, PagePreview } from "./src/Preview";
 import { exportPDF, sharePDF, printPDF, saveExternal } from "./src/export";
 import { privacy, rewards } from "./src/ads";
+import { AdBanner } from "./src/AdBanner";
+import { confirmAction } from "./src/confirm";
 void Splash.preventAutoHideAsync();
 type Screen = "home" | "list" | "edit" | "output" | "done" | "settings";
 const words = {
   en: {
     new: "Start a new craft",
     pick: "Choose a template",
-    templates: { envelope: "Envelope", tuckBox: "Gift box" },
+    templates: {
+      envelope: "Envelope",
+      tuckBox: "Gift box",
+      card: "Folded card",
+      giftTag: "Gift tag",
+      bookmark: "Bookmark",
+      paperBag: "Paper bag",
+    },
+    fitsEnvelope: "Fits the envelope",
+    noEnvelope: "Larger than every envelope preset.",
+    blankInside: "The inside stays blank for a handwritten message.",
     dims: { width: "Width", height: "Height", depth: "Depth" },
     range: "Enter a size within the shown range.",
     tooBig: "This size does not fit on A4 and Letter paper. Make it smaller.",
@@ -110,7 +124,17 @@ const words = {
   ko: {
     new: "새 작품 만들기",
     pick: "도안 고르기",
-    templates: { envelope: "봉투", tuckBox: "선물 상자" },
+    templates: {
+      envelope: "봉투",
+      tuckBox: "선물 상자",
+      card: "접이식 카드",
+      giftTag: "선물 태그",
+      bookmark: "책갈피",
+      paperBag: "종이 쇼핑백",
+    },
+    fitsEnvelope: "이 크기에 맞는 봉투",
+    noEnvelope: "기본 봉투보다 커요.",
+    blankInside: "안쪽은 손글씨를 위해 비워 둬요.",
     dims: { width: "폭", height: "높이", depth: "깊이" },
     range: "허용 범위의 크기를 입력해 주세요.",
     tooBig: "이 크기는 A4·Letter 종이에 들어가지 않아요. 크기를 줄여 주세요.",
@@ -331,6 +355,7 @@ export default function App() {
     return () => sub.remove();
   }, []);
   useEffect(() => {
+    if (Platform.OS === "web") return;
     const sub = BackHandler.addEventListener("hardwareBackPress", () => {
       if (screen === "home") return false;
       setScreen(
@@ -367,6 +392,7 @@ export default function App() {
     void saveDraft(next);
   }
   async function open(project: CraftProject) {
+    setFace("front");
     setP(project);
     current.current = project;
     setDraftSave("saved");
@@ -394,7 +420,7 @@ export default function App() {
       format: Manipulator.SaveFormat.JPEG,
       compress: 0.95,
     });
-    const uri = persistPhoto(normalized.uri);
+    const uri = await persistPhoto(normalized.uri);
     update({
       [face]: {
         ...p[face],
@@ -605,26 +631,23 @@ export default function App() {
                         </Button>
                         <Button
                           onPress={() =>
-                            Alert.alert(
-                              t.delete,
-                              lang === "ko"
-                                ? "이 초안과 연결된 사진을 삭제할까요?"
-                                : "Delete this draft and unreferenced photos?",
-                              [
-                                { text: t.cancel, style: "cancel" },
-                                {
-                                  text: t.delete,
-                                  style: "destructive",
-                                  onPress: () =>
-                                    void run(async () => {
-                                      await repository.remove(project.id);
-                                      if (p?.id === project.id) setP(undefined);
-                                      await cleanup();
-                                      setProjects(await repository.list());
-                                    }),
-                                },
-                              ],
-                            )
+                            void run(async () => {
+                              if (
+                                !(await confirmAction(
+                                  t.delete,
+                                  lang === "ko"
+                                    ? "이 초안과 연결된 사진을 삭제할까요?"
+                                    : "Delete this draft and unreferenced photos?",
+                                  t.delete,
+                                  t.cancel,
+                                ))
+                              )
+                                return;
+                              await repository.remove(project.id);
+                              if (p?.id === project.id) setP(undefined);
+                              await cleanup();
+                              setProjects(await repository.list());
+                            })
                           }
                         >
                           {t.delete}
@@ -692,9 +715,24 @@ export default function App() {
                     {typedError === "does_not_fit" ? t.tooBig : t.range}
                   </Text>
                 ) : null}
-                <Text style={s.sub}>
-                  ≈ {TEMPLATES[p.kind].inside(p).join(" × ")} mm · {t.estimate}
-                </Text>
+                {TEMPLATES[p.kind].inside ? (
+                  <Text style={s.sub}>
+                    ≈ {TEMPLATES[p.kind].inside!(p).join(" × ")} mm ·{" "}
+                    {t.estimate}
+                  </Text>
+                ) : null}
+                {p.kind === "card" ? (
+                  <Text style={s.sub}>
+                    {(() => {
+                      const envelope = envelopeFor(p);
+                      return envelope
+                        ? `✉ ${t.fitsEnvelope}: ${sizeLabel({ ...envelope, kind: "envelope" })} mm`
+                        : t.noEnvelope;
+                    })()}{" "}
+                    · {t.blankInside}
+                  </Text>
+                ) : null}
+                <Text style={s.sub}>{ASSEMBLY[p.kind][lang]}</Text>
                 <Text style={s.section}>{t.text}</Text>
                 <TextInput
                   ref={(input) => {
@@ -767,22 +805,15 @@ export default function App() {
                             !FREE.includes(pattern) &&
                             !rights.includes(pattern)
                           ) {
-                            await new Promise<void>((resolve, reject) =>
-                              Alert.alert(
+                            if (
+                              !(await confirmAction(
                                 t.unlock,
-                                `${t.patterns[pattern]} · ${lang === "ko" ? "보상은 이 초안에 저장돼요." : "Reward is saved to this draft."}`,
-                                [
-                                  {
-                                    text: t.cancel,
-                                    onPress: () =>
-                                      reject(new Error("AD_CANCELLED")),
-                                    style: "cancel",
-                                  },
-                                  { text: t.unlock, onPress: () => resolve() },
-                                ],
-                                { cancelable: false },
-                              ),
-                            );
+                                `${t.patterns[pattern]} — ${lang === "ko" ? "보상은 이 초안에 저장돼요." : "Reward is saved to this draft."}`,
+                                t.unlock,
+                                t.cancel,
+                              ))
+                            )
+                              throw new Error("AD_CANCELLED");
                             await repository.save(p);
                             await rewards.unlock(p.id, pattern);
                             setRights(await repository.rights(p.id));
@@ -819,6 +850,7 @@ export default function App() {
               <>
                 <PagePreview project={p} paper={paper} repeat={repeat} />
                 <Text style={s.sub}>{t.legend}</Text>
+                <Text style={s.sub}>{ASSEMBLY[p.kind][lang]}</Text>
                 <Text style={s.section}>{t.paper}</Text>
                 <View style={s.row}>
                   {(["A4", "Letter"] as const).map((v) => (
@@ -901,8 +933,8 @@ export default function App() {
                 <Text style={s.sub}>{t.offline}</Text>
                 <Text style={s.sub}>
                   {lang === "ko"
-                    ? "선택한 광고를 시청하면 이 초안에 추가 패턴이 열려요. 광고 SDK는 광고·동의 처리를 위해 데이터를 전송할 수 있어요."
-                    : "Optional rewarded ads unlock patterns for this draft. The ads SDK may send data for advertising and consent."}
+                    ? "홈과 내 작업에 배너 광고가 표시돼요. 선택한 보상 광고를 보면 이 초안에 추가 패턴이 열려요. 광고 SDK는 광고와 동의 처리를 위해 데이터를 전송할 수 있어요."
+                    : "Banners appear on Home and My drafts. Optional rewarded ads unlock patterns for this draft. The ads SDK may send data for advertising and consent."}
                 </Text>
                 <Text style={s.sub}>
                   Noto Sans KR · SIL Open Font License 1.1
@@ -920,6 +952,11 @@ export default function App() {
               </Text>
             ) : null}
           </ScrollView>
+          {screen === "home" || screen === "list" ? (
+            <AdBanner
+              label={lang === "ko" ? "광고" : "Advertisement"}
+            />
+          ) : null}
           {busy ? <ActivityIndicator style={{ padding: 8 }} /> : null}
           <View style={s.footer}>
             {screen === "list" ? (
@@ -1026,9 +1063,9 @@ const s = StyleSheet.create({
     borderTopWidth: 1,
     borderTopColor: "#e5e7db",
   },
-  templates: { flexDirection: "row", gap: 12 },
+  templates: { flexDirection: "row", flexWrap: "wrap", gap: 12 },
   template: {
-    flex: 1,
+    width: "47%",
     padding: 10,
     backgroundColor: "white",
     borderRadius: 16,

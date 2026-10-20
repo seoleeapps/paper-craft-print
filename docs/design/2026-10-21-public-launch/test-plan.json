@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "level": "L3",
+  "baseline": null,
+  "changedFeatures": [
+    "templates",
+    "editing",
+    "preview",
+    "pdf",
+    "drafts",
+    "ads",
+    "locale"
+  ],
+  "environments": [
+    "dev"
+  ],
+  "redesign": true,
+  "foundationRerun": true,
+  "floorOverrides": [
+    {
+      "rule": "foundation",
+      "featureId": "pdf",
+      "reason": "승인 계획의 RN Web 실제 화면과 개발 환경 전체 회귀로 로직을 확인한다. 실제 Android SDK와 OS 기능은 별도 승인 후 최소 기기 검수하며 대역 실행을 네이티브 통과로 기록하지 않는다."
+    },
+    {
+      "rule": "foundation",
+      "featureId": "drafts",
+      "reason": "승인 계획의 RN Web 실제 화면과 개발 환경 전체 회귀로 로직을 확인한다. 실제 Android SDK와 OS 기능은 별도 승인 후 최소 기기 검수하며 대역 실행을 네이티브 통과로 기록하지 않는다."
+    },
+    {
+      "rule": "foundation",
+      "featureId": "ads",
+      "reason": "승인 계획의 RN Web 실제 화면과 개발 환경 전체 회귀로 로직을 확인한다. 실제 Android SDK와 OS 기능은 별도 승인 후 최소 기기 검수하며 대역 실행을 네이티브 통과로 기록하지 않는다."
+    }
+  ],
+  "release": {
+    "markets": [
+      "google-play"
+    ],
+    "until": "public",
+    "rollout": 1
+  }
+}

@@ -13,8 +13,16 @@ export type Face = {
     y: number;
   };
 };
-export type TemplateKind = "envelope" | "tuckBox";
-export const TEMPLATE_KINDS: TemplateKind[] = ["envelope", "tuckBox"];
+export type TemplateKind =
+  "envelope" | "tuckBox" | "card" | "giftTag" | "bookmark" | "paperBag";
+export const TEMPLATE_KINDS: TemplateKind[] = [
+  "envelope",
+  "tuckBox",
+  "card",
+  "giftTag",
+  "bookmark",
+  "paperBag",
+];
 export type Dimension = "width" | "height" | "depth";
 export type Size = Record<Dimension, number>;
 export type CraftProject = Size & {
@@ -201,14 +209,140 @@ function tuckBoxNet({ width: W, height: H, depth: D }: Size): Net {
     ),
   };
 }
+// Half-fold card printed on one side: back cover | front cover, folded in the
+// middle so the blank inside is left for a handwritten message.
+function cardNet({ width: W, height: H }: Size): Net {
+  return {
+    width: W * 2,
+    height: H,
+    faces: {
+      back: { x: 0, y: 0, width: W, height: H },
+      front: { x: W, y: 0, width: W, height: H },
+    },
+    panels: [],
+    glue: [],
+    lines: lines(
+      [
+        [0, 0, W * 2, 0],
+        [W * 2, 0, W * 2, H],
+        [W * 2, H, 0, H],
+        [0, H, 0, 0],
+      ],
+      [[W, 0, W, H]],
+    ),
+  };
+}
+// Four body panels with a side seam, inward top rim and overlapping bottom flaps.
+function paperBagNet({ width: W, height: H, depth: D }: Size): Net {
+  const a = 10,
+    b = a + W,
+    c = b + D,
+    d = c + W,
+    e = d + D;
+  const rim = 10,
+    bottom = rim + H,
+    h = bottom + D,
+    sideBottom = bottom + D / 2;
+  const outline: [number, number][] = [
+    [0, 0],
+    [e, 0],
+    [e, sideBottom],
+    [d + 0.5, sideBottom],
+    [d + 0.5, bottom],
+    [d - 0.5, bottom],
+    [d - 0.5, h],
+    [c + 0.5, h],
+    [c + 0.5, bottom],
+    [c - 0.5, bottom],
+    [c - 0.5, sideBottom],
+    [b + 0.5, sideBottom],
+    [b + 0.5, bottom],
+    [b - 0.5, bottom],
+    [b - 0.5, h],
+    [a, h],
+    [a, bottom],
+    [0, bottom],
+    [0, 0],
+  ];
+  return {
+    width: e,
+    height: h,
+    faces: {
+      front: { x: a, y: rim, width: W, height: H },
+      back: { x: c, y: rim, width: W, height: H },
+    },
+    panels: [
+      { x: b, y: rim, width: D, height: H },
+      { x: d, y: rim, width: D, height: H },
+      { x: a, y: 0, width: e - a, height: rim },
+      { x: a, y: bottom, width: W, height: D },
+      { x: b, y: bottom, width: D, height: D / 2 },
+      { x: c, y: bottom, width: W, height: D },
+      { x: d, y: bottom, width: D, height: D / 2 },
+    ],
+    glue: [
+      { x: 0, y: 0, width: a, height: bottom },
+      { x: a + 2, y: bottom + D / 2, width: W - 4, height: D / 2 - 2 },
+      { x: a + 2, y: 1, width: e - a - 4, height: rim - 2 },
+    ],
+    lines: lines(
+      outline.slice(1).map((pt, i) => [...outline[i], ...pt] as Segment),
+      [
+        ...[a, b, c, d].map((x) => [x, 0, x, bottom] as Segment),
+        [a, rim, e, rim],
+        [a, bottom, b - 0.5, bottom],
+        [b + 0.5, bottom, c - 0.5, bottom],
+        [c + 0.5, bottom, d - 0.5, bottom],
+        [d + 0.5, bottom, e, bottom],
+        [b + D / 2, rim, b + D / 2, bottom],
+        [d + D / 2, rim, d + D / 2, bottom],
+      ],
+    ),
+  };
+}
+export const ASSEMBLY: Record<
+  TemplateKind,
+  { en: string; ko: string; pdf: string }
+> = {
+  envelope: {
+    en: "Cut, fold the sides, glue the side tab and bottom. Leave the top open.",
+    ko: "자르고 옆면을 접은 뒤 옆 탭과 바닥을 붙이세요. 윗부분은 열어 두세요.",
+    pdf: "Fold sides; glue seam and bottom. Leave top open.",
+  },
+  tuckBox: {
+    en: "Cut and fold. Glue the side tab, fold the small flaps in, then tuck the lids.",
+    ko: "자르고 접어 옆 탭을 붙이세요. 작은 날개를 안으로 접고 뚜껑을 끼우세요.",
+    pdf: "Glue side seam. Fold small flaps in; tuck lids.",
+  },
+  card: {
+    en: "Cut the outline and fold the middle with the printed covers outside. Write inside.",
+    ko: "테두리를 자르고 인쇄면이 바깥으로 오게 가운데를 접으세요. 안쪽에 손글씨를 쓰세요.",
+    pdf: "Fold center with print outside. Write inside.",
+  },
+  giftTag: {
+    en: "Cut and fold with print outside. Glue the entire blank backs together. Punch a hole after drying if needed.",
+    ko: "자르고 인쇄면이 바깥으로 오게 접어 빈 뒷면 전체를 붙이세요. 마르면 필요에 따라 구멍을 뚫으세요.",
+    pdf: "Fold print out; glue entire blank backs together.",
+  },
+  bookmark: {
+    en: "Cut and fold with print outside. Glue the entire blank backs together and press flat to dry.",
+    ko: "자르고 인쇄면이 바깥으로 오게 접어 빈 뒷면 전체를 붙이세요. 납작하게 눌러 말리세요.",
+    pdf: "Fold print out; glue entire blank backs. Press flat.",
+  },
+  paperBag: {
+    en: "Glue the side seam, fold the rim inward and glue. Fold small bottom flaps in, then the marked front flap. Glue its printed area and fold the back flap onto it. No handles.",
+    ko: "옆 탭을 붙이고 윗단을 안으로 접어 붙이세요. 바닥의 작은 날개와 접착 표시가 있는 앞 날개를 차례로 접으세요. 표시한 인쇄면에 풀을 바르고 뒷 날개를 겹쳐 붙이세요. 손잡이는 없어요.",
+    pdf: "Glue seam and rim. Fold small base flaps, then front; glue marked print to blank back flap.",
+  },
+};
 export type TemplateSpec = {
   // Input order shown in the editor; omitted dimensions are unused.
   dims: Dimension[];
   limits: Partial<Record<Dimension, [number, number]>>;
   presets: Size[];
   defaults: Size;
-  // Usable inside space, in the same order as `dims`.
-  inside(size: Size): number[];
+  // Usable inside space, in the same order as `dims`, for containers.
+  inside?(size: Size): number[];
   net(size: Size): Net;
 };
 export const TEMPLATES: Record<TemplateKind, TemplateSpec> = {
@@ -239,7 +373,61 @@ export const TEMPLATES: Record<TemplateKind, TemplateSpec> = {
     inside: ({ width, depth, height }) => [width, depth, height],
     net: tuckBoxNet,
   },
+  giftTag: {
+    dims: ["width", "height"],
+    limits: { width: [30, 70], height: [40, 100] },
+    presets: [
+      { width: 35, height: 50, depth: 0 },
+      { width: 45, height: 65, depth: 0 },
+      { width: 60, height: 80, depth: 0 },
+    ],
+    defaults: { width: 45, height: 65, depth: 0 },
+    net: cardNet,
+  },
+  bookmark: {
+    dims: ["width", "height"],
+    limits: { width: [25, 60], height: [90, 200] },
+    presets: [
+      { width: 30, height: 120, depth: 0 },
+      { width: 40, height: 150, depth: 0 },
+      { width: 50, height: 180, depth: 0 },
+    ],
+    defaults: { width: 40, height: 150, depth: 0 },
+    net: cardNet,
+  },
+  paperBag: {
+    dims: ["width", "depth", "height"],
+    limits: { width: [30, 80], depth: [15, 40], height: [40, 150] },
+    presets: [
+      { width: 40, depth: 20, height: 60 },
+      { width: 50, depth: 25, height: 85 },
+      { width: 60, depth: 25, height: 110 },
+    ],
+    defaults: { width: 50, depth: 25, height: 85 },
+    inside: ({ width, depth, height }) => [width, depth, height],
+    net: paperBagNet,
+  },
+  card: {
+    dims: ["width", "height"],
+    limits: { width: [40, 100], height: [50, 140] },
+    // Folded sizes that slip into the envelope presets.
+    presets: [
+      { width: 50, height: 70, depth: 0 },
+      { width: 70, height: 100, depth: 0 },
+      { width: 75, height: 130, depth: 0 },
+    ],
+    defaults: { width: 70, height: 100, depth: 0 },
+    net: cardNet,
+  },
 };
+// The smallest envelope preset whose inner space holds a folded card.
+export function envelopeFor({ width, height }: Size): Size | undefined {
+  const envelope = TEMPLATES.envelope;
+  return envelope.presets.find((preset) => {
+    const [w, h] = envelope.inside!(preset);
+    return width <= w && height <= h;
+  });
+}
 export function createProject(
   id: string,
   kind: TemplateKind = "envelope",
@@ -282,10 +470,10 @@ export function layout(
 ): PageLayout {
   const g = net(p);
   const [width, height] = paper === "A4" ? [210, 297] : [215.9, 279.4];
-  // Reserve 18 mm below each net for labels and the calibration line.
+  // Reserve assembly guidance below the net and enough width for the 50 mm line.
   const choices = [false, true].map((rotated) => {
-    const w = rotated ? g.height : g.width,
-      h = (rotated ? g.width : g.height) + 18;
+    const w = Math.max(65, rotated ? g.height : g.width),
+      h = (rotated ? g.width : g.height) + 24;
     return {
       rotated,
       w,

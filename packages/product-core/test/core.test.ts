@@ -5,6 +5,7 @@ import {
   layout,
   createProject,
   normalizeProject,
+  envelopeFor,
   photoCrop,
   sizeError,
   textError,
@@ -99,6 +100,23 @@ test("size errors separate out-of-range from too large for paper", () => {
   assert.equal(sizeError(box(90, 60, 120)), "does_not_fit");
   assert.throws(() => net(box(50, 61, 50)), /SIZE/);
 });
+test("70×100 folded card unfolds to 140×100 with one center fold", () => {
+  const g = net({ ...createProject("a", "card"), width: 70, height: 100 });
+  assert.equal(g.width, 140);
+  assert.equal(g.height, 100);
+  assert.deepEqual(
+    g.lines.filter((l) => l.kind === "fold"),
+    [{ x1: 70, y1: 0, x2: 70, y2: 100, kind: "fold" }],
+  );
+  assert.deepEqual(g.faces.front, { x: 70, y: 0, width: 70, height: 100 });
+  assertClosed(g.lines);
+});
+test("each card preset slips into the matching envelope preset", () => {
+  const cards = TEMPLATES.card.presets,
+    envelopes = TEMPLATES.envelope.presets;
+  cards.forEach((card, i) => assert.deepEqual(envelopeFor(card), envelopes[i]));
+  assert.equal(envelopeFor({ width: 100, height: 140, depth: 0 }), undefined);
+});
 test("drafts saved before templates open as envelopes", () => {
   const legacy = {
     id: "old",
@@ -163,4 +181,87 @@ test("text rejects unsupported glyphs and measured overflow", () => {
     ),
     "width",
   );
+});
+test("six free templates include fold-and-glue tag, bookmark and handleless bag", () => {
+  assert.deepEqual(TEMPLATE_KINDS, [
+    "envelope",
+    "tuckBox",
+    "card",
+    "giftTag",
+    "bookmark",
+    "paperBag",
+  ]);
+  for (const kind of ["giftTag", "bookmark"] as const) {
+    const p = createProject("fold", kind),
+      g = net(p);
+    assert.equal(g.width, p.width * 2);
+    assert.equal(g.height, p.height);
+    assert.equal(g.faces.back.x, 0);
+    assert.equal(g.faces.front.x, p.width);
+    assertClosed(g.lines);
+  }
+  const p = createProject("bag", "paperBag"),
+    g = net(p);
+  assert.equal(g.width, 10 + 2 * (p.width + p.depth));
+  assert.ok(g.glue.length >= 3);
+  assertClosed(g.lines);
+});
+test("every template has closed cuts and repeat placements including labels stay on paper", () => {
+  for (const kind of TEMPLATE_KINDS) {
+    const spec = TEMPLATES[kind];
+    for (const width of spec.limits.width!)
+      for (const height of spec.limits.height!)
+        for (const depth of spec.limits.depth ?? [0]) {
+          const p = { ...createProject("limits", kind), width, height, depth };
+          const g = net(p);
+          assertClosed(g.lines);
+          for (const l of g.lines)
+            for (const [x, y] of [
+              [l.x1, l.y1],
+              [l.x2, l.y2],
+            ])
+              assert.ok(
+                x >= 0 && x <= g.width && y >= 0 && y <= g.height,
+                kind,
+              );
+          if (sizeError(p)) continue;
+          for (const paper of ["A4", "Letter"] as const) {
+            const l = layout(p, paper, true);
+            for (const pos of l.placements) {
+              assert.ok(
+                pos.x + Math.max(65, l.rotated ? g.height : g.width) <=
+                  l.width - 10,
+              );
+              assert.ok(
+                pos.y + (l.rotated ? g.width : g.height) + 24 <= l.height - 10,
+              );
+            }
+          }
+        }
+  }
+});
+
+test("bag bottom flaps are separated all the way to the body with closed 1mm notches", () => {
+  const p = createProject("bag", "paperBag"),
+    g = net(p),
+    bottom = 10 + p.height;
+  for (const boundary of [
+    10 + p.width,
+    10 + p.width + p.depth,
+    10 + 2 * p.width + p.depth,
+  ]) {
+    for (const x of [boundary - 0.5, boundary + 0.5]) {
+      assert.ok(
+        g.lines.some(
+          (l) =>
+            l.kind === "cut" &&
+            l.x1 === x &&
+            l.x2 === x &&
+            Math.min(l.y1, l.y2) === bottom &&
+            Math.max(l.y1, l.y2) >= bottom + p.depth / 2,
+        ),
+      );
+    }
+  }
+  assertClosed(g.lines);
 });

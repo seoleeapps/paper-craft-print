@@ -13,7 +13,8 @@
     "test:core": "tsx --test packages/product-core/test/*.test.ts",
     "test:adapters": "tsx --test scripts/*.test.ts",
     "verify:pdf": "node scripts/verify-pdf.mjs",
-    "build:android": "./scripts/build-android.sh"
+    "build:android": "./scripts/build-android.sh",
+    "check:dev": "npm run typecheck && npm run check:architecture && python3 -m unittest discover -s scripts/tests -v && npm test && npm run verify:pdf"
   },
   "devDependencies": {
     "@types/node": "^24.0.0",
