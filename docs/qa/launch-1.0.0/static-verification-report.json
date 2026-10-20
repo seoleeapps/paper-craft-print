@@ -1,0 +1,1305 @@
+{
+  "schemaVersion": 1,
+  "kind": "independent-artifact-static-verification",
+  "status": "pass",
+  "startedAt": "2026-10-20T16:39:41.609271+00:00",
+  "completedAt": "2026-10-20T16:41:22.597748+00:00",
+  "executor": "play_metadata independent artifact inspection",
+  "sourceSha": "d1464abc34dfc2f4c0af58a8abc0add97946dc31",
+  "policySha": "e7f433c071cf5d3ad4434c02ddf6a12164749489",
+  "artifactDirectory": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch/artifacts/android/1.0.0-d1464abc34df-production-20261020T162820Z-a904101a",
+  "artifacts": {
+    "paper-craft-print-1.0.0-1-production-ads.aab": {
+      "bytes": 49270702,
+      "sha256": "32f7596b1a0d841c3a0577603f1ba261a6fe8b07052e1a7ae39129e757f0ac69"
+    },
+    "paper-craft-print-1.0.0-1-production-ads.apk": {
+      "bytes": 70468448,
+      "sha256": "56f4196f665a3f1acab00861d7c0d8b9656dac71a8864bc5048ce129a2df923b"
+    }
+  },
+  "certificateSha256": "63043398b74cd9edf44e1b94549df73f79498ff51c4da96a63ceb06057e5d29e",
+  "identity": {
+    "package": "com.seoleeapps.papercraftprint",
+    "versionName": "1.0.0",
+    "versionCode": "1",
+    "minSdk": "24",
+    "targetSdk": "36",
+    "compileSdk": "36"
+  },
+  "checks": {
+    "jarSignature": "pass; self-signed/no-timestamp trust warnings retained",
+    "apkSignature": "pass",
+    "aabPkcs7Certificate": "pass",
+    "aabManifest": "pass",
+    "apkManifest": "pass",
+    "admobAppIdAndDelayedMeasurement": "pass",
+    "packagedProductionRewardedAndBannerIds": "pass",
+    "permissionsAndNoDebug": "pass",
+    "threeNativeAbis": "pass",
+    "aabApkNativePayloadDexAndJsEquality": "pass",
+    "elf64LoadAndRelroAlignment": "pass",
+    "apkZipalign16KiB": "pass",
+    "aabBundleConfig16KiB": "pass",
+    "centralBeforeDeploy": "pass",
+    "actualPackagedResolvedSdkDependencies": "pass; GMA25.4.0, UMP4.0.0, Ads identifier18.0.0, RN0.86.3 from signed AAB dependency graph"
+  },
+  "nativeLibraryCount": 51,
+  "elf64LibraryCount": 34,
+  "actualSdkMetadata": {
+    "play-services-ads.properties": "version=25.4.0\nclient=play-services-ads\nplay-services-ads_client=25.4.0\n",
+    "play-services-ads-api.properties": "version=25.4.0\nclient=play-services-ads-api\nplay-services-ads-api_client=25.4.0\n",
+    "play-services-ads-identifier.properties": "version=18.0.0\nclient=play-services-ads-identifier\nplay-services-ads-identifier_client=18.0.0\n",
+    "META-INF/com/android/build/gradle/app-metadata.properties": "appMetadataVersion=1.1\nandroidGradlePluginVersion=8.12.0\n"
+  },
+  "commands": [
+    {
+      "label": "source-head",
+      "argv": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "cwd": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch",
+      "startedAt": "2026-10-20T16:39:41.702503+00:00",
+      "completedAt": "2026-10-20T16:39:41.732933+00:00",
+      "exitCode": 0,
+      "output": "source-head.txt",
+      "outputSha256": "66ccc30efe77d9ac883f70060e5c1c3cb05e8c358b05461c1186400b7c59b38b"
+    },
+    {
+      "label": "source-clean",
+      "argv": [
+        "git",
+        "status",
+        "--porcelain",
+        "--untracked-files=all"
+      ],
+      "cwd": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch",
+      "startedAt": "2026-10-20T16:39:41.733014+00:00",
+      "completedAt": "2026-10-20T16:39:41.767621+00:00",
+      "exitCode": 0,
+      "output": "source-clean.txt",
+      "outputSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "central-policy-head",
+      "argv": [
+        "git",
+        "-C",
+        "/Users/syous/Repositories/seorilabs/.github",
+        "rev-parse",
+        "HEAD"
+      ],
+      "cwd": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch",
+      "startedAt": "2026-10-20T16:39:41.767734+00:00",
+      "completedAt": "2026-10-20T16:39:41.794006+00:00",
+      "exitCode": 0,
+      "output": "central-policy-head.txt",
+      "outputSha256": "a76348aff43a6efa22b9992d7d2ad15a733bc8d2db8751ae7fa1cccf904c6a59"
+    },
+    {
+      "label": "jarsigner-verify",
+      "argv": [
+        "/Applications/Android Studio.app/Contents/jbr/Contents/Home/bin/jarsigner",
+        "-verify",
+        "-verbose",
+        "-certs",
+        "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch/artifacts/android/1.0.0-d1464abc34df-production-20261020T162820Z-a904101a/paper-craft-print-1.0.0-1-production-ads.aab"
+      ],
+      "cwd": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch",
+      "startedAt": "2026-10-20T16:39:41.797631+00:00",
+      "completedAt": "2026-10-20T16:39:43.830959+00:00",
+      "exitCode": 0,
+      "output": "jarsigner-verify.txt",
+      "outputSha256": "9c44e098383d24700cf891138ecee4bb74caa5604678e49f8b4d129f81e46bca"
+    },
+    {
+      "label": "apksigner-verify",
+      "argv": [
+        "/Users/syous/Library/Android/sdk/build-tools/37.0.0/apksigner",
+        "verify",
+        "--verbose",
+        "--print-certs",
+        "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch/artifacts/android/1.0.0-d1464abc34df-production-20261020T162820Z-a904101a/paper-craft-print-1.0.0-1-production-ads.apk"
+      ],
+      "cwd": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch",
+      "startedAt": "2026-10-20T16:39:41.799425+00:00",
+      "completedAt": "2026-10-20T16:39:42.719165+00:00",
+      "exitCode": 0,
+      "output": "apksigner-verify.txt",
+      "outputSha256": "5f524a42f06cf256021acd47ef825f89479dd73ba8dc012ec98968bae5c5fd8c"
+    },
+    {
+      "label": "aab-manifest",
+      "argv": [
+        "/Applications/Android Studio.app/Contents/jbr/Contents/Home/bin/java",
+        "-jar",
+        "/private/tmp/paper-craft-bundletool-1.18.3.jar",
+        "dump",
+        "manifest",
+        "--bundle=/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch/artifacts/android/1.0.0-d1464abc34df-production-20261020T162820Z-a904101a/paper-craft-print-1.0.0-1-production-ads.aab",
+        "--module=base"
+      ],
+      "cwd": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch",
+      "startedAt": "2026-10-20T16:39:41.801063+00:00",
+      "completedAt": "2026-10-20T16:39:42.798598+00:00",
+      "exitCode": 0,
+      "output": "aab-manifest.txt",
+      "outputSha256": "164521a7240a95ee5ca614bed0f0ad04e7473de640100b1e74a0a018077d63d3"
+    },
+    {
+      "label": "aab-bundle-config",
+      "argv": [
+        "/Applications/Android Studio.app/Contents/jbr/Contents/Home/bin/java",
+        "-jar",
+        "/private/tmp/paper-craft-bundletool-1.18.3.jar",
+        "dump",
+        "config",
+        "--bundle=/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch/artifacts/android/1.0.0-d1464abc34df-production-20261020T162820Z-a904101a/paper-craft-print-1.0.0-1-production-ads.aab"
+      ],
+      "cwd": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch",
+      "startedAt": "2026-10-20T16:39:41.801738+00:00",
+      "completedAt": "2026-10-20T16:39:42.794846+00:00",
+      "exitCode": 0,
+      "output": "aab-bundle-config.txt",
+      "outputSha256": "c050ac241584887c43e487f1225563de07bfd8c1617b8be3d75f51dadec1d646"
+    },
+    {
+      "label": "apk-badging",
+      "argv": [
+        "/Users/syous/Library/Android/sdk/build-tools/37.0.0/aapt2",
+        "dump",
+        "badging",
+        "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch/artifacts/android/1.0.0-d1464abc34df-production-20261020T162820Z-a904101a/paper-craft-print-1.0.0-1-production-ads.apk"
+      ],
+      "cwd": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch",
+      "startedAt": "2026-10-20T16:39:41.802045+00:00",
+      "completedAt": "2026-10-20T16:39:41.968137+00:00",
+      "exitCode": 0,
+      "output": "apk-badging.txt",
+      "outputSha256": "18578d446256b8ae9c9896ba883ec5ad2243221d6f573029abd5105f69552809"
+    },
+    {
+      "label": "aab-pkcs7-certificate",
+      "argv": [
+        "openssl",
+        "pkcs7",
+        "-inform",
+        "DER",
+        "-in",
+        "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch/artifacts/android/1.0.0-d1464abc34df-production-20261020T162820Z-a904101a/independent-static-verification/attempt-2/aab-public-signature.pkcs7",
+        "-print_certs"
+      ],
+      "cwd": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch",
+      "startedAt": "2026-10-20T16:39:43.838312+00:00",
+      "completedAt": "2026-10-20T16:39:43.854083+00:00",
+      "exitCode": 0,
+      "output": "aab-pkcs7-certificate.txt",
+      "outputSha256": "3c2d06b9e37b5b631ddd76d35252cc3ea2201b8266b44fe153fad3dd4551e952"
+    },
+    {
+      "label": "apk-manifest-xmltree",
+      "argv": [
+        "/Users/syous/Library/Android/sdk/build-tools/37.0.0/aapt2",
+        "dump",
+        "xmltree",
+        "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch/artifacts/android/1.0.0-d1464abc34df-production-20261020T162820Z-a904101a/paper-craft-print-1.0.0-1-production-ads.apk",
+        "--file",
+        "AndroidManifest.xml"
+      ],
+      "cwd": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch",
+      "startedAt": "2026-10-20T16:39:43.855464+00:00",
+      "completedAt": "2026-10-20T16:39:43.925995+00:00",
+      "exitCode": 0,
+      "output": "apk-manifest-xmltree.txt",
+      "outputSha256": "ae804aa6ebefeecfbb49c6beb7da6b0962f71abfa2d0f6335cea972561b9ebfc"
+    },
+    {
+      "label": "apk-zipalign-16k",
+      "argv": [
+        "/Users/syous/Library/Android/sdk/build-tools/37.0.0/zipalign",
+        "-v",
+        "-c",
+        "-P",
+        "16",
+        "4",
+        "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch/artifacts/android/1.0.0-d1464abc34df-production-20261020T162820Z-a904101a/paper-craft-print-1.0.0-1-production-ads.apk"
+      ],
+      "cwd": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch",
+      "startedAt": "2026-10-20T16:39:43.926114+00:00",
+      "completedAt": "2026-10-20T16:39:43.991614+00:00",
+      "exitCode": 0,
+      "output": "apk-zipalign-16k.txt",
+      "outputSha256": "a06b7c23f3cf1582d23929037bc1f6ec562996ae068565608468f95428f61858"
+    },
+    {
+      "label": "elf-arm64-v8a-libappmodules.so",
+      "argv": [
+        "/Users/syous/Library/Android/sdk/ndk/29.0.14206865/toolchains/llvm/prebuilt/darwin-x86_64/bin/llvm-objdump",
+        "-p",
+        "/var/folders/4g/htk70w8x7jl63j13pbrs6whw0000gn/T/paper-craft-static-elf-4hif3gcx/arm64-v8a/libappmodules.so"
+      ],
+      "cwd": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch",
+      "startedAt": "2026-10-20T16:39:44.007287+00:00",
+      "completedAt": "2026-10-20T16:39:45.129937+00:00",
+      "exitCode": 0,
+      "output": "elf-arm64-v8a-libappmodules.so.txt",
+      "outputSha256": "9e69f1ffde8537978c3cdb5962bddc36143981ad8594f56c3e5458c2434dfb74"
+    },
+    {
+      "label": "relro-arm64-v8a-libappmodules.so",
+      "argv": [
+        "/Users/syous/Library/Android/sdk/ndk/29.0.14206865/toolchains/llvm/prebuilt/darwin-x86_64/bin/llvm-readelf",
+        "-Wl",
+        "/var/folders/4g/htk70w8x7jl63j13pbrs6whw0000gn/T/paper-craft-static-elf-4hif3gcx/arm64-v8a/libappmodules.so"
+      ],
+      "cwd": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch",
+      "startedAt": "2026-10-20T16:39:45.130354+00:00",
+      "completedAt": "2026-10-20T16:39:45.681788+00:00",
+      "exitCode": 0,
+      "output": "relro-arm64-v8a-libappmodules.so.txt",
+      "outputSha256": "b3aec0960606ccc3c0188406ef0ded0cd529d132ec2fb9a7dca1f483bb3207bc"
+    },
+    {
+      "label": "elf-arm64-v8a-libc++_shared.so",
+      "argv": [
+        "/Users/syous/Library/Android/sdk/ndk/29.0.14206865/toolchains/llvm/prebuilt/darwin-x86_64/bin/llvm-objdump",
+        "-p",
+        "/var/folders/4g/htk70w8x7jl63j13pbrs6whw0000gn/T/paper-craft-static-elf-4hif3gcx/arm64-v8a/libc++_shared.so"
+      ],
+      "cwd": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch",
+      "startedAt": "2026-10-20T16:39:45.687859+00:00",
+      "completedAt": "2026-10-20T16:39:45.711635+00:00",
+      "exitCode": 0,
+      "output": "elf-arm64-v8a-libc++_shared.so.txt",
+      "outputSha256": "1c86d83368ddd1b0e7c75ebb892caf562bf6ecda78951520c655c39685b0cd1a"
+    },
+    {
+      "label": "relro-arm64-v8a-libc++_shared.so",
+      "argv": [
+        "/Users/syous/Library/Android/sdk/ndk/29.0.14206865/toolchains/llvm/prebuilt/darwin-x86_64/bin/llvm-readelf",
+        "-Wl",
+        "/var/folders/4g/htk70w8x7jl63j13pbrs6whw0000gn/T/paper-craft-static-elf-4hif3gcx/arm64-v8a/libc++_shared.so"
+      ],
+      "cwd": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch",
+      "startedAt": "2026-10-20T16:39:45.711760+00:00",
+      "completedAt": "2026-10-20T16:39:45.734589+00:00",
+      "exitCode": 0,
+      "output": "relro-arm64-v8a-libc++_shared.so.txt",
+      "outputSha256": "975d6f369baeafbc6e3e8144468d9fd24a87ae087af10f42c071d9a06ea9e7bc"
+    },
+    {
+      "label": "elf-arm64-v8a-libexpo-modules-core.so",
+      "argv": [
+        "/Users/syous/Library/Android/sdk/ndk/29.0.14206865/toolchains/llvm/prebuilt/darwin-x86_64/bin/llvm-objdump",
+        "-p",
+        "/var/folders/4g/htk70w8x7jl63j13pbrs6whw0000gn/T/paper-craft-static-elf-4hif3gcx/arm64-v8a/libexpo-modules-core.so"
+      ],
+      "cwd": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch",
+      "startedAt": "2026-10-20T16:39:45.740618+00:00",
+      "completedAt": "2026-10-20T16:39:45.766277+00:00",
+      "exitCode": 0,
+      "output": "elf-arm64-v8a-libexpo-modules-core.so.txt",
+      "outputSha256": "59d7957a132184a0629d180281170b275d467f87017883f599ed7c38e68ba115"
+    },
+    {
+      "label": "relro-arm64-v8a-libexpo-modules-core.so",
+      "argv": [
+        "/Users/syous/Library/Android/sdk/ndk/29.0.14206865/toolchains/llvm/prebuilt/darwin-x86_64/bin/llvm-readelf",
+        "-Wl",
+        "/var/folders/4g/htk70w8x7jl63j13pbrs6whw0000gn/T/paper-craft-static-elf-4hif3gcx/arm64-v8a/libexpo-modules-core.so"
+      ],
+      "cwd": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch",
+      "startedAt": "2026-10-20T16:39:45.766393+00:00",
+      "completedAt": "2026-10-20T16:39:45.789442+00:00",
+      "exitCode": 0,
+      "output": "relro-arm64-v8a-libexpo-modules-core.so.txt",
+      "outputSha256": "93b35eb8f9558bc42d0a50ca5afe4ba98d447e95c8a2596e810a1cd67cb6a504"
+    },
+    {
+      "label": "elf-arm64-v8a-libexpo-sqlite.so",
+      "argv": [
+        "/Users/syous/Library/Android/sdk/ndk/29.0.14206865/toolchains/llvm/prebuilt/darwin-x86_64/bin/llvm-objdump",
+        "-p",
+        "/var/folders/4g/htk70w8x7jl63j13pbrs6whw0000gn/T/paper-craft-static-elf-4hif3gcx/arm64-v8a/libexpo-sqlite.so"
+      ],
+      "cwd": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch",
+      "startedAt": "2026-10-20T16:39:45.799419+00:00",
+      "completedAt": "2026-10-20T16:39:45.821792+00:00",
+      "exitCode": 0,
+      "output": "elf-arm64-v8a-libexpo-sqlite.so.txt",
+      "outputSha256": "8b989dbe90a8236fbd356fdee72f8052a00534e2fae33a4cf9ca808355835aea"
+    },
+    {
+      "label": "relro-arm64-v8a-libexpo-sqlite.so",
+      "argv": [
+        "/Users/syous/Library/Android/sdk/ndk/29.0.14206865/toolchains/llvm/prebuilt/darwin-x86_64/bin/llvm-readelf",
+        "-Wl",
+        "/var/folders/4g/htk70w8x7jl63j13pbrs6whw0000gn/T/paper-craft-static-elf-4hif3gcx/arm64-v8a/libexpo-sqlite.so"
+      ],
+      "cwd": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch",
+      "startedAt": "2026-10-20T16:39:45.821948+00:00",
+      "completedAt": "2026-10-20T16:39:45.844213+00:00",
+      "exitCode": 0,
+      "output": "relro-arm64-v8a-libexpo-sqlite.so.txt",
+      "outputSha256": "e4d656aaf4ba869afa78180b387fdc5c693b4c7f71ec4a9a7dda7c61e52e43b5"
+    },
+    {
+      "label": "elf-arm64-v8a-libfbjni.so",
+      "argv": [
+        "/Users/syous/Library/Android/sdk/ndk/29.0.14206865/toolchains/llvm/prebuilt/darwin-x86_64/bin/llvm-objdump",
+        "-p",
+        "/var/folders/4g/htk70w8x7jl63j13pbrs6whw0000gn/T/paper-craft-static-elf-4hif3gcx/arm64-v8a/libfbjni.so"
+      ],
+      "cwd": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch",
+      "startedAt": "2026-10-20T16:39:45.846481+00:00",
+      "completedAt": "2026-10-20T16:39:45.869704+00:00",
+      "exitCode": 0,
+      "output": "elf-arm64-v8a-libfbjni.so.txt",
+      "outputSha256": "c512007e1c9a6f97ebbdbba2126da2da03e7bc5d42beb35c6a6ef0535c10ef68"
+    },
+    {
+      "label": "relro-arm64-v8a-libfbjni.so",
+      "argv": [
+        "/Users/syous/Library/Android/sdk/ndk/29.0.14206865/toolchains/llvm/prebuilt/darwin-x86_64/bin/llvm-readelf",
+        "-Wl",
+        "/var/folders/4g/htk70w8x7jl63j13pbrs6whw0000gn/T/paper-craft-static-elf-4hif3gcx/arm64-v8a/libfbjni.so"
+      ],
+      "cwd": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch",
+      "startedAt": "2026-10-20T16:39:45.869844+00:00",
+      "completedAt": "2026-10-20T16:39:45.891829+00:00",
+      "exitCode": 0,
+      "output": "relro-arm64-v8a-libfbjni.so.txt",
+      "outputSha256": "bc849a27b7e8dac796654f05e75851884a42382f5777631a4a2531abcf78a2fa"
+    },
+    {
+      "label": "elf-arm64-v8a-libgifimage.so",
+      "argv": [
+        "/Users/syous/Library/Android/sdk/ndk/29.0.14206865/toolchains/llvm/prebuilt/darwin-x86_64/bin/llvm-objdump",
+        "-p",
+        "/var/folders/4g/htk70w8x7jl63j13pbrs6whw0000gn/T/paper-craft-static-elf-4hif3gcx/arm64-v8a/libgifimage.so"
+      ],
+      "cwd": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch",
+      "startedAt": "2026-10-20T16:39:45.894045+00:00",
+      "completedAt": "2026-10-20T16:39:45.919121+00:00",
+      "exitCode": 0,
+      "output": "elf-arm64-v8a-libgifimage.so.txt",
+      "outputSha256": "cfcee77707367610be6a2fa376bbcca4737619ab7aa7536e3475dc7c5e7ef0dd"
+    },
+    {
+      "label": "relro-arm64-v8a-libgifimage.so",
+      "argv": [
+        "/Users/syous/Library/Android/sdk/ndk/29.0.14206865/toolchains/llvm/prebuilt/darwin-x86_64/bin/llvm-readelf",
+        "-Wl",
+        "/var/folders/4g/htk70w8x7jl63j13pbrs6whw0000gn/T/paper-craft-static-elf-4hif3gcx/arm64-v8a/libgifimage.so"
+      ],
+      "cwd": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch",
+      "startedAt": "2026-10-20T16:39:45.919283+00:00",
+      "completedAt": "2026-10-20T16:39:45.945856+00:00",
+      "exitCode": 0,
+      "output": "relro-arm64-v8a-libgifimage.so.txt",
+      "outputSha256": "1d6a50df8ec02c9dc7a45b96f8b2525c4a3e49f5474edaa9c4e2ba2f77cfa0cf"
+    },
+    {
+      "label": "elf-arm64-v8a-libhermestooling.so",
+      "argv": [
+        "/Users/syous/Library/Android/sdk/ndk/29.0.14206865/toolchains/llvm/prebuilt/darwin-x86_64/bin/llvm-objdump",
+        "-p",
+        "/var/folders/4g/htk70w8x7jl63j13pbrs6whw0000gn/T/paper-craft-static-elf-4hif3gcx/arm64-v8a/libhermestooling.so"
+      ],
+      "cwd": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch",
+      "startedAt": "2026-10-20T16:39:45.948033+00:00",
+      "completedAt": "2026-10-20T16:39:45.973581+00:00",
+      "exitCode": 0,
+      "output": "elf-arm64-v8a-libhermestooling.so.txt",
+      "outputSha256": "ba4c467502436958a4aee298b32f78709ad4d35c5ae8df69a7ec65542b09ee2b"
+    },
+    {
+      "label": "relro-arm64-v8a-libhermestooling.so",
+      "argv": [
+        "/Users/syous/Library/Android/sdk/ndk/29.0.14206865/toolchains/llvm/prebuilt/darwin-x86_64/bin/llvm-readelf",
+        "-Wl",
+        "/var/folders/4g/htk70w8x7jl63j13pbrs6whw0000gn/T/paper-craft-static-elf-4hif3gcx/arm64-v8a/libhermestooling.so"
+      ],
+      "cwd": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch",
+      "startedAt": "2026-10-20T16:39:45.973765+00:00",
+      "completedAt": "2026-10-20T16:39:45.997499+00:00",
+      "exitCode": 0,
+      "output": "relro-arm64-v8a-libhermestooling.so.txt",
+      "outputSha256": "8a4ea1e178ae5c2384fba097867454246e45e5821dafd247d1120695b747e9e6"
+    },
+    {
+      "label": "elf-arm64-v8a-libhermesvm.so",
+      "argv": [
+        "/Users/syous/Library/Android/sdk/ndk/29.0.14206865/toolchains/llvm/prebuilt/darwin-x86_64/bin/llvm-objdump",
+        "-p",
+        "/var/folders/4g/htk70w8x7jl63j13pbrs6whw0000gn/T/paper-craft-static-elf-4hif3gcx/arm64-v8a/libhermesvm.so"
+      ],
+      "cwd": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch",
+      "startedAt": "2026-10-20T16:39:46.011737+00:00",
+      "completedAt": "2026-10-20T16:39:46.039122+00:00",
+      "exitCode": 0,
+      "output": "elf-arm64-v8a-libhermesvm.so.txt",
+      "outputSha256": "5d781c68d37ad33cfe98916f508f9dce55bfcf9b60485c3b88ff450ba6ca5a96"
+    },
+    {
+      "label": "relro-arm64-v8a-libhermesvm.so",
+      "argv": [
+        "/Users/syous/Library/Android/sdk/ndk/29.0.14206865/toolchains/llvm/prebuilt/darwin-x86_64/bin/llvm-readelf",
+        "-Wl",
+        "/var/folders/4g/htk70w8x7jl63j13pbrs6whw0000gn/T/paper-craft-static-elf-4hif3gcx/arm64-v8a/libhermesvm.so"
+      ],
+      "cwd": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch",
+      "startedAt": "2026-10-20T16:39:46.039328+00:00",
+      "completedAt": "2026-10-20T16:39:46.065769+00:00",
+      "exitCode": 0,
+      "output": "relro-arm64-v8a-libhermesvm.so.txt",
+      "outputSha256": "05e0bb32238d75a779e6f067270bb9a80045e7ad590aaf8b3f6d14685f8be1cb"
+    },
+    {
+      "label": "elf-arm64-v8a-libimagepipeline.so",
+      "argv": [
+        "/Users/syous/Library/Android/sdk/ndk/29.0.14206865/toolchains/llvm/prebuilt/darwin-x86_64/bin/llvm-objdump",
+        "-p",
+        "/var/folders/4g/htk70w8x7jl63j13pbrs6whw0000gn/T/paper-craft-static-elf-4hif3gcx/arm64-v8a/libimagepipeline.so"
+      ],
+      "cwd": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch",
+      "startedAt": "2026-10-20T16:39:46.066812+00:00",
+      "completedAt": "2026-10-20T16:39:46.093010+00:00",
+      "exitCode": 0,
+      "output": "elf-arm64-v8a-libimagepipeline.so.txt",
+      "outputSha256": "3585ecbe63528a28ea0bc3d2cb9863639228c7dea52aa95022e2146e379bd959"
+    },
+    {
+      "label": "relro-arm64-v8a-libimagepipeline.so",
+      "argv": [
+        "/Users/syous/Library/Android/sdk/ndk/29.0.14206865/toolchains/llvm/prebuilt/darwin-x86_64/bin/llvm-readelf",
+        "-Wl",
+        "/var/folders/4g/htk70w8x7jl63j13pbrs6whw0000gn/T/paper-craft-static-elf-4hif3gcx/arm64-v8a/libimagepipeline.so"
+      ],
+      "cwd": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch",
+      "startedAt": "2026-10-20T16:39:46.093127+00:00",
+      "completedAt": "2026-10-20T16:39:46.120982+00:00",
+      "exitCode": 0,
+      "output": "relro-arm64-v8a-libimagepipeline.so.txt",
+      "outputSha256": "7fd816f67b03f53196a7c808bdf9515aadf26f1d5faf53e0949982e47c90ede0"
+    },
+    {
+      "label": "elf-arm64-v8a-libjsi.so",
+      "argv": [
+        "/Users/syous/Library/Android/sdk/ndk/29.0.14206865/toolchains/llvm/prebuilt/darwin-x86_64/bin/llvm-objdump",
+        "-p",
+        "/var/folders/4g/htk70w8x7jl63j13pbrs6whw0000gn/T/paper-craft-static-elf-4hif3gcx/arm64-v8a/libjsi.so"
+      ],
+      "cwd": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch",
+      "startedAt": "2026-10-20T16:39:46.124677+00:00",
+      "completedAt": "2026-10-20T16:39:46.159097+00:00",
+      "exitCode": 0,
+      "output": "elf-arm64-v8a-libjsi.so.txt",
+      "outputSha256": "3db98f79bd27d938e6dc1650101b69a1a1acfe2c3c637fac1c71ca471e5f4c33"
+    },
+    {
+      "label": "relro-arm64-v8a-libjsi.so",
+      "argv": [
+        "/Users/syous/Library/Android/sdk/ndk/29.0.14206865/toolchains/llvm/prebuilt/darwin-x86_64/bin/llvm-readelf",
+        "-Wl",
+        "/var/folders/4g/htk70w8x7jl63j13pbrs6whw0000gn/T/paper-craft-static-elf-4hif3gcx/arm64-v8a/libjsi.so"
+      ],
+      "cwd": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch",
+      "startedAt": "2026-10-20T16:39:46.159223+00:00",
+      "completedAt": "2026-10-20T16:39:46.187911+00:00",
+      "exitCode": 0,
+      "output": "relro-arm64-v8a-libjsi.so.txt",
+      "outputSha256": "6037f111d62ed504a80e5a6ed0b73af6d97c7aef62271b7a3f0152fa4625b2c6"
+    },
+    {
+      "label": "elf-arm64-v8a-libnative-filters.so",
+      "argv": [
+        "/Users/syous/Library/Android/sdk/ndk/29.0.14206865/toolchains/llvm/prebuilt/darwin-x86_64/bin/llvm-objdump",
+        "-p",
+        "/var/folders/4g/htk70w8x7jl63j13pbrs6whw0000gn/T/paper-craft-static-elf-4hif3gcx/arm64-v8a/libnative-filters.so"
+      ],
+      "cwd": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch",
+      "startedAt": "2026-10-20T16:39:46.189057+00:00",
+      "completedAt": "2026-10-20T16:39:46.215703+00:00",
+      "exitCode": 0,
+      "output": "elf-arm64-v8a-libnative-filters.so.txt",
+      "outputSha256": "0dc8a43a2bc7219c441f03500e4623d8d522593fff2c12f891bb25b332db2448"
+    },
+    {
+      "label": "relro-arm64-v8a-libnative-filters.so",
+      "argv": [
+        "/Users/syous/Library/Android/sdk/ndk/29.0.14206865/toolchains/llvm/prebuilt/darwin-x86_64/bin/llvm-readelf",
+        "-Wl",
+        "/var/folders/4g/htk70w8x7jl63j13pbrs6whw0000gn/T/paper-craft-static-elf-4hif3gcx/arm64-v8a/libnative-filters.so"
+      ],
+      "cwd": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch",
+      "startedAt": "2026-10-20T16:39:46.215927+00:00",
+      "completedAt": "2026-10-20T16:39:46.243681+00:00",
+      "exitCode": 0,
+      "output": "relro-arm64-v8a-libnative-filters.so.txt",
+      "outputSha256": "9f72cf7c17a39c89f28c1beb7f71fb4b9b9e019eb48e561a4e8285230eb8bbb5"
+    },
+    {
+      "label": "elf-arm64-v8a-libnative-imagetranscoder.so",
+      "argv": [
+        "/Users/syous/Library/Android/sdk/ndk/29.0.14206865/toolchains/llvm/prebuilt/darwin-x86_64/bin/llvm-objdump",
+        "-p",
+        "/var/folders/4g/htk70w8x7jl63j13pbrs6whw0000gn/T/paper-craft-static-elf-4hif3gcx/arm64-v8a/libnative-imagetranscoder.so"
+      ],
+      "cwd": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch",
+      "startedAt": "2026-10-20T16:39:46.248356+00:00",
+      "completedAt": "2026-10-20T16:39:46.274363+00:00",
+      "exitCode": 0,
+      "output": "elf-arm64-v8a-libnative-imagetranscoder.so.txt",
+      "outputSha256": "525ab77e6485479df8f83033e117341015c0bd98b09665095ad07e0d5139675a"
+    },
+    {
+      "label": "relro-arm64-v8a-libnative-imagetranscoder.so",
+      "argv": [
+        "/Users/syous/Library/Android/sdk/ndk/29.0.14206865/toolchains/llvm/prebuilt/darwin-x86_64/bin/llvm-readelf",
+        "-Wl",
+        "/var/folders/4g/htk70w8x7jl63j13pbrs6whw0000gn/T/paper-craft-static-elf-4hif3gcx/arm64-v8a/libnative-imagetranscoder.so"
+      ],
+      "cwd": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch",
+      "startedAt": "2026-10-20T16:39:46.274551+00:00",
+      "completedAt": "2026-10-20T16:39:46.300973+00:00",
+      "exitCode": 0,
+      "output": "relro-arm64-v8a-libnative-imagetranscoder.so.txt",
+      "outputSha256": "b4417f408c00fa1f9cdd2158e5b42589b6d87d72e1c2068c0544ed9bd6d2dfff"
+    },
+    {
+      "label": "elf-arm64-v8a-libreact_codegen_rnsvg.so",
+      "argv": [
+        "/Users/syous/Library/Android/sdk/ndk/29.0.14206865/toolchains/llvm/prebuilt/darwin-x86_64/bin/llvm-objdump",
+        "-p",
+        "/var/folders/4g/htk70w8x7jl63j13pbrs6whw0000gn/T/paper-craft-static-elf-4hif3gcx/arm64-v8a/libreact_codegen_rnsvg.so"
+      ],
+      "cwd": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch",
+      "startedAt": "2026-10-20T16:39:46.305598+00:00",
+      "completedAt": "2026-10-20T16:39:46.334687+00:00",
+      "exitCode": 0,
+      "output": "elf-arm64-v8a-libreact_codegen_rnsvg.so.txt",
+      "outputSha256": "0e4e2df8af58a18422b558ed3afcc99a8e9ac7150aae3958a84baceb5c59913e"
+    },
+    {
+      "label": "relro-arm64-v8a-libreact_codegen_rnsvg.so",
+      "argv": [
+        "/Users/syous/Library/Android/sdk/ndk/29.0.14206865/toolchains/llvm/prebuilt/darwin-x86_64/bin/llvm-readelf",
+        "-Wl",
+        "/var/folders/4g/htk70w8x7jl63j13pbrs6whw0000gn/T/paper-craft-static-elf-4hif3gcx/arm64-v8a/libreact_codegen_rnsvg.so"
+      ],
+      "cwd": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch",
+      "startedAt": "2026-10-20T16:39:46.334816+00:00",
+      "completedAt": "2026-10-20T16:39:46.370322+00:00",
+      "exitCode": 0,
+      "output": "relro-arm64-v8a-libreact_codegen_rnsvg.so.txt",
+      "outputSha256": "4fe9e90db369d27c286b09cf1cdaed742e199bdfd91b322157671ba1beacb758"
+    },
+    {
+      "label": "elf-arm64-v8a-libreact_codegen_safeareacontext.so",
+      "argv": [
+        "/Users/syous/Library/Android/sdk/ndk/29.0.14206865/toolchains/llvm/prebuilt/darwin-x86_64/bin/llvm-objdump",
+        "-p",
+        "/var/folders/4g/htk70w8x7jl63j13pbrs6whw0000gn/T/paper-craft-static-elf-4hif3gcx/arm64-v8a/libreact_codegen_safeareacontext.so"
+      ],
+      "cwd": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch",
+      "startedAt": "2026-10-20T16:39:46.371970+00:00",
+      "completedAt": "2026-10-20T16:39:46.406392+00:00",
+      "exitCode": 0,
+      "output": "elf-arm64-v8a-libreact_codegen_safeareacontext.so.txt",
+      "outputSha256": "09b4eeb7da6045b9f16fd585abd3c92180b18a9e4c6a5f40134b8e3d5a6a2076"
+    },
+    {
+      "label": "relro-arm64-v8a-libreact_codegen_safeareacontext.so",
+      "argv": [
+        "/Users/syous/Library/Android/sdk/ndk/29.0.14206865/toolchains/llvm/prebuilt/darwin-x86_64/bin/llvm-readelf",
+        "-Wl",
+        "/var/folders/4g/htk70w8x7jl63j13pbrs6whw0000gn/T/paper-craft-static-elf-4hif3gcx/arm64-v8a/libreact_codegen_safeareacontext.so"
+      ],
+      "cwd": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch",
+      "startedAt": "2026-10-20T16:39:46.406703+00:00",
+      "completedAt": "2026-10-20T16:39:46.437268+00:00",
+      "exitCode": 0,
+      "output": "relro-arm64-v8a-libreact_codegen_safeareacontext.so.txt",
+      "outputSha256": "bf67061624a891edeccc1210e5b7b9b1fd4be2ecd46885fbff718b2651a9991e"
+    },
+    {
+      "label": "elf-arm64-v8a-libreactnative.so",
+      "argv": [
+        "/Users/syous/Library/Android/sdk/ndk/29.0.14206865/toolchains/llvm/prebuilt/darwin-x86_64/bin/llvm-objdump",
+        "-p",
+        "/var/folders/4g/htk70w8x7jl63j13pbrs6whw0000gn/T/paper-craft-static-elf-4hif3gcx/arm64-v8a/libreactnative.so"
+      ],
+      "cwd": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch",
+      "startedAt": "2026-10-20T16:39:46.478148+00:00",
+      "completedAt": "2026-10-20T16:39:46.509077+00:00",
+      "exitCode": 0,
+      "output": "elf-arm64-v8a-libreactnative.so.txt",
+      "outputSha256": "4c834c9838f5285a186a60c03a6ef704a508f0710669ee92a1d1f6fa6889c847"
+    },
+    {
+      "label": "relro-arm64-v8a-libreactnative.so",
+      "argv": [
+        "/Users/syous/Library/Android/sdk/ndk/29.0.14206865/toolchains/llvm/prebuilt/darwin-x86_64/bin/llvm-readelf",
+        "-Wl",
+        "/var/folders/4g/htk70w8x7jl63j13pbrs6whw0000gn/T/paper-craft-static-elf-4hif3gcx/arm64-v8a/libreactnative.so"
+      ],
+      "cwd": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch",
+      "startedAt": "2026-10-20T16:39:46.509309+00:00",
+      "completedAt": "2026-10-20T16:39:46.541029+00:00",
+      "exitCode": 0,
+      "output": "relro-arm64-v8a-libreactnative.so.txt",
+      "outputSha256": "894a047ff1e6e326a84c183893b780bf910c18a258387d1b7657ff3b696502f1"
+    },
+    {
+      "label": "elf-arm64-v8a-libstatic-webp.so",
+      "argv": [
+        "/Users/syous/Library/Android/sdk/ndk/29.0.14206865/toolchains/llvm/prebuilt/darwin-x86_64/bin/llvm-objdump",
+        "-p",
+        "/var/folders/4g/htk70w8x7jl63j13pbrs6whw0000gn/T/paper-craft-static-elf-4hif3gcx/arm64-v8a/libstatic-webp.so"
+      ],
+      "cwd": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch",
+      "startedAt": "2026-10-20T16:39:46.545668+00:00",
+      "completedAt": "2026-10-20T16:39:46.580778+00:00",
+      "exitCode": 0,
+      "output": "elf-arm64-v8a-libstatic-webp.so.txt",
+      "outputSha256": "088d23159ae4abea118dbb412b811866fe6c200b0e935be186622b2901a6f567"
+    },
+    {
+      "label": "relro-arm64-v8a-libstatic-webp.so",
+      "argv": [
+        "/Users/syous/Library/Android/sdk/ndk/29.0.14206865/toolchains/llvm/prebuilt/darwin-x86_64/bin/llvm-readelf",
+        "-Wl",
+        "/var/folders/4g/htk70w8x7jl63j13pbrs6whw0000gn/T/paper-craft-static-elf-4hif3gcx/arm64-v8a/libstatic-webp.so"
+      ],
+      "cwd": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch",
+      "startedAt": "2026-10-20T16:39:46.580949+00:00",
+      "completedAt": "2026-10-20T16:39:46.607621+00:00",
+      "exitCode": 0,
+      "output": "relro-arm64-v8a-libstatic-webp.so.txt",
+      "outputSha256": "755cf987f962a0f7ed293fbcf1121e4a7df113eb13c0a1b89ca096b1f99b1c20"
+    },
+    {
+      "label": "elf-arm64-v8a-libzstd-kmp.so",
+      "argv": [
+        "/Users/syous/Library/Android/sdk/ndk/29.0.14206865/toolchains/llvm/prebuilt/darwin-x86_64/bin/llvm-objdump",
+        "-p",
+        "/var/folders/4g/htk70w8x7jl63j13pbrs6whw0000gn/T/paper-craft-static-elf-4hif3gcx/arm64-v8a/libzstd-kmp.so"
+      ],
+      "cwd": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch",
+      "startedAt": "2026-10-20T16:39:46.612371+00:00",
+      "completedAt": "2026-10-20T16:39:46.646580+00:00",
+      "exitCode": 0,
+      "output": "elf-arm64-v8a-libzstd-kmp.so.txt",
+      "outputSha256": "449adecafa41c2d90cd9fadb58b29560415d54985a5224a310eec5852a30b7c4"
+    },
+    {
+      "label": "relro-arm64-v8a-libzstd-kmp.so",
+      "argv": [
+        "/Users/syous/Library/Android/sdk/ndk/29.0.14206865/toolchains/llvm/prebuilt/darwin-x86_64/bin/llvm-readelf",
+        "-Wl",
+        "/var/folders/4g/htk70w8x7jl63j13pbrs6whw0000gn/T/paper-craft-static-elf-4hif3gcx/arm64-v8a/libzstd-kmp.so"
+      ],
+      "cwd": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch",
+      "startedAt": "2026-10-20T16:39:46.646791+00:00",
+      "completedAt": "2026-10-20T16:39:46.680903+00:00",
+      "exitCode": 0,
+      "output": "relro-arm64-v8a-libzstd-kmp.so.txt",
+      "outputSha256": "7b26da682327ddeaa56beca00d660bb159cfaa97782005b1c29f3fd6c247b7ed"
+    },
+    {
+      "label": "elf-x86_64-libappmodules.so",
+      "argv": [
+        "/Users/syous/Library/Android/sdk/ndk/29.0.14206865/toolchains/llvm/prebuilt/darwin-x86_64/bin/llvm-objdump",
+        "-p",
+        "/var/folders/4g/htk70w8x7jl63j13pbrs6whw0000gn/T/paper-craft-static-elf-4hif3gcx/x86_64/libappmodules.so"
+      ],
+      "cwd": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch",
+      "startedAt": "2026-10-20T16:39:46.745774+00:00",
+      "completedAt": "2026-10-20T16:39:46.768875+00:00",
+      "exitCode": 0,
+      "output": "elf-x86_64-libappmodules.so.txt",
+      "outputSha256": "84e2879cd1824480794f7dcd9d83355e62fc0dda1e034c9fea7fb1669623ba07"
+    },
+    {
+      "label": "relro-x86_64-libappmodules.so",
+      "argv": [
+        "/Users/syous/Library/Android/sdk/ndk/29.0.14206865/toolchains/llvm/prebuilt/darwin-x86_64/bin/llvm-readelf",
+        "-Wl",
+        "/var/folders/4g/htk70w8x7jl63j13pbrs6whw0000gn/T/paper-craft-static-elf-4hif3gcx/x86_64/libappmodules.so"
+      ],
+      "cwd": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch",
+      "startedAt": "2026-10-20T16:39:46.769011+00:00",
+      "completedAt": "2026-10-20T16:39:46.791092+00:00",
+      "exitCode": 0,
+      "output": "relro-x86_64-libappmodules.so.txt",
+      "outputSha256": "3b06bf70b06a4a14b0237297a08ce6478c7f62461a89ce52bb1db17db6470298"
+    },
+    {
+      "label": "elf-x86_64-libc++_shared.so",
+      "argv": [
+        "/Users/syous/Library/Android/sdk/ndk/29.0.14206865/toolchains/llvm/prebuilt/darwin-x86_64/bin/llvm-objdump",
+        "-p",
+        "/var/folders/4g/htk70w8x7jl63j13pbrs6whw0000gn/T/paper-craft-static-elf-4hif3gcx/x86_64/libc++_shared.so"
+      ],
+      "cwd": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch",
+      "startedAt": "2026-10-20T16:39:46.796649+00:00",
+      "completedAt": "2026-10-20T16:39:46.819249+00:00",
+      "exitCode": 0,
+      "output": "elf-x86_64-libc++_shared.so.txt",
+      "outputSha256": "7d8a01ff340c4b0311e04d4b61e3e257bdbf65c7ce032c5ff9fdb214710aa4f8"
+    },
+    {
+      "label": "relro-x86_64-libc++_shared.so",
+      "argv": [
+        "/Users/syous/Library/Android/sdk/ndk/29.0.14206865/toolchains/llvm/prebuilt/darwin-x86_64/bin/llvm-readelf",
+        "-Wl",
+        "/var/folders/4g/htk70w8x7jl63j13pbrs6whw0000gn/T/paper-craft-static-elf-4hif3gcx/x86_64/libc++_shared.so"
+      ],
+      "cwd": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch",
+      "startedAt": "2026-10-20T16:39:46.819391+00:00",
+      "completedAt": "2026-10-20T16:39:46.842870+00:00",
+      "exitCode": 0,
+      "output": "relro-x86_64-libc++_shared.so.txt",
+      "outputSha256": "9283f85319a0ce113fc6bf5cff201177793f6c1e6569dfb629cf0f3b3cd2d9a5"
+    },
+    {
+      "label": "elf-x86_64-libexpo-modules-core.so",
+      "argv": [
+        "/Users/syous/Library/Android/sdk/ndk/29.0.14206865/toolchains/llvm/prebuilt/darwin-x86_64/bin/llvm-objdump",
+        "-p",
+        "/var/folders/4g/htk70w8x7jl63j13pbrs6whw0000gn/T/paper-craft-static-elf-4hif3gcx/x86_64/libexpo-modules-core.so"
+      ],
+      "cwd": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch",
+      "startedAt": "2026-10-20T16:39:46.848938+00:00",
+      "completedAt": "2026-10-20T16:39:46.872171+00:00",
+      "exitCode": 0,
+      "output": "elf-x86_64-libexpo-modules-core.so.txt",
+      "outputSha256": "8e01dd31b684cbcfc1ecd81cf01954faa29217940db39c9a6e6f7b15e45e75e2"
+    },
+    {
+      "label": "relro-x86_64-libexpo-modules-core.so",
+      "argv": [
+        "/Users/syous/Library/Android/sdk/ndk/29.0.14206865/toolchains/llvm/prebuilt/darwin-x86_64/bin/llvm-readelf",
+        "-Wl",
+        "/var/folders/4g/htk70w8x7jl63j13pbrs6whw0000gn/T/paper-craft-static-elf-4hif3gcx/x86_64/libexpo-modules-core.so"
+      ],
+      "cwd": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch",
+      "startedAt": "2026-10-20T16:39:46.872328+00:00",
+      "completedAt": "2026-10-20T16:39:46.894419+00:00",
+      "exitCode": 0,
+      "output": "relro-x86_64-libexpo-modules-core.so.txt",
+      "outputSha256": "15851d19665c2b2a1afbab1302e4dc667f9f4514fe34ed133d6f740a0f901920"
+    },
+    {
+      "label": "elf-x86_64-libexpo-sqlite.so",
+      "argv": [
+        "/Users/syous/Library/Android/sdk/ndk/29.0.14206865/toolchains/llvm/prebuilt/darwin-x86_64/bin/llvm-objdump",
+        "-p",
+        "/var/folders/4g/htk70w8x7jl63j13pbrs6whw0000gn/T/paper-craft-static-elf-4hif3gcx/x86_64/libexpo-sqlite.so"
+      ],
+      "cwd": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch",
+      "startedAt": "2026-10-20T16:39:46.904012+00:00",
+      "completedAt": "2026-10-20T16:39:46.926361+00:00",
+      "exitCode": 0,
+      "output": "elf-x86_64-libexpo-sqlite.so.txt",
+      "outputSha256": "4d5037de378779376af01648bf4740ffe40537d5985a99a381b5be19e9fe1519"
+    },
+    {
+      "label": "relro-x86_64-libexpo-sqlite.so",
+      "argv": [
+        "/Users/syous/Library/Android/sdk/ndk/29.0.14206865/toolchains/llvm/prebuilt/darwin-x86_64/bin/llvm-readelf",
+        "-Wl",
+        "/var/folders/4g/htk70w8x7jl63j13pbrs6whw0000gn/T/paper-craft-static-elf-4hif3gcx/x86_64/libexpo-sqlite.so"
+      ],
+      "cwd": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch",
+      "startedAt": "2026-10-20T16:39:46.926484+00:00",
+      "completedAt": "2026-10-20T16:39:46.948054+00:00",
+      "exitCode": 0,
+      "output": "relro-x86_64-libexpo-sqlite.so.txt",
+      "outputSha256": "b0e27a5ddc85f20a32fe6f96cc54b20a684806b94b2313a79a4653a052ed2a79"
+    },
+    {
+      "label": "elf-x86_64-libfbjni.so",
+      "argv": [
+        "/Users/syous/Library/Android/sdk/ndk/29.0.14206865/toolchains/llvm/prebuilt/darwin-x86_64/bin/llvm-objdump",
+        "-p",
+        "/var/folders/4g/htk70w8x7jl63j13pbrs6whw0000gn/T/paper-craft-static-elf-4hif3gcx/x86_64/libfbjni.so"
+      ],
+      "cwd": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch",
+      "startedAt": "2026-10-20T16:39:46.950515+00:00",
+      "completedAt": "2026-10-20T16:39:46.974805+00:00",
+      "exitCode": 0,
+      "output": "elf-x86_64-libfbjni.so.txt",
+      "outputSha256": "a24a8e14f31116edafad33be1a836cad0f86f8c3d639084720df6272986dace0"
+    },
+    {
+      "label": "relro-x86_64-libfbjni.so",
+      "argv": [
+        "/Users/syous/Library/Android/sdk/ndk/29.0.14206865/toolchains/llvm/prebuilt/darwin-x86_64/bin/llvm-readelf",
+        "-Wl",
+        "/var/folders/4g/htk70w8x7jl63j13pbrs6whw0000gn/T/paper-craft-static-elf-4hif3gcx/x86_64/libfbjni.so"
+      ],
+      "cwd": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch",
+      "startedAt": "2026-10-20T16:39:46.974932+00:00",
+      "completedAt": "2026-10-20T16:39:46.996072+00:00",
+      "exitCode": 0,
+      "output": "relro-x86_64-libfbjni.so.txt",
+      "outputSha256": "ea78fa48f4da358a72e96f9cf569dc382d6ee8f3f908b57ac523e0fa007af0e3"
+    },
+    {
+      "label": "elf-x86_64-libgifimage.so",
+      "argv": [
+        "/Users/syous/Library/Android/sdk/ndk/29.0.14206865/toolchains/llvm/prebuilt/darwin-x86_64/bin/llvm-objdump",
+        "-p",
+        "/var/folders/4g/htk70w8x7jl63j13pbrs6whw0000gn/T/paper-craft-static-elf-4hif3gcx/x86_64/libgifimage.so"
+      ],
+      "cwd": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch",
+      "startedAt": "2026-10-20T16:39:46.998519+00:00",
+      "completedAt": "2026-10-20T16:39:47.021144+00:00",
+      "exitCode": 0,
+      "output": "elf-x86_64-libgifimage.so.txt",
+      "outputSha256": "23d1003cc1a61980ea0b31eb51f2ad0ced7b58b4bc1583442dcd94fe4e3b1ca6"
+    },
+    {
+      "label": "relro-x86_64-libgifimage.so",
+      "argv": [
+        "/Users/syous/Library/Android/sdk/ndk/29.0.14206865/toolchains/llvm/prebuilt/darwin-x86_64/bin/llvm-readelf",
+        "-Wl",
+        "/var/folders/4g/htk70w8x7jl63j13pbrs6whw0000gn/T/paper-craft-static-elf-4hif3gcx/x86_64/libgifimage.so"
+      ],
+      "cwd": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch",
+      "startedAt": "2026-10-20T16:39:47.021291+00:00",
+      "completedAt": "2026-10-20T16:39:47.042946+00:00",
+      "exitCode": 0,
+      "output": "relro-x86_64-libgifimage.so.txt",
+      "outputSha256": "e84bc8bb9e51247f1e099b94c11d8cfbc69a5d5baf5854da8643fb56051fa22a"
+    },
+    {
+      "label": "elf-x86_64-libhermestooling.so",
+      "argv": [
+        "/Users/syous/Library/Android/sdk/ndk/29.0.14206865/toolchains/llvm/prebuilt/darwin-x86_64/bin/llvm-objdump",
+        "-p",
+        "/var/folders/4g/htk70w8x7jl63j13pbrs6whw0000gn/T/paper-craft-static-elf-4hif3gcx/x86_64/libhermestooling.so"
+      ],
+      "cwd": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch",
+      "startedAt": "2026-10-20T16:39:47.044483+00:00",
+      "completedAt": "2026-10-20T16:39:47.067084+00:00",
+      "exitCode": 0,
+      "output": "elf-x86_64-libhermestooling.so.txt",
+      "outputSha256": "f288471de2ac3f76cbedca1a0c69348c5c948693f7cfb9f38165106fef20399b"
+    },
+    {
+      "label": "relro-x86_64-libhermestooling.so",
+      "argv": [
+        "/Users/syous/Library/Android/sdk/ndk/29.0.14206865/toolchains/llvm/prebuilt/darwin-x86_64/bin/llvm-readelf",
+        "-Wl",
+        "/var/folders/4g/htk70w8x7jl63j13pbrs6whw0000gn/T/paper-craft-static-elf-4hif3gcx/x86_64/libhermestooling.so"
+      ],
+      "cwd": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch",
+      "startedAt": "2026-10-20T16:39:47.067218+00:00",
+      "completedAt": "2026-10-20T16:39:47.088724+00:00",
+      "exitCode": 0,
+      "output": "relro-x86_64-libhermestooling.so.txt",
+      "outputSha256": "fc5933128794cfb4f02b9b648ccbb60c255c11cbbe762f080ceea2457a67ab41"
+    },
+    {
+      "label": "elf-x86_64-libhermesvm.so",
+      "argv": [
+        "/Users/syous/Library/Android/sdk/ndk/29.0.14206865/toolchains/llvm/prebuilt/darwin-x86_64/bin/llvm-objdump",
+        "-p",
+        "/var/folders/4g/htk70w8x7jl63j13pbrs6whw0000gn/T/paper-craft-static-elf-4hif3gcx/x86_64/libhermesvm.so"
+      ],
+      "cwd": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch",
+      "startedAt": "2026-10-20T16:39:47.105994+00:00",
+      "completedAt": "2026-10-20T16:39:47.126486+00:00",
+      "exitCode": 0,
+      "output": "elf-x86_64-libhermesvm.so.txt",
+      "outputSha256": "5c776eb97cd97015dfaf07f7a8361a7d902e3ebbaaaa484b06e5607df2732edd"
+    },
+    {
+      "label": "relro-x86_64-libhermesvm.so",
+      "argv": [
+        "/Users/syous/Library/Android/sdk/ndk/29.0.14206865/toolchains/llvm/prebuilt/darwin-x86_64/bin/llvm-readelf",
+        "-Wl",
+        "/var/folders/4g/htk70w8x7jl63j13pbrs6whw0000gn/T/paper-craft-static-elf-4hif3gcx/x86_64/libhermesvm.so"
+      ],
+      "cwd": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch",
+      "startedAt": "2026-10-20T16:39:47.126628+00:00",
+      "completedAt": "2026-10-20T16:39:47.148641+00:00",
+      "exitCode": 0,
+      "output": "relro-x86_64-libhermesvm.so.txt",
+      "outputSha256": "8eefd90653978433ce182a0b9ad499431d44de4fb1e22680939b42faa92da7d5"
+    },
+    {
+      "label": "elf-x86_64-libimagepipeline.so",
+      "argv": [
+        "/Users/syous/Library/Android/sdk/ndk/29.0.14206865/toolchains/llvm/prebuilt/darwin-x86_64/bin/llvm-objdump",
+        "-p",
+        "/var/folders/4g/htk70w8x7jl63j13pbrs6whw0000gn/T/paper-craft-static-elf-4hif3gcx/x86_64/libimagepipeline.so"
+      ],
+      "cwd": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch",
+      "startedAt": "2026-10-20T16:39:47.149408+00:00",
+      "completedAt": "2026-10-20T16:39:47.170946+00:00",
+      "exitCode": 0,
+      "output": "elf-x86_64-libimagepipeline.so.txt",
+      "outputSha256": "16148c616ca61a909496044017ac819bfe7626a0f57fea02636679ba5c9d6287"
+    },
+    {
+      "label": "relro-x86_64-libimagepipeline.so",
+      "argv": [
+        "/Users/syous/Library/Android/sdk/ndk/29.0.14206865/toolchains/llvm/prebuilt/darwin-x86_64/bin/llvm-readelf",
+        "-Wl",
+        "/var/folders/4g/htk70w8x7jl63j13pbrs6whw0000gn/T/paper-craft-static-elf-4hif3gcx/x86_64/libimagepipeline.so"
+      ],
+      "cwd": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch",
+      "startedAt": "2026-10-20T16:39:47.171079+00:00",
+      "completedAt": "2026-10-20T16:39:47.193014+00:00",
+      "exitCode": 0,
+      "output": "relro-x86_64-libimagepipeline.so.txt",
+      "outputSha256": "54245b1dca5f28fef7b22b2d830a1b9ea487617e986897a92d5f3a57e96905da"
+    },
+    {
+      "label": "elf-x86_64-libjsi.so",
+      "argv": [
+        "/Users/syous/Library/Android/sdk/ndk/29.0.14206865/toolchains/llvm/prebuilt/darwin-x86_64/bin/llvm-objdump",
+        "-p",
+        "/var/folders/4g/htk70w8x7jl63j13pbrs6whw0000gn/T/paper-craft-static-elf-4hif3gcx/x86_64/libjsi.so"
+      ],
+      "cwd": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch",
+      "startedAt": "2026-10-20T16:39:47.195741+00:00",
+      "completedAt": "2026-10-20T16:39:47.218594+00:00",
+      "exitCode": 0,
+      "output": "elf-x86_64-libjsi.so.txt",
+      "outputSha256": "221b1ec8a85a23e774cabc8241a5a9ddbce354de0ca6eb57cc62d663c2290e85"
+    },
+    {
+      "label": "relro-x86_64-libjsi.so",
+      "argv": [
+        "/Users/syous/Library/Android/sdk/ndk/29.0.14206865/toolchains/llvm/prebuilt/darwin-x86_64/bin/llvm-readelf",
+        "-Wl",
+        "/var/folders/4g/htk70w8x7jl63j13pbrs6whw0000gn/T/paper-craft-static-elf-4hif3gcx/x86_64/libjsi.so"
+      ],
+      "cwd": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch",
+      "startedAt": "2026-10-20T16:39:47.218744+00:00",
+      "completedAt": "2026-10-20T16:39:47.241089+00:00",
+      "exitCode": 0,
+      "output": "relro-x86_64-libjsi.so.txt",
+      "outputSha256": "f761945b79a4598e43d6e7ee7122c204dc94beba2e16cb00dd52d6da641a35ad"
+    },
+    {
+      "label": "elf-x86_64-libnative-filters.so",
+      "argv": [
+        "/Users/syous/Library/Android/sdk/ndk/29.0.14206865/toolchains/llvm/prebuilt/darwin-x86_64/bin/llvm-objdump",
+        "-p",
+        "/var/folders/4g/htk70w8x7jl63j13pbrs6whw0000gn/T/paper-craft-static-elf-4hif3gcx/x86_64/libnative-filters.so"
+      ],
+      "cwd": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch",
+      "startedAt": "2026-10-20T16:39:47.241932+00:00",
+      "completedAt": "2026-10-20T16:39:47.263359+00:00",
+      "exitCode": 0,
+      "output": "elf-x86_64-libnative-filters.so.txt",
+      "outputSha256": "0afd9147399005ba50460912d3da66c143ffd4815cd86220dad85a6532545491"
+    },
+    {
+      "label": "relro-x86_64-libnative-filters.so",
+      "argv": [
+        "/Users/syous/Library/Android/sdk/ndk/29.0.14206865/toolchains/llvm/prebuilt/darwin-x86_64/bin/llvm-readelf",
+        "-Wl",
+        "/var/folders/4g/htk70w8x7jl63j13pbrs6whw0000gn/T/paper-craft-static-elf-4hif3gcx/x86_64/libnative-filters.so"
+      ],
+      "cwd": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch",
+      "startedAt": "2026-10-20T16:39:47.263504+00:00",
+      "completedAt": "2026-10-20T16:39:47.285103+00:00",
+      "exitCode": 0,
+      "output": "relro-x86_64-libnative-filters.so.txt",
+      "outputSha256": "4cd5ff94a50bbe6ed236e7e90879f0aad9e9ad60ea212923404862cb69e5ff5b"
+    },
+    {
+      "label": "elf-x86_64-libnative-imagetranscoder.so",
+      "argv": [
+        "/Users/syous/Library/Android/sdk/ndk/29.0.14206865/toolchains/llvm/prebuilt/darwin-x86_64/bin/llvm-objdump",
+        "-p",
+        "/var/folders/4g/htk70w8x7jl63j13pbrs6whw0000gn/T/paper-craft-static-elf-4hif3gcx/x86_64/libnative-imagetranscoder.so"
+      ],
+      "cwd": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch",
+      "startedAt": "2026-10-20T16:39:47.288857+00:00",
+      "completedAt": "2026-10-20T16:39:47.310061+00:00",
+      "exitCode": 0,
+      "output": "elf-x86_64-libnative-imagetranscoder.so.txt",
+      "outputSha256": "6602db47aebb04ac4514a726626d102aab181fd95924b141289fde116f94285f"
+    },
+    {
+      "label": "relro-x86_64-libnative-imagetranscoder.so",
+      "argv": [
+        "/Users/syous/Library/Android/sdk/ndk/29.0.14206865/toolchains/llvm/prebuilt/darwin-x86_64/bin/llvm-readelf",
+        "-Wl",
+        "/var/folders/4g/htk70w8x7jl63j13pbrs6whw0000gn/T/paper-craft-static-elf-4hif3gcx/x86_64/libnative-imagetranscoder.so"
+      ],
+      "cwd": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch",
+      "startedAt": "2026-10-20T16:39:47.310154+00:00",
+      "completedAt": "2026-10-20T16:39:47.330996+00:00",
+      "exitCode": 0,
+      "output": "relro-x86_64-libnative-imagetranscoder.so.txt",
+      "outputSha256": "e97590965a0d88a3e13abf96ba29c91b153a7e6f2c186529ad823747603c8ac0"
+    },
+    {
+      "label": "elf-x86_64-libreact_codegen_rnsvg.so",
+      "argv": [
+        "/Users/syous/Library/Android/sdk/ndk/29.0.14206865/toolchains/llvm/prebuilt/darwin-x86_64/bin/llvm-objdump",
+        "-p",
+        "/var/folders/4g/htk70w8x7jl63j13pbrs6whw0000gn/T/paper-craft-static-elf-4hif3gcx/x86_64/libreact_codegen_rnsvg.so"
+      ],
+      "cwd": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch",
+      "startedAt": "2026-10-20T16:39:47.334985+00:00",
+      "completedAt": "2026-10-20T16:39:47.357621+00:00",
+      "exitCode": 0,
+      "output": "elf-x86_64-libreact_codegen_rnsvg.so.txt",
+      "outputSha256": "2ee19df450c3fda2d2add1c5e6d0a0f5c4af11ec4853b13c5a1e9ce2ac4dc9fd"
+    },
+    {
+      "label": "relro-x86_64-libreact_codegen_rnsvg.so",
+      "argv": [
+        "/Users/syous/Library/Android/sdk/ndk/29.0.14206865/toolchains/llvm/prebuilt/darwin-x86_64/bin/llvm-readelf",
+        "-Wl",
+        "/var/folders/4g/htk70w8x7jl63j13pbrs6whw0000gn/T/paper-craft-static-elf-4hif3gcx/x86_64/libreact_codegen_rnsvg.so"
+      ],
+      "cwd": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch",
+      "startedAt": "2026-10-20T16:39:47.357742+00:00",
+      "completedAt": "2026-10-20T16:39:47.379685+00:00",
+      "exitCode": 0,
+      "output": "relro-x86_64-libreact_codegen_rnsvg.so.txt",
+      "outputSha256": "02f1c874b0b4536052852de96e589f116b9b722857ddc6822b81aff7eea9f501"
+    },
+    {
+      "label": "elf-x86_64-libreact_codegen_safeareacontext.so",
+      "argv": [
+        "/Users/syous/Library/Android/sdk/ndk/29.0.14206865/toolchains/llvm/prebuilt/darwin-x86_64/bin/llvm-objdump",
+        "-p",
+        "/var/folders/4g/htk70w8x7jl63j13pbrs6whw0000gn/T/paper-craft-static-elf-4hif3gcx/x86_64/libreact_codegen_safeareacontext.so"
+      ],
+      "cwd": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch",
+      "startedAt": "2026-10-20T16:39:47.381148+00:00",
+      "completedAt": "2026-10-20T16:39:47.402547+00:00",
+      "exitCode": 0,
+      "output": "elf-x86_64-libreact_codegen_safeareacontext.so.txt",
+      "outputSha256": "082364e9cdb24b80985d86bce3e3144cff7b3b42b36519ffeb86a63b484c9af6"
+    },
+    {
+      "label": "relro-x86_64-libreact_codegen_safeareacontext.so",
+      "argv": [
+        "/Users/syous/Library/Android/sdk/ndk/29.0.14206865/toolchains/llvm/prebuilt/darwin-x86_64/bin/llvm-readelf",
+        "-Wl",
+        "/var/folders/4g/htk70w8x7jl63j13pbrs6whw0000gn/T/paper-craft-static-elf-4hif3gcx/x86_64/libreact_codegen_safeareacontext.so"
+      ],
+      "cwd": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch",
+      "startedAt": "2026-10-20T16:39:47.402666+00:00",
+      "completedAt": "2026-10-20T16:39:47.423091+00:00",
+      "exitCode": 0,
+      "output": "relro-x86_64-libreact_codegen_safeareacontext.so.txt",
+      "outputSha256": "3771ff56afac594e109130ecee81922274f911099b9da82dbb65da00b11598eb"
+    },
+    {
+      "label": "elf-x86_64-libreactnative.so",
+      "argv": [
+        "/Users/syous/Library/Android/sdk/ndk/29.0.14206865/toolchains/llvm/prebuilt/darwin-x86_64/bin/llvm-objdump",
+        "-p",
+        "/var/folders/4g/htk70w8x7jl63j13pbrs6whw0000gn/T/paper-craft-static-elf-4hif3gcx/x86_64/libreactnative.so"
+      ],
+      "cwd": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch",
+      "startedAt": "2026-10-20T16:39:47.456562+00:00",
+      "completedAt": "2026-10-20T16:39:47.480373+00:00",
+      "exitCode": 0,
+      "output": "elf-x86_64-libreactnative.so.txt",
+      "outputSha256": "9686ae318eb30dc941cd88c5374072b79a2f281dd29bb0aec5fe22981a632883"
+    },
+    {
+      "label": "relro-x86_64-libreactnative.so",
+      "argv": [
+        "/Users/syous/Library/Android/sdk/ndk/29.0.14206865/toolchains/llvm/prebuilt/darwin-x86_64/bin/llvm-readelf",
+        "-Wl",
+        "/var/folders/4g/htk70w8x7jl63j13pbrs6whw0000gn/T/paper-craft-static-elf-4hif3gcx/x86_64/libreactnative.so"
+      ],
+      "cwd": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch",
+      "startedAt": "2026-10-20T16:39:47.480510+00:00",
+      "completedAt": "2026-10-20T16:39:47.504776+00:00",
+      "exitCode": 0,
+      "output": "relro-x86_64-libreactnative.so.txt",
+      "outputSha256": "39c57da91d760764fff07515dcb8f8a5046e8818817e8f342635f8b4919d61cb"
+    },
+    {
+      "label": "elf-x86_64-libstatic-webp.so",
+      "argv": [
+        "/Users/syous/Library/Android/sdk/ndk/29.0.14206865/toolchains/llvm/prebuilt/darwin-x86_64/bin/llvm-objdump",
+        "-p",
+        "/var/folders/4g/htk70w8x7jl63j13pbrs6whw0000gn/T/paper-craft-static-elf-4hif3gcx/x86_64/libstatic-webp.so"
+      ],
+      "cwd": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch",
+      "startedAt": "2026-10-20T16:39:47.508704+00:00",
+      "completedAt": "2026-10-20T16:39:47.534157+00:00",
+      "exitCode": 0,
+      "output": "elf-x86_64-libstatic-webp.so.txt",
+      "outputSha256": "21463b18b337f607d37174c2b7eaec0def38ef03abb664287d5f345a794140e0"
+    },
+    {
+      "label": "relro-x86_64-libstatic-webp.so",
+      "argv": [
+        "/Users/syous/Library/Android/sdk/ndk/29.0.14206865/toolchains/llvm/prebuilt/darwin-x86_64/bin/llvm-readelf",
+        "-Wl",
+        "/var/folders/4g/htk70w8x7jl63j13pbrs6whw0000gn/T/paper-craft-static-elf-4hif3gcx/x86_64/libstatic-webp.so"
+      ],
+      "cwd": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch",
+      "startedAt": "2026-10-20T16:39:47.534336+00:00",
+      "completedAt": "2026-10-20T16:39:47.557022+00:00",
+      "exitCode": 0,
+      "output": "relro-x86_64-libstatic-webp.so.txt",
+      "outputSha256": "cf86b8cf57e357e9831a5220e57b0d3ef85e2461f33d7c82bf15f7cb890068f7"
+    },
+    {
+      "label": "elf-x86_64-libzstd-kmp.so",
+      "argv": [
+        "/Users/syous/Library/Android/sdk/ndk/29.0.14206865/toolchains/llvm/prebuilt/darwin-x86_64/bin/llvm-objdump",
+        "-p",
+        "/var/folders/4g/htk70w8x7jl63j13pbrs6whw0000gn/T/paper-craft-static-elf-4hif3gcx/x86_64/libzstd-kmp.so"
+      ],
+      "cwd": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch",
+      "startedAt": "2026-10-20T16:39:47.561472+00:00",
+      "completedAt": "2026-10-20T16:39:47.586761+00:00",
+      "exitCode": 0,
+      "output": "elf-x86_64-libzstd-kmp.so.txt",
+      "outputSha256": "09c79cd6724ae9d11c7c983d9aab9aed7c05ab105e4bdfd42e4ae938cedf5dbf"
+    },
+    {
+      "label": "relro-x86_64-libzstd-kmp.so",
+      "argv": [
+        "/Users/syous/Library/Android/sdk/ndk/29.0.14206865/toolchains/llvm/prebuilt/darwin-x86_64/bin/llvm-readelf",
+        "-Wl",
+        "/var/folders/4g/htk70w8x7jl63j13pbrs6whw0000gn/T/paper-craft-static-elf-4hif3gcx/x86_64/libzstd-kmp.so"
+      ],
+      "cwd": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch",
+      "startedAt": "2026-10-20T16:39:47.586883+00:00",
+      "completedAt": "2026-10-20T16:39:47.611778+00:00",
+      "exitCode": 0,
+      "output": "relro-x86_64-libzstd-kmp.so.txt",
+      "outputSha256": "8178d9cd652fe322848fdf97b76c857db1ceca6828d5793465b4853cc23f30d6"
+    },
+    {
+      "label": "central-before-deploy",
+      "argv": [
+        "node",
+        "/Users/syous/Repositories/seorilabs/.github/scripts/release/verify-development-evidence.mjs",
+        "--file",
+        "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch/artifacts/development-evidence-d1464ab.json",
+        "--repo",
+        "seoleeapps/paper-craft-print",
+        "--sha",
+        "d1464abc34dfc2f4c0af58a8abc0add97946dc31",
+        "--target",
+        "google-play",
+        "--phase",
+        "before-deploy"
+      ],
+      "cwd": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch",
+      "startedAt": "2026-10-20T16:39:47.813669+00:00",
+      "completedAt": "2026-10-20T16:39:48.201832+00:00",
+      "exitCode": 0,
+      "output": "central-before-deploy.txt",
+      "outputSha256": "5e7746411220746abdb65505a6bdd72d16fb5469a2e5a4689bd149f53f2b4544"
+    },
+    {
+      "label": "source-head-final",
+      "argv": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "cwd": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch",
+      "startedAt": "2026-10-20T16:39:48.201925+00:00",
+      "completedAt": "2026-10-20T16:39:48.229917+00:00",
+      "exitCode": 0,
+      "output": "source-head-final.txt",
+      "outputSha256": "66ccc30efe77d9ac883f70060e5c1c3cb05e8c358b05461c1186400b7c59b38b"
+    },
+    {
+      "label": "source-clean-final",
+      "argv": [
+        "git",
+        "status",
+        "--porcelain",
+        "--untracked-files=all"
+      ],
+      "cwd": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch",
+      "startedAt": "2026-10-20T16:39:48.230032+00:00",
+      "completedAt": "2026-10-20T16:39:48.274879+00:00",
+      "exitCode": 0,
+      "output": "source-clean-final.txt",
+      "outputSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "aab-dependencies-decode",
+      "argv": [
+        "/opt/homebrew/bin/protoc",
+        "--decode_raw"
+      ],
+      "stdin": "aab-dependencies.pb extracted from actual AAB BUNDLE-METADATA/com.android.tools.build.libraries/dependencies.pb",
+      "startedAt": "2026-10-20T16:40:18.586307+00:00",
+      "completedAt": "2026-10-20T16:40:20.953669+00:00",
+      "exitCode": 0,
+      "output": "aab-dependencies-decoded.txt",
+      "outputSha256": "3daa31bbafa3e421f933ddb6be8791840180caea410d9b00d5962d95e46819b3"
+    }
+  ],
+  "originalBuildReport": {
+    "exists": false,
+    "reason": "Gradle succeeded; build helper stopped at legacy-only APK certificate output parsing. Original artifacts and failure logs preserved. This independent report records the recovered static verification; it is not the helper final build report."
+  },
+  "limitations": [
+    "No Android device was queried or operated. App launch, real banner display, UMP, OS picker/storage/share/print and 16KiB runtime are unrun.",
+    "The d146 temporary Gradle project and text manifest-merger report were removed. SDK versions were recovered directly from the signed AAB dependency graph and packaged properties. The older1a manifest-merger report is not used as d146 resolved-dependency evidence.",
+    "The APK and AAB contain NO_SUPPORTED_VCS_FOUND version-control metadata because the build used git archive staging. Source binding uses exact candidate build invocation, clean-source checks and immutable artifact hashes.",
+    "Signing verification warnings about a self-signed upload certificate and absent timestamp do not assert store approval or a Play signing certificate.",
+    "No upload, Play processing, production submission, approval or public availability is proven by this report.",
+    "An initial independent audit assertion expected the older aapt2 sdkVersion label; build-tools37 returns minSdkVersion. The assertion was corrected only in the ignored audit harness. Earlier audit.py, outputs and attempt-1-notes.txt remain preserved. No source or artifact modification occurred."
+  ],
+  "officialReference": {
+    "url": "https://developer.android.com/guide/practices/page-sizes",
+    "checkedAt": "2026-10-20T16:39:41.609271+00:00"
+  },
+  "actualResolvedSdkCoordinates": [
+    {
+      "group": "com.facebook.react",
+      "artifact": "react-android",
+      "version": "0.86.3"
+    },
+    {
+      "group": "com.google.android.ump",
+      "artifact": "user-messaging-platform",
+      "version": "4.0.0"
+    },
+    {
+      "group": "com.google.android.gms",
+      "artifact": "play-services-ads",
+      "version": "25.4.0"
+    },
+    {
+      "group": "com.google.android.gms",
+      "artifact": "play-services-ads-api",
+      "version": "25.4.0"
+    },
+    {
+      "group": "com.google.android.gms",
+      "artifact": "play-services-ads-identifier",
+      "version": "18.0.0"
+    }
+  ],
+  "dependencyGraphEvidence": {
+    "artifact": "actual signed d146 AAB",
+    "entry": "BUNDLE-METADATA/com.android.tools.build.libraries/dependencies.pb",
+    "protobufSha256": "5e57a1ff33bbb3d8343bc9ea84544222af4fca699ce15de7454a0f96918542e9",
+    "decoder": "protoc --decode_raw",
+    "rawDecodedEvidence": "aab-dependencies-decoded.txt",
+    "fullCoordinateCount": 161
+  }
+}

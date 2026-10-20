@@ -11,20 +11,45 @@
   "registeredAt": "2026-10-05",
   "approval": "review_required",
   "productionServing": "unverified",
-  "sdkIntegration": "test_reward_verified",
+  "sdkIntegration": "native_unrun_current_candidate",
   "frequencyCaps": {
     "app": "none",
     "unit": "none"
   },
   "ssv": "not_configured_local_only_unlock",
-  "testVerifiedAt": "2026-10-05T09:41:32+00:00",
-  "testEvidence": [
-    "artifacts/device/qa34-test-ad-status.png",
-    "artifacts/device/qa34-reward-restored-copy.png",
-    "docs/qa.md"
-  ],
   "bannerAdUnitId": "ca-app-pub-9932778305312246/1325597400",
   "bannerUnitName": "home_drafts_banner",
   "bannerRegisteredAt": "2026-10-21",
-  "bannerSdkIntegration": "native_unrun"
+  "bannerSdkIntegration": "native_unrun",
+  "historicalRewardTest": {
+    "version": "0.1.0",
+    "verifiedAt": "2026-10-05T09:41:32+00:00",
+    "evidence": [
+      "artifacts/device/qa34-test-ad-status.png",
+      "artifacts/device/qa34-reward-restored-copy.png",
+      "docs/qa.md"
+    ]
+  },
+  "consentMessages": {
+    "gdpr": {
+      "name": "Paper Craft Print Android GDPR",
+      "status": "published",
+      "apps": 1,
+      "language": "en",
+      "rejectOption": "enabled-all-regions"
+    },
+    "usStates": {
+      "name": "Paper Craft Print Android US states",
+      "status": "published",
+      "apps": 1,
+      "language": "en-US",
+      "targeting": "all-current-and-future-supported-US-states"
+    }
+  },
+  "currentCandidate": "d1464abc34dfc2f4c0af58a8abc0add97946dc31",
+  "storeLink": {
+    "status": "unavailable",
+    "checkedAt": "2026-10-21",
+    "reason": "Exact Google Play package search returned no matching app; no store link saved"
+  }
 }

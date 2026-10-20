@@ -1,0 +1,156 @@
+Google Play Console 로드 중
+notifications_unread
+읽지 않은 알림
+more_vert
+home
+badge
+play_prism
+dashboard
+bar_chart
+overview
+shield
+rocket_launch
+vital_signs
+finance_mode
+sell
+keyboard_backspace
+앱 콘텐츠
+데이터 보안
+CSV 파일로 내보내기
+CSV에서 가져오기
+앱 데이터 수집 및 공유 방식에 관한 사용자의 이해 증진 더보기
+check
+개요
+check
+데이터 수집 및 보안
+check
+데이터 유형
+check
+데이터 취급 및 처리
+5
+미리보기
+스토어 등록정보 미리보기
+모두 접기
+알려주신 내용을 바탕으로 Google Play에서 다음 정보가 사용자에게 표시됩니다.
+공유되는 데이터
+다른 회사나 조직과 공유될 수 있는 데이터
+location_on
+위치
+대략적인 위치
+brightness_1
+세부정보 숨기기
+expand_less
+공유되는 데이터 및 공유 목적
+대략적인 위치
+
+애널리틱스, 사기 예방, 보안, 규정 준수, 광고 또는 마케팅
+
+performance_max
+앱 정보 및 성능
+진단
+brightness_1
+세부정보 숨기기
+expand_less
+공유되는 데이터 및 공유 목적
+진단
+
+애널리틱스, 사기 예방, 보안, 규정 준수, 광고 또는 마케팅
+
+touch_app
+앱 활동
+앱 상호작용
+brightness_1
+세부정보 숨기기
+expand_less
+공유되는 데이터 및 공유 목적
+앱 상호작용
+
+애널리틱스, 사기 예방, 보안, 규정 준수, 광고 또는 마케팅
+
+perm_device_information
+기기 또는 기타 ID
+기기 또는 기타 ID
+brightness_1
+세부정보 숨기기
+expand_less
+공유되는 데이터 및 공유 목적
+기기 또는 기타 ID
+
+애널리틱스, 사기 예방, 보안, 규정 준수, 광고 또는 마케팅
+
+수집되는 데이터
+이 앱에서 수집할 수 있는 데이터
+location_on
+위치
+대략적인 위치
+brightness_1
+세부정보 숨기기
+expand_less
+수집되는 데이터 및 수집 목적
+대략적인 위치
+
+애널리틱스, 사기 예방, 보안, 규정 준수, 광고 또는 마케팅
+
+performance_max
+앱 정보 및 성능
+진단
+brightness_1
+세부정보 숨기기
+expand_less
+수집되는 데이터 및 수집 목적
+진단
+
+애널리틱스, 사기 예방, 보안, 규정 준수, 광고 또는 마케팅
+
+touch_app
+앱 활동
+앱 상호작용
+brightness_1
+세부정보 숨기기
+expand_less
+수집되는 데이터 및 수집 목적
+앱 상호작용
+
+애널리틱스, 사기 예방, 보안, 규정 준수, 광고 또는 마케팅
+
+perm_device_information
+기기 또는 기타 ID
+기기 또는 기타 ID
+brightness_1
+세부정보 숨기기
+expand_less
+수집되는 데이터 및 수집 목적
+기기 또는 기타 ID
+
+애널리틱스, 사기 예방, 보안, 규정 준수, 광고 또는 마케팅
+
+데이터 삭제
+사용자가 삭제할 수 있는 데이터입니다.
+insert_chart
+개발자가 데이터 삭제 요청 방법을 제공하지 않음
+
+데이터 처리 방식에 관한 자세한 내용은 개발자의 개인정보처리방침을 참고하세요.
+
+보안 권장사항
+lock
+전송 중 데이터 암호화됨
+
+데이터가 보안 연결을 통해 전송됩니다
+
+개인정보처리방침
+
+https://www.seorilabs.com/en/apps/paper-craft-print/privacy/
+
+5/5단계, 미리보기
+저장하면 변경사항이 게시 개요에 저장되고 검토를 위해 Google에 전송될 준비가 됩니다.
+삭제
+뒤로
+임시보관함에 저장
+저장
+제품 업데이트
+상태 대시보드
+도움말
+© 2026 Google
+개인 정보 보호
+개발자 배포 계약
+서비스 약관

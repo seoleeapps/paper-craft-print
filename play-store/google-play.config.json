@@ -6,7 +6,7 @@
   "contactEmail": "cs@seorilabs.com",
   "contactWebsite": "https://www.seorilabs.com/",
   "contactPhone": "+821050675746",
-  "privacyPolicyUrl": "https://www.seorilabs.com/apps/paper-craft-print/privacy/",
+  "privacyPolicyUrl": "https://www.seorilabs.com/en/apps/paper-craft-print/privacy/",
   "privacyPolicyVerification": "HTTP 200, ko/en product policy and package read back 2026-10-21",
   "storeListing": {
     "appName": {
@@ -34,12 +34,13 @@
     "tenInchTabletScreenshots": []
   },
   "contentDeclarations": {
-    "dataSafety": "확정 필요: final Android SDK dependency review and Play Console declaration",
-    "contentRating": "확정 필요: IARC questionnaire and rating readback",
+    "dataSafety": "saved-in-console: GMA25.4.0 and UMP4.0.0 reviewed; four SDK data types collected and shared; TLS; no account",
+    "contentRating": "IARC completed: ESRB Everyone, PEGI3, USK0, ClassInd Livre, IARC3",
     "targetAudience": "18-and-over-not-children",
     "ads": "yes",
     "koreaDistribution": "yes",
-    "koreaGameRating": "not-applicable: non-game paper craft editor"
+    "koreaGameRating": "not-applicable: non-game paper craft editor",
+    "dataSafetyCsv": "play-store/policy/data-safety.csv"
   },
   "release": {
     "versionName": "1.0.0",
@@ -54,5 +55,6 @@
   "manualEvidence": [
     "docs/google-play-release.md",
     "docs/privacy-data.md"
-  ]
+  ],
+  "category": "ART_AND_DESIGN"
 }

@@ -29,3 +29,13 @@
 ## 남은 별도 확인
 
 실제 Android 배너와 UMP SDK 연결, Photo Picker와 파일 저장, 시스템 공유 및 인쇄는 미실행이다. 기기 사용을 승인받기 전 조회하거나 조작하지 않는다. RN Web 결과를 네이티브 통과로 기록하지 않는다. 실물 인쇄 및 조립은 사용자 결정에 따라 출시 조건에서 제외했으며 미확인이다.
+
+## 고정한 AAB 후보와 후속 검증
+
+업로드 후보는 `d1464abc34dfc2f4c0af58a8abc0add97946dc31`다. 빌드 확인 도구를 수정한 뒤 같은 후보에서 구현자와 다른 `qa_round_1`이 2026-10-20 16:25:27–16:27:30 UTC에 전체 개발 검사를 다시 실행했다. TypeScript 26개, Python 9개, PDF 12개와 실제 RN Web 여정 12개가 통과했으며 브라우저 오류는 0개였다. 이전 `1a66d90`과 `apps/` 및 `packages/` Git tree hash가 동일함을 대조했다. 추가 UI 검수 회차는 만들지 않았다.
+
+[최종 실행 결과](launch-1.0.0/build-verification/result.json)와 [기존 3회차 자료](launch-1.0.0/README.md)에 각 실제 SHA와 원본 시간을 보존했다. 중앙 `before-build`, `before-deploy`, `before-release`는 최신 정책 `e7f433c071cf5d3ad4434c02ddf6a12164749489`에서 같은 `d1464ab`의 L3 실행 근거를 통과시켰다. [동일 후보 공개 CI](https://github.com/seoleeapps/paper-craft-print/actions/runs/39457200634)도 통과했다.
+
+독립 검수자 `play_metadata`가 실제 서명 AAB와 APK를 2026-10-20 16:39:41–16:41:22 UTC에 정적 검사했다. 서명, 인증서, 패키지와 버전, 실제 포함 SDK, 권한과 16KB 정렬을 확인했다. 원본 빌드 스크립트의 apksigner 출력 파서 실패를 보존하고 [별도 정적 검증 보고서](launch-1.0.0/static-verification-report.md)를 만들었다. 이후 [PR #3](https://github.com/seoleeapps/paper-craft-print/pull/3)의 파서 수정은 앱 재빌드로 취급하지 않는다.
+
+같은 AAB SHA-256 `32f7596b1a0d841c3a0577603f1ba261a6fe8b07052e1a7ae39129e757f0ac69`가 Play API에 등록됐고 내부 트랙 `1.0.0 (1)`이 completed다. Console에서도 내부 테스트 활성과 기존 테스터 2명을 다시 읽었다. 실제 Android 배너와 UMP, Photo Picker, 폴더 저장과 공유 및 인쇄는 여전히 미실행이다. 심사 제출과 공개도 아직 진행하지 않았다.

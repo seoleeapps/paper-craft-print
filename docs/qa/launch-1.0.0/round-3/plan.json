@@ -1,0 +1,19 @@
+{
+  "round": 3,
+  "sourceSha": "d2e861c0290d3858f448f752ea3ba0a968463b5d",
+  "plannedAt": "2026-10-20T16:00:18.569681+00:00",
+  "persona": "전체 회귀와 복구 검수자",
+  "scope": [
+    "templates",
+    "editing",
+    "preview",
+    "pdf",
+    "drafts",
+    "ads",
+    "locale"
+  ],
+  "environment": "RN Web http://localhost:8087; independent browser data; 390x844 and320x568, large text",
+  "checks": "All features check:dev including8 build boundaries, actual web-journey and image/PDF inspection. Resolve round2 bag cut defect using1mm closed notches. Check ordering of bottom glue contact, IndexedDB photo persistence across restart and duplicate/delete, consent SDK query cache unit evidence and home/list banner sharing. Inspect native scripts only as build logic, no device or native claims.",
+  "evidence": "artifacts/qa/round-3",
+  "reviewer": "qa_round_1"
+}

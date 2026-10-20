@@ -1,89 +1,77 @@
 # Paper Craft Print Google Play 출시 기록
 
-현재 상태: Seolee Apps에서 앱 등록 완료. 이전 계정 잠금은 해제되었으며 Console 앱 ID와 Publisher 접근을 다시 확인했다. 서명 AAB, 내부 테스트, 필수 네이티브 검수, 심사 제출과 공개는 별도 단계다.
+2026-10-21 현재 `1.0.0 (1)`은 내부 테스트에서 활성화됐다. 공개 심사는 제출하지 않았고 공개 스토어는 HTTP 404다. 개발 환경 L3 검수와 산출물 정적 검증은 통과했으며, 실제 Android 광고 SDK와 OS 연동은 별도 기기 사용 승인 대기로 미실행이다.
 
-## 승인된 범위
+## 고정한 출시 대상
 
 | 항목 | 값 |
 | --- | --- |
-| 앱 | Paper Craft Print |
-| 저장소 | `seoleeapps/paper-craft-print`, 공개 저장소 생성 승인 |
-| 계정 | Seolee Apps, 실제 선택 계정과 ID는 등록 직전 조회 |
-| 패키지 | `com.seoleeapps.papercraftprint` |
-| 첫 공개 후보 | `1.0.0`, `versionCode 1` |
-| 마켓 | Google Play Android |
-| 가격과 배포 | 무료, 배포 가능한 전 세계 국가, 100% 공개 |
-| 대상 | 성인 취미 사용자, 한국어와 영어 |
-| 데이터 | 초안과 사진은 로컬 저장, 앱 서버와 로그인 없음 |
-| 광고 | 홈과 내 작업의 배너, 선택형 보상 광고 패턴 |
+| 앱과 패키지 | Paper Craft Print, `com.seoleeapps.papercraftprint` |
+| 계정 | Seolee Apps 개인 계정, 개발자 ID `5547060480954653351` |
+| Console 앱 | `4975681274275501151` |
+| 버전 | `1.0.0`, `versionCode 1` |
+| 실제 빌드 소스 | `d1464abc34dfc2f4c0af58a8abc0add97946dc31` |
+| 공개 목표 | Google Play, 무료, 배포 가능한 전 세계 국가, 100% |
+| 국가 설정 | Console의 178개 행 모두 타겟팅됨. 기타 국가와 부속 지역 포함 |
+| 태그 | `v1.0.0` 예정, 아직 생성하지 않음 |
+| 언어와 대상 | 한국어와 영어, 성인 취미 사용자 |
 
-실물 인쇄와 조립은 출시 조건에서 제외되어 미확인이다. iOS, 앱인토스, 로그인, 서버, Firebase, 별도 이용 분석과 결제는 범위에 포함하지 않는다. 기기 조회와 조작은 승인되지 않았다. Android 배너 표시와 UMP처럼 개발 환경에서 확인할 수 없는 필수 항목을 특정한 뒤 별도 기기 사용 승인이 필요하다.
+계정 확인 잠금은 해제됐고 동일 계정에서 앱을 생성했다. 사용자 지정 계정과 패키지를 유지했다. 공개 저장소는 [seoleeapps/paper-craft-print](https://github.com/seoleeapps/paper-craft-print)다. 기능 [PR #2](https://github.com/seoleeapps/paper-craft-print/pull/2)와 최신 apksigner 출력 지원 [PR #3](https://github.com/seoleeapps/paper-craft-print/pull/3)을 병합했다. PR #3은 이후 빌드 도구 수정이며 업로드한 앱의 소스 SHA를 바꾸지 않는다.
 
-## 등록 자료
+실물 인쇄와 조립은 승인 범위에 따라 출시 조건에서 제외하고 미확인으로 남긴다. iOS, 앱인토스, 로그인, 서버, Firebase, 별도 제품 이용 분석과 결제는 추가하지 않았다. 원래 checkout의 접이식 카드 변경과 `.serena/`는 보존했다.
 
-- [등록 설정](../play-store/google-play.config.json): 한국어와 영어 소개, 출시 노트, 지원 연락처, 예정 이미지 경로.
-- [한국어 개인정보처리방침 원고](../play-store/policy/privacy-policy.ko.md), [영어 원고](../play-store/policy/privacy-policy.en.md): 공개 전 검토 자료.
-- [데이터와 SDK 신고 근거](privacy-data.md): 최종 Data safety 신고 전 검토 항목.
+## 개발 검수와 서명 산출물
 
-개인정보처리방침은 `https://www.seorilabs.com/apps/paper-craft-print/privacy/`와 영어 경로에 게시했다. 두 URL의 HTTP 200과 제품명, 패키지를 확인했다. 최종 제출 직전 전체 언어 문구를 다시 대조한다.
+[개발 검수 기록](qa/2026-10-21-public-launch.md)에 독립 검수 3회와 최종 후보 실행을 구분했다. 2회차 쇼핑백 절단선 실패를 보존하고 3회차에서 해결했다. 최종 `d1464ab`에서 TypeScript 26개, Python 9개, PDF 12개와 실제 RN Web 여정 12개가 통과했다. 광고와 OS 대체 구현의 결과를 네이티브 실행으로 해석하지 않는다.
 
-## 현재 남은 조건
+최신 중앙 정책 `e7f433c071cf5d3ad4434c02ddf6a12164749489`로 같은 후보의 `before-build`, `before-deploy`, `before-release` L3 검증을 실제 실행해 통과했다. 별도로 남긴 필수 Android SDK 및 OS 항목은 아직 실행하지 않았다. 중앙 검증 통과만으로 해당 항목을 통과로 바꾸지 않는다.
 
-| 단계 | 상태와 필요한 근거 |
+| 파일 | 크기 | SHA-256 |
+| --- | ---: | --- |
+| `paper-craft-print-1.0.0-1-production-ads.aab` | 49,270,702 bytes | `32f7596b1a0d841c3a0577603f1ba261a6fe8b07052e1a7ae39129e757f0ac69` |
+| `paper-craft-print-1.0.0-1-production-ads.apk` | 70,468,448 bytes | `56f4196f665a3f1acab00861d7c0d8b9656dac71a8864bc5048ce129a2df923b` |
+
+전용 업로드 키의 local 및 BeeStation 암호화 백업 두 곳 모두 임시 복원 검사를 통과했다. 키와 비밀번호는 저장소 밖 카탈로그에 보관한다. 인증서 SHA-256은 `63043398b74cd9edf44e1b94549df73f79498ff51c4da96a63ceb06057e5d29e`다.
+
+[독립 정적 검증](qa/launch-1.0.0/static-verification-report.md)에서 실제 서명, 패키지, 버전, targetSdk36, 디버그 및 자동 백업 비활성, 운영 광고 ID와 권한을 대조했다. 64비트 ELF 34개와 APK ZIP 및 AAB 16KB 정렬을 확인했다. 16KB 환경에서 앱을 실행한 근거는 아니다. GMA25.4.0, UMP4.0.0, Ads identifier18.0.0은 실제 AAB 의존성에서 읽었다.
+
+Gradle 빌드는 성공했지만 기존 검증 코드가 Build Tools37의 `V2 Signer` 출력을 처리하지 못해 빌드 스크립트가 실패했다. 원본 `build-report.json`은 없으며 실패 로그와 완료 파일을 보존했다. 별도 독립 검증으로 서명 일치를 확인했다. PR #3에서 파서를 고쳤고 Python 10개 및 공개 CI가 통과했다. 이를 새 앱 빌드로 기록하지 않는다.
+
+## Play에 저장하고 다시 읽은 내용
+
+| 항목 | 실제 상태와 근거 |
 | --- | --- |
-| 계정 확인과 앱 생성 | 완료. Seolee Apps 개인 계정 5547060480954653351, 앱 4975681274275501151, Publisher 패키지 GET 200 |
-| 소스와 검수 | 최종 후보 SHA, L3 개발 환경 전체 회귀, 독립 검수 3회와 중앙 검증 결과 필요 |
-| 서명 AAB | 전용 업로드 키, 복원 검증, AAB 해시, 패키지, 버전, SDK와 인증서 대조 필요 |
-| 이미지 | 512×512 아이콘, 1024×500 그래픽과 실제 RN Web 화면 준비, 규격 검사 통과. 네이티브 UI 증거와 구분 |
-| 공개 정책 페이지 | 공식 사이트 PR #80 반영, 한국어와 영어 HTTP 200 및 제품명 확인 |
-| Data safety | 실제 AAB SDK 의존성과 선언 대조, Console 작성과 다시 읽은 기록 필요 |
-| 대상 연령, 광고, 등급 | 성인 18세 이상과 광고 포함으로 작성, IARC 결과와 Console 저장 상태 확인 필요 |
-| 내부 테스트 | 같은 AAB 업로드와 처리, 대상 테스터의 이용 가능 상태 확인 필요 |
-| 필요한 Android 검수 | 개발 환경으로 대체할 수 없는 항목 특정과 별도 기기 사용 승인 전 미실행 |
-| 심사 제출 | 중앙 `before-release` 검사, 최종 모든 언어 문구 대조, 실제 제출 ID와 상태 확인 필요 |
-| 승인과 공개 | 승인, 게시 설정, 전 세계 100% 배포 상태를 각각 확인 필요 |
-| 공개 확인 | 공개 스토어 패키지, 버전과 국가별 이용 가능 상태 확인 필요 |
-| AdMob | 앱 연결, app-ads.txt, 준비 상태 승인과 운영 광고 요청 및 표시를 별도 확인 |
+| 내부 테스트 | versionCode1, `1.0.0 (1)`, API `completed`, Console 활성 상태 |
+| 대상 테스터 | 기존 내부테스트 그룹 2명 선택, 다시 읽어 확인 |
+| 업로드 파일 | API의 AAB SHA-256이 위 로컬 파일과 동일 |
+| 소개와 이미지 | en-US와 ko-KR 소개, 언어별 아이콘과 그래픽 및 휴대전화 화면 3개 |
+| 카테고리와 지원 | 예술/디자인, `cs@seorilabs.com`, 사업용 전화번호와 공식 사이트 |
+| 개인정보처리방침 | 영어 공개 URL 저장, 한국어와 영어 페이지 HTTP200 및 제품 내용 확인 |
+| 앱 콘텐츠 | 광고 포함, 로그인 제한 없음, 대상 18세 이상, 광고 ID 사용. 정부, 금융, 건강 기능 없음 |
+| IARC | 완료. ESRB Everyone, PEGI3, USK0, ClassInd Livre, IARC3, 한국3세 이상 |
+| Data safety | 실제 SDK와 공식 공개 자료를 대조한 CSV를 가져오고 저장 결과 확인 |
+| 국가 | 프로덕션 국가 설정 178개 타겟팅됨. 실제 공개 배포를 뜻하지 않음 |
+| 공개 심사와 배포 | 미제출. production 트랙의 release 없음 |
 
-IARC 등급은 아직 받지 않았다. 앱은 게임이 아니므로 한국 게임 등급 항목을 적용하지 않는 것으로 준비하되 실제 Console 질문과 기능을 대조한다. 계정의 실제 신규 앱 테스트 자격과 요구 조건을 조회하기 전 특정 테스트 기간을 완료했다고 쓰지 않는다.
+[내부 테스트 참여 링크](https://play.google.com/apps/internaltest/4701734928185552472)는 지정된 테스터용이다. 현재 표시는 검토 전 임시 이름일 수 있다. 사용자 테스트 확인은 다음 단계의 승인 조건이 아니다.
 
-## 등록 뒤 남은 실행 순서
+등록 설정 검사는 `validate_play_store_config.py --root . --allow-missing-tablet --json`으로 통과했다. 태블릿 스크린샷은 준비하지 않았으며 이 옵션을 숨기지 않는다. 실제 등록 화면은 RN Web 실행 화면이며 Android 광고와 OS 화면 근거가 아니다. 정책 신고 근거는 [데이터와 SDK 기록](privacy-data.md), 저장 CSV는 [Data safety](../play-store/policy/data-safety.csv), API와 Console 기록은 [검수 자료 안내](qa/launch-1.0.0/README.md)에 있다.
 
-1. 사용자가 지정한 Seolee Apps 계정을 선택하고 이름, 유형, ID, 계정 확인 상태와 앱 생성 가능 여부를 읽는다. 다른 계정으로 바꾸거나 패키지를 바꿔 우회하지 않는다.
-2. 동일 패키지 앱이 이미 생겼는지 먼저 확인하고 신규 앱 셸을 만든다. 앱, 무료, 성인 대상, 광고 포함으로 승인 범위를 유지한다.
-3. Play App Signing 설정과 업로드 인증서를 대조하고, 고정된 후보의 서명 AAB를 내부 테스트에 올린 뒤 처리와 이용 가능 상태를 읽는다.
-4. 개인정보처리방침 공개 페이지, 실제 이미지, 전체 언어 소개와 출시 노트, Data safety, 대상 연령과 IARC를 마친다. 미확인 선언을 완료로 바꾸지 않는다.
-5. 개발 환경에서 확인할 수 없는 필수 Android 항목만 별도 승인 범위에서 검수한다. 기기 승인이 없으면 해당 검수는 미실행으로 유지한다.
-6. 중앙 출시 전 검증과 최종 문구 검수를 통과한 같은 후보를 전 세계 100% 프로덕션에 제출한다. 제출 ID와 검토 상태를 읽고, 승인 뒤 공개까지 진행한다.
-7. 공개 스토어와 국가별 배포를 읽고 버전이 일치해야 공개 완료로 기록한다. AdMob 승인은 별도 상태로 남긴다.
+공개 개인정보 페이지:
 
-## 로컬 검사 기록
+- [한국어](https://www.seorilabs.com/apps/paper-craft-print/privacy/)
+- [영어](https://www.seorilabs.com/en/apps/paper-craft-print/privacy/)
 
-출시 등록 설정 검사는 아래 명령으로 실행한다. 결과는 이미지 준비 상태에 따라 달라진다. 이 검사는 공개 URL이나 계정 상태를 실시간으로 확인하지 않는다.
+## AdMob 상태
 
-```sh
-python3 ~/.codex/skills/google-play-publishing/scripts/validate_play_store_config.py --root . --allow-console-gates --json
-npm run typecheck
-```
+기존 앱과 보상형 단위를 유지하고 `home_drafts_banner`를 등록했다. 이 앱 한 개만 대상으로 GDPR 및 미국 주별 동의 메시지를 게시했다. GDPR 기본 언어는 영어이며 거부 선택을 제공한다. 미국 메시지는 지원되는 현재 및 향후 주를 대상으로 한다.
 
-2026-10-21 등록 원고 작성 직후의 검사:
+정확한 패키지로 Play 앱을 검색했으나 일치 항목이 없어 스토어 연결을 저장하지 못했다. 앱은 검토 필요와 광고 게재 제한 상태다. 앱별 app-ads.txt 인증, 준비 상태 승인, 현재 후보의 SDK 요청 및 실제 운영 광고 표시는 미확인이다. [AdMob 기록](../release/admob.json)에 0.1.0의 과거 보상 광고 검수와 현재 미실행 상태를 구분했다. 광고 오류나 재고 없음이 무료 도안과 PDF 제작을 막지는 않는다.
 
-| 검사 | 결과 |
-| --- | --- |
-| `npm run typecheck` | 종료 코드 0 |
-| `validate_play_store_config.py --root . --allow-console-gates --json` | 종료 코드 1, `not-ready`, 누락 이미지 7건 |
-| 소개 길이 | 제목 양쪽 17자, 짧은 소개 한국어 44자와 영어 76자, 전체 소개 한국어 842자와 영어 1512자 |
-| 출시 노트 길이 | 한국어 84자, 영어 153자 |
-| `git diff --check` 대상 문서 | 통과 |
+## 남은 순서
 
-누락 7건은 아이콘 1개, 그래픽 1개, 휴대전화 화면 3개와 태블릿 7인치, 10인치 화면 세트다. `--allow-console-gates`는 Data safety와 등급 완료를 확인하는 옵션이 아니다. 이 검사 결과는 커밋 전 작업 상태에 해당하며 최종 후보 SHA의 검수 증거를 대체하지 않는다. 검토 대기와 공개 상태는 저장된 로컬 문서 대신 Console 및 공개 스토어의 현재 조회로 갱신한다.
+1. 별도로 요청한 기기 사용 승인 범위 안에서 현재 후보의 Android 배너와 UMP, 사진 선택, 폴더 저장, 공유와 인쇄 창을 최소 검수한다. 승인 전 기기 조회나 설치를 하지 않는다. 기존 설치와 서명이 다르면 데이터 삭제 없이 멈춘다.
+2. 네이티브 필수 항목을 통과하면 고정한 후보에 태그를 만들고 개발 근거를 릴리스 자산에 보관한다. 같은 후보의 중앙 출시 전 검증과 전체 언어 문구를 다시 대조한다. 같은 versionCode를 무료, 178개 국가 설정, 100% 프로덕션으로 제출하고 실제 제출 ID와 검토 상태를 읽는다.
+3. 승인 후 공개하고 공개 스토어의 패키지, 버전과 국가별 이용 가능 상태를 확인한다. AdMob 스토어 연결과 앱 승인 및 송출은 별도로 갱신한다.
 
-## 2026-10-21 실제 상태 갱신
-
-Seolee Apps 개인 계정 `5547060480954653351`에서 앱 생성이 가능해졌고 앱 ID `4975681274275501151`로 Paper Craft Print를 등록했다. 패키지는 `com.seoleeapps.papercraftprint`, 무료 앱, 기본 언어 en-US다. 이전의 계정 잠금은 과거 상태이며 현재 blocker로 취급하지 않는다. 업로드, 심사와 공개는 아직 별도 단계다.
-
-기존 AdMob Android 앱 `ca-app-pub-9932778305312246~2407625697`에 `home_drafts_banner` 단위 `ca-app-pub-9932778305312246/1325597400`을 추가했다. 앱 승인과 운영 송출은 미확인이다. 운영 빌드는 이 등록 ID만 허용한다.
-
-한국어와 영어 개인정보 페이지는 공식 사이트 PR https://github.com/seorilabs/seorilabs-official/pull/80 반영 뒤 각 URL HTTP200과 제품명을 읽었다. 등록 이미지의 전화 화면은 실제 RN Web 화면이다. Android 네이티브 광고와 OS 화면의 검증 근거로 사용하지 않는다.
-
-전용 업로드 키 `app/paper-craft-print/google-play/upload-key`를 생성하고 로컬 및 BeeStation 암호화 백업 두 곳 모두 임시 복원 검사를 통과했다. 인증서 SHA-256은 `63:04:33:98:B7:4C:D9:ED:F4:4E:1B:94:54:9D:F7:3F:79:49:8F:F5:1C:4D:A9:6A:63:CE:B0:60:57:E5:D2:9E`다. 키와 비밀번호는 저장소 밖 카탈로그 경로에만 보관한다.
+현재 상태의 정본은 [후보별 출시 원장](../release/market-launch-state.json)이다. 공개 완료 검사에 남은 항목은 QA, 심사 제출, 승인, 공개와 공개 확인이며 완료로 표시하지 않았다.

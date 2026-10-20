@@ -1,0 +1,52 @@
+{
+  "checkedAt": "2026-10-20T17:05:36.417325+00:00",
+  "scope": "release metadata only; does not establish Android execution or public availability",
+  "commands": [
+    {
+      "command": [
+        "python3",
+        "/Users/syous/.codex/skills/google-play-publishing/scripts/validate_play_store_config.py",
+        "--root",
+        ".",
+        "--allow-missing-tablet",
+        "--json"
+      ],
+      "exitCode": 0,
+      "output": "{\n  \"status\": \"ready\",\n  \"blockerCount\": 0,\n  \"issues\": []\n}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "/Users/syous/.codex/skills/app-factory-lifecycle/scripts/app_launch_ledger.py",
+        "check",
+        "--ledger",
+        "release/app-launch-ledger.json",
+        "--schema-only"
+      ],
+      "exitCode": 0,
+      "output": "valid=true complete=true schemaOnly=true\nitems total=98 applicable=91 pass=33 blocked=0 stale=0 na=33 pending=25\n"
+    },
+    {
+      "command": [
+        "python3",
+        "/Users/syous/.codex/skills/app-factory-lifecycle/scripts/app_launch_ledger.py",
+        "check",
+        "--ledger",
+        "release/app-launch-ledger.json"
+      ],
+      "exitCode": 1,
+      "output": "valid=true complete=false schemaOnly=false\nitems total=98 applicable=91 pass=33 blocked=0 stale=0 na=33 pending=25\nOPEN  governance.owners=pending\nOPEN  engineering.release_pipeline=pending\nOPEN  engineering.startup_branding=pending\nOPEN  engineering.localization_accessibility=pending\nOPEN  engineering.migration_rollback=pending\nOPEN  monetization.ad_end_to_end=pending\nOPEN  monetization.revenue_signals=pending\nOPEN  monetization.legal_tax=pending\nOPEN  store.availability=pending\nOPEN  qa.device_matrix=pending\nOPEN  qa.critical_flow=pending\nOPEN  qa.monetization=pending\nOPEN  qa.failure_states=pending\nOPEN  qa.performance_accessibility=pending\nOPEN  qa.telemetry=pending\nOPEN  operations.public_version=pending\nOPEN  operations.live_smoke=pending\nOPEN  operations.telemetry_health=pending\nOPEN  operations.product_metrics=pending\nOPEN  operations.revenue_metrics=pending\nOPEN  operations.crash_performance=pending\nOPEN  operations.reviews_support=pending\nOPEN  operations.incident_rollback=pending\nOPEN  operations.learning_windows=pending\nOPEN  operations.feedback_loop=pending\n"
+    },
+    {
+      "command": [
+        "python3",
+        "/Users/syous/.codex/skills/multimarket-launch-completion/scripts/launch_ledger.py",
+        "check",
+        "--ledger",
+        "release/market-launch-state.json"
+      ],
+      "exitCode": 1,
+      "output": "objective=public_live complete=false\ngoogle_play: state=processing objective=public_live\nOPEN  markets.google_play.gates.qa=pending\nOPEN  markets.google_play.gates.submission=pending\nOPEN  markets.google_play.gates.approval=pending\nOPEN  markets.google_play.gates.release=pending\nOPEN  markets.google_play.gates.live_smoke=pending\n"
+    }
+  ]
+}

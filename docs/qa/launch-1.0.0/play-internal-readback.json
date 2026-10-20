@@ -1,0 +1,50 @@
+{
+  "checkedAt": "2026-10-20T17:03:09.115860+00:00",
+  "packageName": "com.seoleeapps.papercraftprint",
+  "bundles": {
+    "kind": "androidpublisher#bundlesListResponse",
+    "bundles": [
+      {
+        "versionCode": 1,
+        "sha1": "0e4df76e83b709e20058a743646e4ba1fe146479",
+        "sha256": "32f7596b1a0d841c3a0577603f1ba261a6fe8b07052e1a7ae39129e757f0ac69"
+      }
+    ]
+  },
+  "tracks": {
+    "kind": "androidpublisher#tracksListResponse",
+    "tracks": [
+      {
+        "track": "production"
+      },
+      {
+        "track": "beta"
+      },
+      {
+        "track": "alpha"
+      },
+      {
+        "track": "internal",
+        "releases": [
+          {
+            "name": "1.0.0 (1)",
+            "versionCodes": [
+              "1"
+            ],
+            "releaseNotes": [
+              {
+                "language": "en-US",
+                "text": "First release. Personalize envelopes, gift boxes, folded cards, gift tags, bookmarks and paper bags with photos and notes, then export A4 or Letter PDFs."
+              },
+              {
+                "language": "ko-KR",
+                "text": "\uccab \ubc84\uc804\uc785\ub2c8\ub2e4. \ubd09\ud22c, \uc120\ubb3c \uc0c1\uc790, \uc811\uc774\uc2dd \uce74\ub4dc, \uc120\ubb3c \ud0dc\uadf8, \ucc45\uac08\ud53c, \uc885\uc774 \uc1fc\ud551\ubc31\uc744 \uc0ac\uc9c4\uacfc \ubb38\uad6c\ub85c \uafb8\ubbf8\uace0 A4 \ub610\ub294 Letter PDF\ub85c \uc800\uc7a5\ud558\uc138\uc694."
+              }
+            ],
+            "status": "completed"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "kind": "independent-L3-execution-after-build-tool-fix",
+  "isUiReviewRound": false,
+  "sourceSha": "d1464abc34dfc2f4c0af58a8abc0add97946dc31",
+  "previousVerifiedSourceSha": "1a66d90b94e27110667d5211fbf67fc2f4dea51d",
+  "plannedAt": "2026-10-20T16:25:27.322094+00:00",
+  "executor": "qa_round_1",
+  "independentFromImplementer": true,
+  "scope": [
+    "templates",
+    "editing",
+    "preview",
+    "pdf",
+    "drafts",
+    "ads",
+    "locale"
+  ],
+  "changedFiles": [
+    "docs/product-spec.md",
+    "docs/qa/2026-10-21-public-launch.md",
+    "scripts/build-android.py",
+    "scripts/tests/test_build_android.py"
+  ],
+  "unchangedRuntimePaths": [
+    "apps/**",
+    "packages/**"
+  ],
+  "checks": [
+    "npm run check:dev once, including PKCS7 positive and duplicate-signature negative cases",
+    "scripts/web-journey.py actual RN Web twelve scenarios once",
+    "Inspect actual output and bind all seven feature outcomes to this SHA"
+  ],
+  "environment": "dev RN Web http://localhost:8087, isolated Edge session, 390x844 and320x568 with150% CSS text",
+  "nativeSdkAndOs": "unrun",
+  "deviceAccess": "prohibited",
+  "maximumFullExecutions": 1,
+  "failureHandling": "Preserve original failure and stop; do not retry",
+  "priorUiReviews": "round-1/2/3 and manifests must remain unchanged"
+}

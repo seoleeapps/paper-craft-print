@@ -1,0 +1,321 @@
+{
+  "schemaVersion": 2,
+  "repository": "seoleeapps/paper-craft-print",
+  "sourceSha": "d1464abc34dfc2f4c0af58a8abc0add97946dc31",
+  "target": "google-play",
+  "productKind": "ui",
+  "implementer": "root",
+  "designs": [
+    {
+      "id": "public-launch-1.0.0",
+      "document": "docs/design/2026-10-21-public-launch/design.md",
+      "testPlan": "docs/design/2026-10-21-public-launch/test-plan.json",
+      "approvedCommit": "104af0a24ad192c0a94977360e545c3556c5b807",
+      "approverKind": "human",
+      "approver": "owner",
+      "approvalEvidence": "User instruction on 2026-10-21: implement the supplied Paper Craft Print public launch plan, preserving original work, L3 dev with three independent reviews, minimal native checks only after separate approval."
+    }
+  ],
+  "acceptance": [
+    {
+      "id": "AC-development-regression",
+      "status": "passed",
+      "evidence": [
+        "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch/artifacts/qa/build-verification/report.md",
+        "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch/artifacts/qa/build-verification/result.json",
+        "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch/artifacts/qa/build-verification/source-comparison.json"
+      ]
+    },
+    {
+      "id": "AC-bag-separate-flaps",
+      "status": "passed",
+      "evidence": [
+        "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch/artifacts/qa/round-3/recheck/paper-bag-cut-audit.json",
+        "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch/artifacts/qa/round-3/recheck/glue-contact-analysis.json"
+      ]
+    },
+    {
+      "id": "AC-aab-certificate-check",
+      "status": "passed",
+      "evidence": [
+        "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch/artifacts/build-certificate-green.log",
+        "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch/artifacts/qa/build-verification/check-dev.log"
+      ]
+    }
+  ],
+  "tdd": [
+    {
+      "acceptanceId": "AC-development-regression",
+      "mode": "alternative",
+      "reason": "Actual RN Web UI, storage migration and platform boundary changes are verified by independent runtime journeys and rendered PDFs under the approved design. Native SDK/OS and physical assembly are unrun and are not acceptance claims here. Initial red test console output was not retained as an artifact, so no historical test-first pass is claimed.",
+      "replacementEvidence": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch/artifacts/qa/round-3/recheck/check-dev.log; /Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch/artifacts/qa/round-3/recheck/journey.json"
+    },
+    {
+      "acceptanceId": "AC-bag-separate-flaps",
+      "mode": "test-first",
+      "redEvidence": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch/artifacts/qa/round-2/paper-bag-cut-audit.json",
+      "greenEvidence": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch/artifacts/qa/round-3/recheck/paper-bag-cut-audit.json"
+    },
+    {
+      "acceptanceId": "AC-aab-certificate-check",
+      "mode": "test-first",
+      "redEvidence": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch/artifacts/build-certificate-red.log",
+      "greenEvidence": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch/artifacts/build-certificate-green.log"
+    }
+  ],
+  "reviewRounds": [
+    {
+      "number": 1,
+      "sourceSha": "39bea11cfac77834d7b253614094e775c4336a3f",
+      "plan": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch/artifacts/qa/round-1/plan.json",
+      "plannedAt": "2026-10-20T15:38:06.650772Z",
+      "startedAt": "2026-10-20T15:39:10.260369Z",
+      "completedAt": "2026-10-20T15:42:47.795493Z",
+      "reviewer": "qa_round_1",
+      "personas": [
+        "요구사항 검수자와 처음 사용자"
+      ],
+      "functional": {
+        "status": "passed",
+        "featureIds": [
+          "templates",
+          "editing",
+          "preview",
+          "pdf",
+          "drafts",
+          "ads",
+          "locale"
+        ],
+        "evidence": [
+          "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch/artifacts/qa/round-1/report.md",
+          "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch/artifacts/qa/round-1/result.json",
+          "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch/artifacts/qa/round-1/manifest.json"
+        ]
+      },
+      "ux": {
+        "status": "passed",
+        "featureIds": [
+          "templates",
+          "editing",
+          "preview",
+          "pdf",
+          "drafts",
+          "ads",
+          "locale"
+        ],
+        "evidence": [
+          "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch/artifacts/qa/round-1/report.md",
+          "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch/artifacts/qa/round-1/result.json",
+          "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch/artifacts/qa/round-1/manifest.json"
+        ]
+      }
+    },
+    {
+      "number": 2,
+      "sourceSha": "39bea11cfac77834d7b253614094e775c4336a3f",
+      "plan": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch/artifacts/qa/round-2/plan.json",
+      "plannedAt": "2026-10-20T15:43:28.158139Z",
+      "startedAt": "2026-10-20T15:43:56.241402Z",
+      "completedAt": "2026-10-20T15:46:08.933204Z",
+      "reviewer": "qa_round_1",
+      "personas": [
+        "오류 복구와 접근성 검수자"
+      ],
+      "functional": {
+        "status": "failed",
+        "featureIds": [
+          "templates",
+          "editing",
+          "preview",
+          "pdf",
+          "drafts",
+          "ads",
+          "locale"
+        ],
+        "evidence": [
+          "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch/artifacts/qa/round-2/report.md",
+          "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch/artifacts/qa/round-2/result.json",
+          "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch/artifacts/qa/round-2/manifest.json"
+        ],
+        "resolutionEvidence": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch/artifacts/qa/round-3/recheck/paper-bag-cut-audit.json; /Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch/artifacts/qa/round-3/recheck/glue-contact-analysis.json; /Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch/artifacts/qa/round-3/report.md"
+      },
+      "ux": {
+        "status": "failed",
+        "featureIds": [
+          "templates",
+          "editing",
+          "preview",
+          "pdf",
+          "drafts",
+          "ads",
+          "locale"
+        ],
+        "evidence": [
+          "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch/artifacts/qa/round-2/report.md",
+          "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch/artifacts/qa/round-2/result.json",
+          "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch/artifacts/qa/round-2/manifest.json"
+        ],
+        "resolutionEvidence": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch/artifacts/qa/round-3/recheck/paper-bag-cut-audit.json; /Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch/artifacts/qa/round-3/recheck/glue-contact-analysis.json; /Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch/artifacts/qa/round-3/report.md"
+      }
+    },
+    {
+      "number": 3,
+      "sourceSha": "1a66d90b94e27110667d5211fbf67fc2f4dea51d",
+      "plan": "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch/artifacts/qa/round-3/fixture-recheck-plan.json",
+      "plannedAt": "2026-10-20T16:05:10.051644Z",
+      "startedAt": "2026-10-20T16:06:40.450335Z",
+      "completedAt": "2026-10-20T16:10:19.389350Z",
+      "reviewer": "qa_round_1",
+      "personas": [
+        "전체 회귀와 복구 검수자"
+      ],
+      "functional": {
+        "status": "passed",
+        "featureIds": [
+          "templates",
+          "editing",
+          "preview",
+          "pdf",
+          "drafts",
+          "ads",
+          "locale"
+        ],
+        "evidence": [
+          "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch/artifacts/qa/round-3/report.md",
+          "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch/artifacts/qa/round-3/result.json",
+          "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch/artifacts/qa/round-3/manifest.json"
+        ]
+      },
+      "ux": {
+        "status": "passed",
+        "featureIds": [
+          "templates",
+          "editing",
+          "preview",
+          "pdf",
+          "drafts",
+          "ads",
+          "locale"
+        ],
+        "evidence": [
+          "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch/artifacts/qa/round-3/report.md",
+          "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch/artifacts/qa/round-3/result.json",
+          "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch/artifacts/qa/round-3/manifest.json"
+        ]
+      }
+    }
+  ],
+  "additionalIterationApproval": null,
+  "runs": [
+    {
+      "id": "independent-dev-build-tool-fix",
+      "kind": "web-browser",
+      "sourceSha": "d1464abc34dfc2f4c0af58a8abc0add97946dc31",
+      "executor": "qa_round_1",
+      "plannedAt": "2026-10-20T16:25:27.322094Z",
+      "startedAt": "2026-10-20T16:25:27.322705Z",
+      "completedAt": "2026-10-20T16:27:30.948048Z",
+      "isolatedData": "Dedicated Edge session, isolated fixture storage; actual details in /Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch/artifacts/qa/build-verification/result.json",
+      "scenarios": [
+        {
+          "id": "templates-runtime-and-render",
+          "status": "passed",
+          "featureIds": [
+            "templates"
+          ],
+          "evidence": [
+            "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch/artifacts/qa/build-verification/report.md",
+            "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch/artifacts/qa/build-verification/check-dev.log",
+            "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch/artifacts/qa/build-verification/journey.json",
+            "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch/artifacts/qa/build-verification/contact-layout.png",
+            "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch/artifacts/qa/build-verification/Paper-bag.png"
+          ]
+        },
+        {
+          "id": "editing-runtime-and-render",
+          "status": "passed",
+          "featureIds": [
+            "editing"
+          ],
+          "evidence": [
+            "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch/artifacts/qa/build-verification/report.md",
+            "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch/artifacts/qa/build-verification/journey.json",
+            "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch/artifacts/qa/build-verification/contact-editor.png",
+            "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch/artifacts/qa/build-verification/editor-ko-small-large-text.png"
+          ]
+        },
+        {
+          "id": "preview-runtime-and-render",
+          "status": "passed",
+          "featureIds": [
+            "preview"
+          ],
+          "evidence": [
+            "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch/artifacts/qa/build-verification/report.md",
+            "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch/artifacts/qa/build-verification/journey.json",
+            "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch/artifacts/qa/build-verification/contact-layout.png",
+            "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch/artifacts/qa/build-verification/paper-bag-layout.png"
+          ]
+        },
+        {
+          "id": "pdf-runtime-and-render",
+          "status": "passed",
+          "featureIds": [
+            "pdf"
+          ],
+          "evidence": [
+            "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch/artifacts/qa/build-verification/report.md",
+            "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch/artifacts/qa/build-verification/check-dev.log",
+            "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch/artifacts/qa/build-verification/journey.json",
+            "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch/artifacts/qa/build-verification/pdf-inspection.json",
+            "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch/artifacts/qa/build-verification/Envelope.png",
+            "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch/artifacts/qa/build-verification/Gift-box.png",
+            "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch/artifacts/qa/build-verification/Folded-card.png",
+            "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch/artifacts/qa/build-verification/Gift-tag.png",
+            "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch/artifacts/qa/build-verification/Bookmark.png",
+            "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch/artifacts/qa/build-verification/Paper-bag.png"
+          ]
+        },
+        {
+          "id": "drafts-runtime-and-render",
+          "status": "passed",
+          "featureIds": [
+            "drafts"
+          ],
+          "evidence": [
+            "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch/artifacts/qa/build-verification/report.md",
+            "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch/artifacts/qa/build-verification/journey.json",
+            "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch/artifacts/qa/build-verification/check-dev.log"
+          ]
+        },
+        {
+          "id": "ads-runtime-and-render",
+          "status": "passed",
+          "featureIds": [
+            "ads"
+          ],
+          "evidence": [
+            "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch/artifacts/qa/build-verification/report.md",
+            "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch/artifacts/qa/build-verification/journey.json",
+            "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch/artifacts/qa/build-verification/check-dev.log",
+            "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch/artifacts/qa/build-verification/home-en.png"
+          ]
+        },
+        {
+          "id": "locale-runtime-and-render",
+          "status": "passed",
+          "featureIds": [
+            "locale"
+          ],
+          "evidence": [
+            "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch/artifacts/qa/build-verification/report.md",
+            "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch/artifacts/qa/build-verification/journey.json",
+            "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch/artifacts/qa/build-verification/home-ko-small-large-text.png",
+            "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch/artifacts/qa/build-verification/editor-ko-small-large-text.png",
+            "/Users/syous/Repositories/seoleeapps/paper-craft-print.worktrees/public-launch/artifacts/qa/build-verification/pdf-inspection.json"
+          ]
+        }
+      ]
+    }
+  ]
+}

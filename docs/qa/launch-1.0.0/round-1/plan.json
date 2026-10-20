@@ -1,0 +1,19 @@
+{
+  "round": 1,
+  "sourceSha": "39bea11cfac77834d7b253614094e775c4336a3f",
+  "plannedAt": "2026-10-20T15:38:06.650772+00:00",
+  "persona": "요구사항 검수자와 처음 사용자",
+  "scope": [
+    "templates",
+    "editing",
+    "preview",
+    "pdf",
+    "drafts",
+    "ads",
+    "locale"
+  ],
+  "environment": "RN Web http://localhost:8087, 390x844 and 320x568, isolated browser data",
+  "checks": "Run check:dev and scripts/web-journey.py. Inspect actual screenshots and PDF renders; functional and UX acceptance for all seven feature IDs. Native SDK and OS results remain unrun.",
+  "evidence": "artifacts/qa/round-1",
+  "reviewer": "qa_round_1"
+}

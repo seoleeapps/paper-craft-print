@@ -13,7 +13,7 @@
   },
   "ledger": {
     "createdAt": "2026-10-05T07:23:18Z",
-    "updatedAt": "2026-10-20T15:53:08.791775+00:00",
+    "updatedAt": "2026-10-20T17:04:13.690934+00:00",
     "currentReleaseLedger": "release/market-launch-state.json"
   },
   "sections": {
@@ -132,16 +132,21 @@
           ],
           "reviewCadence": "on_change",
           "status": "pass",
-          "value": "Android 구현·설치·QA 승인. 스토어 제출·공개 제외.",
+          "value": "사용자가 Google Play 무료 1.0.0, 배포 가능한 전 세계 100% 공개를 승인했다. 기기 사용은 별도 승인 대기다.",
           "owner": null,
           "evidence": [
             {
               "kind": "document",
-              "ref": "docs/product-spec.md",
-              "observedAt": "2026-10-05T08:04:59.553602+00:00"
+              "ref": "docs/design/2026-10-21-public-launch/test-plan.json",
+              "observedAt": "2026-10-20T17:04:13.690934+00:00"
+            },
+            {
+              "kind": "document",
+              "ref": "docs/google-play-release.md",
+              "observedAt": "2026-10-20T17:04:13.690934+00:00"
             }
           ],
-          "checkedAt": "2026-10-05T08:04:59.553602+00:00",
+          "checkedAt": "2026-10-20T17:04:13.690934+00:00",
           "reviewBy": null,
           "blocker": null,
           "notes": null
@@ -154,16 +159,26 @@
           ],
           "reviewCadence": "on_change",
           "status": "pass",
-          "value": "Android 구현·설치·QA 승인. 스토어 제출·공개 제외.",
+          "value": "승인 설계와 제품 원장, 후보별 출시 원장, 실제 Console 및 공개 스토어를 각각 구분한다.",
           "owner": null,
           "evidence": [
             {
               "kind": "document",
-              "ref": "docs/product-spec.md",
-              "observedAt": "2026-10-05T08:04:59.553602+00:00"
+              "ref": "docs/design/2026-10-21-public-launch/test-plan.json",
+              "observedAt": "2026-10-20T17:04:13.690934+00:00"
+            },
+            {
+              "kind": "document",
+              "ref": "release/market-launch-state.json",
+              "observedAt": "2026-10-20T17:04:13.690934+00:00"
+            },
+            {
+              "kind": "document",
+              "ref": "docs/google-play-release.md",
+              "observedAt": "2026-10-20T17:04:13.690934+00:00"
             }
           ],
-          "checkedAt": "2026-10-05T08:04:59.553602+00:00",
+          "checkedAt": "2026-10-20T17:04:13.690934+00:00",
           "reviewBy": null,
           "blocker": null,
           "notes": null
@@ -203,16 +218,21 @@
           ],
           "reviewCadence": "per_release",
           "status": "pass",
-          "value": "로컬 저장소만 존재. 원격 없음. feat/android-envelope 브랜치.",
+          "value": "공개 저장소 seoleeapps/paper-craft-print, 기본 브랜치 main, 실제 AAB 소스 d1464abc34dfc2f4c0af58a8abc0add97946dc31. 이후 main 빌드 도구 수정과 구분한다.",
           "owner": null,
           "evidence": [
             {
               "kind": "document",
-              "ref": "README.md",
-              "observedAt": "2026-10-05T08:04:59.553602+00:00"
+              "ref": "docs/google-play-release.md",
+              "observedAt": "2026-10-20T17:04:13.690934+00:00"
+            },
+            {
+              "kind": "repo",
+              "ref": "https://github.com/seoleeapps/paper-craft-print",
+              "observedAt": "2026-10-20T17:04:13.690934+00:00"
             }
           ],
-          "checkedAt": "2026-10-05T08:04:59.553602+00:00",
+          "checkedAt": "2026-10-20T17:04:13.690934+00:00",
           "reviewBy": null,
           "blocker": null,
           "notes": null
@@ -224,14 +244,30 @@
             "google_play"
           ],
           "reviewCadence": "on_change",
-          "status": "pending",
-          "value": "com.seoleeapps.papercraftprint",
+          "status": "pass",
+          "value": "com.seoleeapps.papercraftprint, Console 앱 4975681274275501151 및 실제 AAB와 API 패키지 일치.",
           "owner": null,
-          "evidence": [],
-          "checkedAt": "2026-10-05T08:04:59.553602+00:00",
+          "evidence": [
+            {
+              "kind": "document",
+              "ref": "docs/google-play-release.md",
+              "observedAt": "2026-10-20T17:04:13.690934+00:00"
+            },
+            {
+              "kind": "document",
+              "ref": "docs/qa/launch-1.0.0/static-verification-report.json",
+              "observedAt": "2026-10-20T17:04:13.690934+00:00"
+            },
+            {
+              "kind": "document",
+              "ref": "docs/qa/launch-1.0.0/play-internal-readback.json",
+              "observedAt": "2026-10-20T17:04:13.690934+00:00"
+            }
+          ],
+          "checkedAt": "2026-10-20T17:04:13.690934+00:00",
           "reviewBy": null,
           "blocker": null,
-          "notes": "확인한 Seolee Apps 목록에는 중복 없음. Play 패키지 등록·전역 소유권 확정은 하지 않았다."
+          "notes": null
         },
         {
           "id": "identity.ios_bundle",
@@ -284,14 +320,20 @@
             "google_play"
           ],
           "reviewCadence": "per_release",
-          "status": "pending",
-          "value": "현재 구축에서 Play 등록 없음",
+          "status": "pass",
+          "value": "Seolee Apps 개인 계정 5547060480954653351, 현재 패키지 소유와 Publisher 접근 확인.",
           "owner": null,
-          "evidence": [],
-          "checkedAt": "2026-10-05T08:04:59.553602+00:00",
+          "evidence": [
+            {
+              "kind": "document",
+              "ref": "docs/google-play-release.md",
+              "observedAt": "2026-10-20T17:04:13.690934+00:00"
+            }
+          ],
+          "checkedAt": "2026-10-20T17:04:13.690934+00:00",
           "reviewBy": null,
           "blocker": null,
-          "notes": "Seolee Apps / personal / 5547060480954653351 목록을 읽기 전용으로 확인했다. 신규 등록 대상은 등록 작업 전에 최신 계정 규칙과 콘솔을 확인한다."
+          "notes": null
         },
         {
           "id": "identity.apple_account",
@@ -410,11 +452,27 @@
             "all"
           ],
           "reviewCadence": "quarterly",
-          "status": "pending",
-          "value": "확정 필요",
+          "status": "pass",
+          "value": "공식 사이트의 한국어와 영어 개인정보 페이지 HTTP200, cs@seorilabs.com 및 사업용 지원 연락처 저장 확인.",
           "owner": null,
-          "evidence": [],
-          "checkedAt": null,
+          "evidence": [
+            {
+              "kind": "document",
+              "ref": "docs/google-play-release.md",
+              "observedAt": "2026-10-20T17:04:13.690934+00:00"
+            },
+            {
+              "kind": "document",
+              "ref": "docs/privacy-data.md",
+              "observedAt": "2026-10-20T17:04:13.690934+00:00"
+            },
+            {
+              "kind": "document",
+              "ref": "play-store/google-play.config.json",
+              "observedAt": "2026-10-20T17:04:13.690934+00:00"
+            }
+          ],
+          "checkedAt": "2026-10-20T17:04:13.690934+00:00",
           "reviewBy": null,
           "blocker": null,
           "notes": null
@@ -427,16 +485,21 @@
           ],
           "reviewCadence": "per_release",
           "status": "pass",
-          "value": "app/paper-craft-print/identity 및 app/paper-craft-print/admob/public-identifiers; 로컬·BeeStation 백업 복원 검사 통과",
+          "value": "기존 앱 identity와 AdMob 공개 식별자를 유지하고 전용 업로드 키를 등록했다. local과 BeeStation 암호화 백업 모두 복원 확인.",
           "owner": null,
           "evidence": [
             {
               "kind": "document",
+              "ref": "docs/google-play-release.md",
+              "observedAt": "2026-10-20T17:04:13.690934+00:00"
+            },
+            {
+              "kind": "document",
               "ref": "release/admob.json",
-              "observedAt": "2026-10-05T08:04:59.553602+00:00"
+              "observedAt": "2026-10-20T17:04:13.690934+00:00"
             }
           ],
-          "checkedAt": "2026-10-05T08:04:59.553602+00:00",
+          "checkedAt": "2026-10-20T17:04:13.690934+00:00",
           "reviewBy": null,
           "blocker": null,
           "notes": null
@@ -454,16 +517,21 @@
           ],
           "reviewCadence": "per_release",
           "status": "pass",
-          "value": "Android / Expo SDK 57 / RN 0.86.3 / 0.1.0 build 1. 코어 경계 검사와 타입 검사 통과. 테스트·운영 광고 분리.",
+          "value": "공유 코어, RN 화면과 Android 및 Web 플랫폼 경계를 분리했다. 네이티브 SQLite와 기존 초안 및 패턴 권한을 유지했다.",
           "owner": null,
           "evidence": [
             {
               "kind": "document",
-              "ref": "docs/qa.md",
-              "observedAt": "2026-10-05T08:04:59.553602+00:00"
+              "ref": "docs/qa/2026-10-21-public-launch.md",
+              "observedAt": "2026-10-20T17:04:13.690934+00:00"
+            },
+            {
+              "kind": "document",
+              "ref": "docs/design/2026-10-21-public-launch/test-plan.json",
+              "observedAt": "2026-10-20T17:04:13.690934+00:00"
             }
           ],
-          "checkedAt": "2026-10-05T08:04:59.553602+00:00",
+          "checkedAt": "2026-10-20T17:04:13.690934+00:00",
           "reviewBy": null,
           "blocker": null,
           "notes": null
@@ -476,16 +544,21 @@
           ],
           "reviewCadence": "per_release",
           "status": "pass",
-          "value": "Android / Expo SDK 57 / RN 0.86.3 / 0.1.0 build 1. 코어 경계 검사와 타입 검사 통과. 테스트·운영 광고 분리.",
+          "value": "Android 1.0.0(1), Expo SDK57, RN0.86.3. 실제 AAB minSdk24, targetSdk36, compileSdk36. RN Web은 개발 검수 환경이다.",
           "owner": null,
           "evidence": [
             {
               "kind": "document",
-              "ref": "docs/qa.md",
-              "observedAt": "2026-10-05T08:04:59.553602+00:00"
+              "ref": "docs/qa/launch-1.0.0/static-verification-report.json",
+              "observedAt": "2026-10-20T17:04:13.690934+00:00"
+            },
+            {
+              "kind": "document",
+              "ref": "docs/qa/2026-10-21-public-launch.md",
+              "observedAt": "2026-10-20T17:04:13.690934+00:00"
             }
           ],
-          "checkedAt": "2026-10-05T08:04:59.553602+00:00",
+          "checkedAt": "2026-10-20T17:04:13.690934+00:00",
           "reviewBy": null,
           "blocker": null,
           "notes": null
@@ -498,16 +571,26 @@
           ],
           "reviewCadence": "per_release",
           "status": "pass",
-          "value": "Android / Expo SDK 57 / RN 0.86.3 / 0.1.0 build 1. 코어 경계 검사와 타입 검사 통과. 테스트·운영 광고 분리.",
+          "value": "개발은 테스트 광고 ID, 운영 빌드는 등록한 앱 및 보상형과 배너 ID만 허용. 동의 후 SDK 초기화.",
           "owner": null,
           "evidence": [
             {
               "kind": "document",
-              "ref": "docs/qa.md",
-              "observedAt": "2026-10-05T08:04:59.553602+00:00"
+              "ref": "release/admob.json",
+              "observedAt": "2026-10-20T17:04:13.690934+00:00"
+            },
+            {
+              "kind": "document",
+              "ref": "docs/qa/2026-10-21-public-launch.md",
+              "observedAt": "2026-10-20T17:04:13.690934+00:00"
+            },
+            {
+              "kind": "document",
+              "ref": "docs/qa/launch-1.0.0/static-verification-report.json",
+              "observedAt": "2026-10-20T17:04:13.690934+00:00"
             }
           ],
-          "checkedAt": "2026-10-05T08:04:59.553602+00:00",
+          "checkedAt": "2026-10-20T17:04:13.690934+00:00",
           "reviewBy": null,
           "blocker": null,
           "notes": null
@@ -520,16 +603,21 @@
           ],
           "reviewCadence": "per_release",
           "status": "pass",
-          "value": "Android / Expo SDK 57 / RN 0.86.3 / 0.1.0 build 1. 코어 경계 검사와 타입 검사 통과. 테스트·운영 광고 분리.",
+          "value": "첫 공개 후보 1.0.0(1), 실제 소스 d1464ab와 산출물 해시 고정. v1.0.0 태그는 아직 생성하지 않았다.",
           "owner": null,
           "evidence": [
             {
               "kind": "document",
-              "ref": "docs/qa.md",
-              "observedAt": "2026-10-05T08:04:59.553602+00:00"
+              "ref": "docs/google-play-release.md",
+              "observedAt": "2026-10-20T17:04:13.690934+00:00"
+            },
+            {
+              "kind": "document",
+              "ref": "release/market-launch-state.json",
+              "observedAt": "2026-10-20T17:04:13.690934+00:00"
             }
           ],
-          "checkedAt": "2026-10-05T08:04:59.553602+00:00",
+          "checkedAt": "2026-10-20T17:04:13.690934+00:00",
           "reviewBy": null,
           "blocker": null,
           "notes": null
@@ -541,20 +629,25 @@
             "all"
           ],
           "reviewCadence": "per_release",
-          "status": "pending",
-          "value": "로컬 test 14개·typecheck·architecture·PDF·Android 빌드 통과.",
+          "status": "pass",
+          "value": "동일 후보의 공개 CI에서 타입과 구조, 단위 검사, PDF와 RN Web export 통과. 자동 배포는 없다.",
           "owner": null,
           "evidence": [
             {
+              "kind": "ci",
+              "ref": "https://github.com/seoleeapps/paper-craft-print/actions/runs/39457200634",
+              "observedAt": "2026-10-20T17:04:13.690934+00:00"
+            },
+            {
               "kind": "document",
-              "ref": "docs/qa.md",
-              "observedAt": "2026-10-05T09:41:32+00:00"
+              "ref": "docs/qa/2026-10-21-public-launch.md",
+              "observedAt": "2026-10-20T17:04:13.690934+00:00"
             }
           ],
-          "checkedAt": "2026-10-05T09:41:32+00:00",
+          "checkedAt": "2026-10-20T17:04:13.690934+00:00",
           "reviewBy": null,
           "blocker": null,
-          "notes": "원격 저장소·CI가 없음. 생성/연결은 승인 범위 밖."
+          "notes": null
         },
         {
           "id": "engineering.release_pipeline",
@@ -564,10 +657,21 @@
           ],
           "reviewCadence": "per_release",
           "status": "pending",
-          "value": "확정 필요",
+          "value": "서명 빌드와 내부 업로드 및 읽기 검증 완료. 프로덕션 제출과 공개 자동화 또는 수동 실행은 아직 미실행.",
           "owner": null,
-          "evidence": [],
-          "checkedAt": null,
+          "evidence": [
+            {
+              "kind": "document",
+              "ref": "docs/google-play-release.md",
+              "observedAt": "2026-10-20T17:04:13.690934+00:00"
+            },
+            {
+              "kind": "document",
+              "ref": "release/market-launch-state.json",
+              "observedAt": "2026-10-20T17:04:13.690934+00:00"
+            }
+          ],
+          "checkedAt": "2026-10-20T17:04:13.690934+00:00",
           "reviewBy": null,
           "blocker": null,
           "notes": null
@@ -580,14 +684,25 @@
             "app_store"
           ],
           "reviewCadence": "per_release",
-          "status": "pending",
-          "value": "설치·QA용 Android Debug 서명만 존재",
+          "status": "pass",
+          "value": "전용 업로드 인증서와 실제 AAB 및 APK 서명 일치, 업로드 파일 해시 일치. 서명 키 백업과 임시 복원 확인.",
           "owner": null,
-          "evidence": [],
-          "checkedAt": "2026-10-05T08:04:59.553602+00:00",
+          "evidence": [
+            {
+              "kind": "document",
+              "ref": "docs/google-play-release.md",
+              "observedAt": "2026-10-20T17:04:13.690934+00:00"
+            },
+            {
+              "kind": "document",
+              "ref": "docs/qa/launch-1.0.0/static-verification-report.json",
+              "observedAt": "2026-10-20T17:04:13.690934+00:00"
+            }
+          ],
+          "checkedAt": "2026-10-20T17:04:13.690934+00:00",
           "reviewBy": null,
           "blocker": null,
-          "notes": "운영 업로드 키와 스토어 제출용 AAB는 이번 범위에 없다."
+          "notes": null
         },
         {
           "id": "engineering.startup_branding",
@@ -596,17 +711,22 @@
             "all"
           ],
           "reviewCadence": "per_release",
-          "status": "pass",
-          "value": "Android / Expo SDK 57 / RN 0.86.3 / 0.1.0 build 1. 코어 경계 검사와 타입 검사 통과. 테스트·운영 광고 분리.",
+          "status": "pending",
+          "value": "RN Web 실제 시작과 화면 검수 통과. 현재 서명 Android 후보 시작 화면은 기기 승인 대기로 미실행.",
           "owner": null,
           "evidence": [
             {
               "kind": "document",
-              "ref": "docs/qa.md",
-              "observedAt": "2026-10-05T08:04:59.553602+00:00"
+              "ref": "docs/qa/2026-10-21-public-launch.md",
+              "observedAt": "2026-10-20T17:04:13.690934+00:00"
+            },
+            {
+              "kind": "document",
+              "ref": "docs/google-play-release.md",
+              "observedAt": "2026-10-20T17:04:13.690934+00:00"
             }
           ],
-          "checkedAt": "2026-10-05T08:04:59.553602+00:00",
+          "checkedAt": "2026-10-20T17:04:13.690934+00:00",
           "reviewBy": null,
           "blocker": null,
           "notes": null
@@ -619,19 +739,19 @@
           ],
           "reviewCadence": "per_release",
           "status": "pending",
-          "value": "영어·한국어 UI·한글 PDF·1.5배 글자·키보드 실행 확인.",
+          "value": "한국어와 영어, 320×568, CSS 글씨150%, 한글 PDF를 개발 환경에서 실행했다. 현재 후보의 Android 접근성 실행은 미실행.",
           "owner": null,
           "evidence": [
             {
               "kind": "document",
-              "ref": "docs/qa.md",
-              "observedAt": "2026-10-05T09:41:32+00:00"
+              "ref": "docs/qa/2026-10-21-public-launch.md",
+              "observedAt": "2026-10-20T17:04:13.690934+00:00"
             }
           ],
-          "checkedAt": "2026-10-05T09:41:32+00:00",
+          "checkedAt": "2026-10-20T17:04:13.690934+00:00",
           "reviewBy": null,
           "blocker": null,
-          "notes": "TalkBack 음성·실제 제스처 사용자 검수 미완료."
+          "notes": null
         },
         {
           "id": "engineering.migration_rollback",
@@ -1223,16 +1343,21 @@
           ],
           "reviewCadence": "on_change",
           "status": "pass",
-          "value": "Android 선택형 보상형 1개. 배너·전면·결제 없음.",
+          "value": "Android 홈과 내 작업 배너, 선택형 보상 광고. 편집 및 출력 화면 배너 없음, 전면 광고와 결제 없음.",
           "owner": null,
           "evidence": [
             {
               "kind": "document",
-              "ref": "docs/product-spec.md",
-              "observedAt": "2026-10-05T08:04:59.553602+00:00"
+              "ref": "release/admob.json",
+              "observedAt": "2026-10-20T17:04:13.690934+00:00"
+            },
+            {
+              "kind": "document",
+              "ref": "docs/design/2026-10-21-public-launch/test-plan.json",
+              "observedAt": "2026-10-20T17:04:13.690934+00:00"
             }
           ],
-          "checkedAt": "2026-10-05T08:04:59.553602+00:00",
+          "checkedAt": "2026-10-20T17:04:13.690934+00:00",
           "reviewBy": null,
           "blocker": null,
           "notes": null
@@ -1245,16 +1370,21 @@
           ],
           "reviewCadence": "per_release",
           "status": "pass",
-          "value": "Android 앱과 보상형 단위 등록·목록 readback 완료. QA는 Google 테스트 ID.",
+          "value": "기존 AdMob 앱과 보상형 단위를 유지하고 배너를 등록했다. 이 앱만 대상으로 GDPR 및 미국 주별 메시지를 게시했다.",
           "owner": null,
           "evidence": [
             {
               "kind": "document",
               "ref": "release/admob.json",
-              "observedAt": "2026-10-05T08:04:59.553602+00:00"
+              "observedAt": "2026-10-20T17:04:13.690934+00:00"
+            },
+            {
+              "kind": "document",
+              "ref": "docs/google-play-release.md",
+              "observedAt": "2026-10-20T17:04:13.690934+00:00"
             }
           ],
-          "checkedAt": "2026-10-05T08:04:59.553602+00:00",
+          "checkedAt": "2026-10-20T17:04:13.690934+00:00",
           "reviewBy": null,
           "blocker": null,
           "notes": null
@@ -1267,24 +1397,24 @@
           ],
           "reviewCadence": "per_release",
           "status": "pending",
-          "value": "최종 네이티브 Google 테스트 광고·보상·재시작·복제·재출력 통과.",
+          "value": "현재 후보의 동의와 오류 및 무료 PDF는 개발 환경에서 통과. 실제 SDK 연결과 운영 광고 송출은 미실행 또는 미확인.",
           "owner": null,
           "evidence": [
             {
               "kind": "document",
-              "ref": "docs/qa.md",
-              "observedAt": "2026-10-05T09:41:32+00:00"
+              "ref": "release/admob.json",
+              "observedAt": "2026-10-20T17:04:13.690934+00:00"
             },
             {
               "kind": "document",
-              "ref": "release/admob.json",
-              "observedAt": "2026-10-05T09:41:32+00:00"
+              "ref": "docs/qa/2026-10-21-public-launch.md",
+              "observedAt": "2026-10-20T17:04:13.690934+00:00"
             }
           ],
-          "checkedAt": "2026-10-05T09:41:32+00:00",
+          "checkedAt": "2026-10-20T17:04:13.690934+00:00",
           "reviewBy": null,
           "blocker": null,
-          "notes": "등록 완료 / 승인 검토 필요 / 운영 송출 미확인을 별도 상태로 보관."
+          "notes": "0.1.0의 과거 보상 광고 기기 검수는 현재 후보 통과 근거로 사용하지 않는다."
         },
         {
           "id": "monetization.iap_products",
@@ -1393,14 +1523,20 @@
             "all"
           ],
           "reviewCadence": "per_release",
-          "status": "pending",
-          "value": "확정 필요",
+          "status": "na",
+          "value": "비게임 앱이며 승인 설계의 무료 도안, 배너와 선택 보상형 광고 배치를 따른다.",
           "owner": null,
-          "evidence": [],
-          "checkedAt": null,
+          "evidence": [
+            {
+              "kind": "document",
+              "ref": "docs/design/2026-10-21-public-launch/test-plan.json",
+              "observedAt": "2026-10-20T17:04:13.690934+00:00"
+            }
+          ],
+          "checkedAt": "2026-10-20T17:04:13.690934+00:00",
           "reviewBy": null,
           "blocker": null,
-          "notes": null
+          "notes": "게임 전용 수익화 프로필 검증 대상이 아니다."
         }
       ]
     },
@@ -1415,16 +1551,26 @@
           ],
           "reviewCadence": "per_release",
           "status": "pass",
-          "value": "로컬 데이터·사진 선택·외부 저장·광고 SDK 목록 기록",
+          "value": "실제 AAB GMA25.4.0, UMP4.0.0과 Ads identifier18.0.0, 데이터4유형과 목적을 대조해 신고했다.",
           "owner": null,
           "evidence": [
             {
               "kind": "document",
               "ref": "docs/privacy-data.md",
-              "observedAt": "2026-10-05T08:04:59.553602+00:00"
+              "observedAt": "2026-10-20T17:04:13.690934+00:00"
+            },
+            {
+              "kind": "document",
+              "ref": "docs/qa/launch-1.0.0/static-verification-report.json",
+              "observedAt": "2026-10-20T17:04:13.690934+00:00"
+            },
+            {
+              "kind": "document",
+              "ref": "play-store/policy/data-safety.csv",
+              "observedAt": "2026-10-20T17:04:13.690934+00:00"
             }
           ],
-          "checkedAt": "2026-10-05T08:04:59.553602+00:00",
+          "checkedAt": "2026-10-20T17:04:13.690934+00:00",
           "reviewBy": null,
           "blocker": null,
           "notes": null
@@ -1436,11 +1582,22 @@
             "all"
           ],
           "reviewCadence": "per_release",
-          "status": "pending",
-          "value": "확정 필요",
+          "status": "pass",
+          "value": "공식 사이트의 한국어와 영어 개인정보 페이지 게시 및 HTTP200과 내용 확인.",
           "owner": null,
-          "evidence": [],
-          "checkedAt": null,
+          "evidence": [
+            {
+              "kind": "document",
+              "ref": "docs/google-play-release.md",
+              "observedAt": "2026-10-20T17:04:13.690934+00:00"
+            },
+            {
+              "kind": "document",
+              "ref": "docs/privacy-data.md",
+              "observedAt": "2026-10-20T17:04:13.690934+00:00"
+            }
+          ],
+          "checkedAt": "2026-10-20T17:04:13.690934+00:00",
           "reviewBy": null,
           "blocker": null,
           "notes": null
@@ -1452,11 +1609,17 @@
             "all"
           ],
           "reviewCadence": "per_release",
-          "status": "pending",
-          "value": "확정 필요",
+          "status": "pass",
+          "value": "계정과 앱 서버 없음. 초안과 앱 내부 파일, 외부 PDF 삭제 범위 및 광고 제공자 데이터 삭제와의 차이를 공개했다.",
           "owner": null,
-          "evidence": [],
-          "checkedAt": null,
+          "evidence": [
+            {
+              "kind": "document",
+              "ref": "docs/privacy-data.md",
+              "observedAt": "2026-10-20T17:04:13.690934+00:00"
+            }
+          ],
+          "checkedAt": "2026-10-20T17:04:13.690934+00:00",
           "reviewBy": null,
           "blocker": null,
           "notes": null
@@ -1469,16 +1632,21 @@
           ],
           "reviewCadence": "per_release",
           "status": "pass",
-          "value": "로컬 데이터·사진 선택·외부 저장·광고 SDK 목록 기록",
+          "value": "AAB 실제 권한과 allowBackup=false, 지연 측정 확인. 카메라와 마이크, 광범위 미디어 및 저장 권한 없음.",
           "owner": null,
           "evidence": [
             {
               "kind": "document",
-              "ref": "docs/privacy-data.md",
-              "observedAt": "2026-10-05T08:04:59.553602+00:00"
+              "ref": "docs/qa/launch-1.0.0/static-verification-report.json",
+              "observedAt": "2026-10-20T17:04:13.690934+00:00"
+            },
+            {
+              "kind": "document",
+              "ref": "docs/qa/launch-1.0.0/manifest-summary.json",
+              "observedAt": "2026-10-20T17:04:13.690934+00:00"
             }
           ],
-          "checkedAt": "2026-10-05T08:04:59.553602+00:00",
+          "checkedAt": "2026-10-20T17:04:13.690934+00:00",
           "reviewBy": null,
           "blocker": null,
           "notes": null
@@ -1490,11 +1658,27 @@
             "google_play"
           ],
           "reviewCadence": "per_release",
-          "status": "pending",
-          "value": "확정 필요",
+          "status": "pass",
+          "value": "Data safety, 광고, 광고 ID, 대상18+, 로그인 제한 없음과 IARC 등급 저장. 앱 콘텐츠 주의 필요 목록이 비어 있다.",
           "owner": null,
-          "evidence": [],
-          "checkedAt": null,
+          "evidence": [
+            {
+              "kind": "document",
+              "ref": "docs/privacy-data.md",
+              "observedAt": "2026-10-20T17:04:13.690934+00:00"
+            },
+            {
+              "kind": "document",
+              "ref": "docs/google-play-release.md",
+              "observedAt": "2026-10-20T17:04:13.690934+00:00"
+            },
+            {
+              "kind": "document",
+              "ref": "docs/qa/launch-1.0.0/play-content-overview.txt",
+              "observedAt": "2026-10-20T17:04:13.690934+00:00"
+            }
+          ],
+          "checkedAt": "2026-10-20T17:04:13.690934+00:00",
           "reviewBy": null,
           "blocker": null,
           "notes": null
@@ -1550,11 +1734,22 @@
             "all"
           ],
           "reviewCadence": "per_release",
-          "status": "pending",
-          "value": "확정 필요",
+          "status": "pass",
+          "value": "로그인과 제한된 접근 기능 없음. 모든 무료 제작 흐름에 계정이 필요하지 않다.",
           "owner": null,
-          "evidence": [],
-          "checkedAt": null,
+          "evidence": [
+            {
+              "kind": "document",
+              "ref": "docs/design/2026-10-21-public-launch/test-plan.json",
+              "observedAt": "2026-10-20T17:04:13.690934+00:00"
+            },
+            {
+              "kind": "document",
+              "ref": "docs/google-play-release.md",
+              "observedAt": "2026-10-20T17:04:13.690934+00:00"
+            }
+          ],
+          "checkedAt": "2026-10-20T17:04:13.690934+00:00",
           "reviewBy": null,
           "blocker": null,
           "notes": null
@@ -1566,11 +1761,27 @@
             "all"
           ],
           "reviewCadence": "per_release",
-          "status": "pending",
-          "value": "확정 필요",
+          "status": "pass",
+          "value": "en-US 및 ko-KR 등록 문구, 예술/디자인 카테고리, 지원 정보 실제 저장 및 조회.",
           "owner": null,
-          "evidence": [],
-          "checkedAt": null,
+          "evidence": [
+            {
+              "kind": "document",
+              "ref": "docs/google-play-release.md",
+              "observedAt": "2026-10-20T17:04:13.690934+00:00"
+            },
+            {
+              "kind": "document",
+              "ref": "docs/qa/launch-1.0.0/play-listing-verified.json",
+              "observedAt": "2026-10-20T17:04:13.690934+00:00"
+            },
+            {
+              "kind": "document",
+              "ref": "docs/qa/launch-1.0.0/play-listing-ko-verified.json",
+              "observedAt": "2026-10-20T17:04:13.690934+00:00"
+            }
+          ],
+          "checkedAt": "2026-10-20T17:04:13.690934+00:00",
           "reviewBy": null,
           "blocker": null,
           "notes": null
@@ -1582,11 +1793,22 @@
             "all"
           ],
           "reviewCadence": "per_release",
-          "status": "pending",
-          "value": "확정 필요",
+          "status": "pass",
+          "value": "512px 아이콘, 1024×500 그래픽과 언어별 실제 RN Web 휴대전화 화면3개 등록. 태블릿 화면은 준비하지 않았다.",
           "owner": null,
-          "evidence": [],
-          "checkedAt": null,
+          "evidence": [
+            {
+              "kind": "document",
+              "ref": "docs/google-play-release.md",
+              "observedAt": "2026-10-20T17:04:13.690934+00:00"
+            },
+            {
+              "kind": "document",
+              "ref": "play-store/google-play.config.json",
+              "observedAt": "2026-10-20T17:04:13.690934+00:00"
+            }
+          ],
+          "checkedAt": "2026-10-20T17:04:13.690934+00:00",
           "reviewBy": null,
           "blocker": null,
           "notes": null
@@ -1598,11 +1820,17 @@
             "all"
           ],
           "reviewCadence": "per_release",
-          "status": "pending",
-          "value": "확정 필요",
+          "status": "pass",
+          "value": "현재 내부 출시 1.0.0(1)의 한국어와 영어 출시 노트 API 확인.",
           "owner": null,
-          "evidence": [],
-          "checkedAt": null,
+          "evidence": [
+            {
+              "kind": "document",
+              "ref": "docs/qa/launch-1.0.0/play-internal-readback.json",
+              "observedAt": "2026-10-20T17:04:13.690934+00:00"
+            }
+          ],
+          "checkedAt": "2026-10-20T17:04:13.690934+00:00",
           "reviewBy": null,
           "blocker": null,
           "notes": null
@@ -1615,10 +1843,21 @@
           ],
           "reviewCadence": "per_release",
           "status": "pending",
-          "value": "확정 필요",
+          "value": "무료 전세계100% 승인, 178개 국가 설정 저장. 현재는 지정된 내부 테스터2명에게 활성, 공개 미진행.",
           "owner": null,
-          "evidence": [],
-          "checkedAt": null,
+          "evidence": [
+            {
+              "kind": "document",
+              "ref": "release/market-launch-state.json",
+              "observedAt": "2026-10-20T17:04:13.690934+00:00"
+            },
+            {
+              "kind": "document",
+              "ref": "docs/qa/launch-1.0.0/play-production-countries.json",
+              "observedAt": "2026-10-20T17:04:13.690934+00:00"
+            }
+          ],
+          "checkedAt": "2026-10-20T17:04:13.690934+00:00",
           "reviewBy": null,
           "blocker": null,
           "notes": null
@@ -1636,16 +1875,21 @@
           ],
           "reviewCadence": "on_change",
           "status": "pass",
-          "value": "자동 14개·타입·코어 경계·PDF 검사와 실행/미실행 기기 항목·합격 기준 기록. 실행은 구축 에이전트, 실물·음성 사용자 검수 담당은 미정.",
+          "value": "L3 개발 환경 전체 회귀와 독립 UI3회, 최종 후보 실행을 계획하고 기록했다. 필수 네이티브 항목은 별도 승인 대기.",
           "owner": null,
           "evidence": [
             {
               "kind": "document",
-              "ref": "docs/qa.md",
-              "observedAt": "2026-10-05T09:41:32+00:00"
+              "ref": "docs/design/2026-10-21-public-launch/test-plan.json",
+              "observedAt": "2026-10-20T17:04:13.690934+00:00"
+            },
+            {
+              "kind": "document",
+              "ref": "docs/qa/2026-10-21-public-launch.md",
+              "observedAt": "2026-10-20T17:04:13.690934+00:00"
             }
           ],
-          "checkedAt": "2026-10-05T09:41:32+00:00",
+          "checkedAt": "2026-10-20T17:04:13.690934+00:00",
           "reviewBy": null,
           "blocker": null,
           "notes": null
@@ -1658,21 +1902,16 @@
           ],
           "reviewCadence": "per_release",
           "status": "pass",
-          "value": "0.1.0/build 1 APK의 패키지·SDK·arm64·서명·테스트 광고·측정 지연·백업 금지 readback. 소스 지문과 APK SHA-256 기록.",
+          "value": "1.0.0(1) 실제 AAB와 APK의 패키지, 버전, 서명과 SDK 및 광고 ID, 파일 해시 정적 검사 통과.",
           "owner": null,
           "evidence": [
             {
               "kind": "document",
-              "ref": "release/market-launch-state.json",
-              "observedAt": "2026-10-05T09:41:32+00:00"
-            },
-            {
-              "kind": "document",
-              "ref": "docs/qa.md",
-              "observedAt": "2026-10-05T09:41:32+00:00"
+              "ref": "docs/qa/launch-1.0.0/static-verification-report.json",
+              "observedAt": "2026-10-20T17:04:13.690934+00:00"
             }
           ],
-          "checkedAt": "2026-10-05T09:41:32+00:00",
+          "checkedAt": "2026-10-20T17:04:13.690934+00:00",
           "reviewBy": null,
           "blocker": null,
           "notes": null
@@ -1684,20 +1923,20 @@
             "all"
           ],
           "reviewCadence": "per_release",
-          "status": "pass",
-          "value": "최종 APK: 전용 Android 14 에뮬레이터. 개발 중: Note9 Android 10 제작/보상, Seeker Android 16 설치/홈.",
+          "status": "pending",
+          "value": "현재 후보 기기 조회, 설치와 실행 미실행. 별도 승인 요청에 대한 응답 대기.",
           "owner": null,
           "evidence": [
             {
               "kind": "document",
-              "ref": "docs/qa.md",
-              "observedAt": "2026-10-05T09:41:32+00:00"
+              "ref": "docs/google-play-release.md",
+              "observedAt": "2026-10-20T17:04:13.690934+00:00"
             }
           ],
-          "checkedAt": "2026-10-05T09:41:32+00:00",
+          "checkedAt": "2026-10-20T17:04:13.690934+00:00",
           "reviewBy": null,
           "blocker": null,
-          "notes": "최종 후보의 Android 10·16 전체 재검사는 미실행. 기기별 범위를 분리 기록했다."
+          "notes": "과거 0.1.0 기기 기록은 docs/qa.md에 보존하며 현재 실행으로 이어받지 않는다."
         },
         {
           "id": "qa.critical_flow",
@@ -1706,20 +1945,25 @@
             "all"
           ],
           "reviewCadence": "per_release",
-          "status": "pass",
-          "value": "최종 후보에서 제작·사진·PDF·폴더 저장·시스템 공유/인쇄 창·초안과 보상 강제 종료 복구·복제·삭제 통과.",
+          "status": "pending",
+          "value": "개발 환경 6종 제작과 사진, PDF 및 저장 복구 흐름 통과. 필수 Android SDK와 OS 연동은 승인 대기로 미실행.",
           "owner": null,
           "evidence": [
             {
               "kind": "document",
-              "ref": "docs/qa.md",
-              "observedAt": "2026-10-05T09:41:32+00:00"
+              "ref": "docs/qa/2026-10-21-public-launch.md",
+              "observedAt": "2026-10-20T17:04:13.690934+00:00"
+            },
+            {
+              "kind": "document",
+              "ref": "docs/google-play-release.md",
+              "observedAt": "2026-10-20T17:04:13.690934+00:00"
             }
           ],
-          "checkedAt": "2026-10-05T09:41:32+00:00",
+          "checkedAt": "2026-10-20T17:04:13.690934+00:00",
           "reviewBy": null,
           "blocker": null,
-          "notes": "실제 종이 인쇄·조립 품질은 별도 미완료."
+          "notes": null
         },
         {
           "id": "qa.backend_identity",
@@ -1751,24 +1995,24 @@
           ],
           "reviewCadence": "per_release",
           "status": "pending",
-          "value": "최종 테스트 광고 완료·보상·재시작·복제·원본 삭제·재출력 통과. 취소·실패·중복·동의 불가·보상 저장 실패는 실제 어댑터 자동 검사.",
+          "value": "동의 변경, no-fill, 오류와 무료 PDF 및 보상 중복 방지 개발 검사 통과. 실제 SDK와 운영 광고는 미확인.",
           "owner": null,
           "evidence": [
             {
               "kind": "document",
-              "ref": "docs/qa.md",
-              "observedAt": "2026-10-05T09:41:32+00:00"
+              "ref": "docs/qa/2026-10-21-public-launch.md",
+              "observedAt": "2026-10-20T17:04:13.690934+00:00"
             },
             {
               "kind": "document",
               "ref": "release/admob.json",
-              "observedAt": "2026-10-05T09:41:32+00:00"
+              "observedAt": "2026-10-20T17:04:13.690934+00:00"
             }
           ],
-          "checkedAt": "2026-10-05T09:41:32+00:00",
+          "checkedAt": "2026-10-20T17:04:13.690934+00:00",
           "reviewBy": null,
           "blocker": null,
-          "notes": "운영 승인·실제 운영 광고 송출 미확인."
+          "notes": null
         },
         {
           "id": "qa.failure_states",
@@ -1778,19 +2022,24 @@
           ],
           "reviewCadence": "per_release",
           "status": "pending",
-          "value": "사진/폴더/공유/인쇄 취소·오프라인·잘못된 크기·광고 콜백 실패 검사 통과.",
+          "value": "광고 및 저장 오류, 취소와 회복은 개발 환경에서 검사했다. 현재 후보 Android OS 실패 및 취소 동작은 미실행.",
           "owner": null,
           "evidence": [
             {
               "kind": "document",
-              "ref": "docs/qa.md",
-              "observedAt": "2026-10-05T09:41:32+00:00"
+              "ref": "docs/qa/2026-10-21-public-launch.md",
+              "observedAt": "2026-10-20T17:04:13.690934+00:00"
+            },
+            {
+              "kind": "document",
+              "ref": "docs/google-play-release.md",
+              "observedAt": "2026-10-20T17:04:13.690934+00:00"
             }
           ],
-          "checkedAt": "2026-10-05T09:41:32+00:00",
+          "checkedAt": "2026-10-20T17:04:13.690934+00:00",
           "reviewBy": null,
           "blocker": null,
-          "notes": "네이티브 저장 공간 부족·공급자 쓰기 실패·EEA 동의 거부 강제 재현 미실행."
+          "notes": null
         },
         {
           "id": "qa.upgrade_migration",
@@ -1800,19 +2049,19 @@
           ],
           "reviewCadence": "per_release",
           "status": "na",
-          "value": "최초 앱으로 이전 공개 버전 없음. 개발 APK 업데이트·종료 복구는 실행 확인.",
+          "value": "이전 공개 버전이 없다. 기존 형식의 초안과 패턴 권한 복구는 개발 환경에서 확인했다.",
           "owner": null,
           "evidence": [
             {
               "kind": "document",
-              "ref": "docs/qa.md",
-              "observedAt": "2026-10-05T09:41:32+00:00"
+              "ref": "docs/qa/2026-10-21-public-launch.md",
+              "observedAt": "2026-10-20T17:04:13.690934+00:00"
             }
           ],
-          "checkedAt": "2026-10-05T09:41:32+00:00",
+          "checkedAt": "2026-10-20T17:04:13.690934+00:00",
           "reviewBy": null,
           "blocker": null,
-          "notes": "공개 버전 간 스키마 이관 통과를 주장하지 않음."
+          "notes": "첫 공개 출시이며 공개 버전 간 기기 업그레이드 실행을 주장하지 않는다."
         },
         {
           "id": "qa.visual_communication",
@@ -1822,16 +2071,16 @@
           ],
           "reviewCadence": "per_release",
           "status": "pass",
-          "value": "설계와 실제 홈·면 미리보기·종이 배치·완료 화면 비교. 선택 면 잘림과 작은 화면·큰 글자·키보드 문제 수정 후 실행 재검수.",
+          "value": "실제 RN Web 화면과 PDF를 독립 검수3회 실행. 2회차 쇼핑백 절단선 실패를 보존하고3회차 해결 확인.",
           "owner": null,
           "evidence": [
             {
               "kind": "document",
-              "ref": "docs/qa.md",
-              "observedAt": "2026-10-05T09:41:32+00:00"
+              "ref": "docs/qa/2026-10-21-public-launch.md",
+              "observedAt": "2026-10-20T17:04:13.690934+00:00"
             }
           ],
-          "checkedAt": "2026-10-05T09:41:32+00:00",
+          "checkedAt": "2026-10-20T17:04:13.690934+00:00",
           "reviewBy": null,
           "blocker": null,
           "notes": null
@@ -1844,19 +2093,19 @@
           ],
           "reviewCadence": "per_release",
           "status": "pending",
-          "value": "작은 화면·1.5배 글자·키보드·safe area 확인. TalkBack 서비스·포커스·활성 상태 실행 확인.",
+          "value": "현재 후보 작은 화면 및 큰 글씨 개발 실행 통과. Android 접근성, 장기 성능과 발열 검수는 미실행.",
           "owner": null,
           "evidence": [
             {
               "kind": "document",
-              "ref": "docs/qa.md",
-              "observedAt": "2026-10-05T09:41:32+00:00"
+              "ref": "docs/qa/2026-10-21-public-launch.md",
+              "observedAt": "2026-10-20T17:04:13.690934+00:00"
             }
           ],
-          "checkedAt": "2026-10-05T09:41:32+00:00",
+          "checkedAt": "2026-10-20T17:04:13.690934+00:00",
           "reviewBy": null,
           "blocker": null,
-          "notes": "음성 청취·실제 TalkBack 제스처·장기 성능/발열 검수 미완료."
+          "notes": null
         },
         {
           "id": "qa.telemetry",
@@ -1866,24 +2115,24 @@
           ],
           "reviewCadence": "per_release",
           "status": "pending",
-          "value": "이용 분석·결제·Crashlytics 미사용. 테스트 광고 SDK 콜백·SQLite 권한 저장은 확인.",
+          "value": "별도 이용 분석, 결제와 Crashlytics 제외. 현재 후보의 실제 광고 SDK 및 공급자 신호는 미확인.",
           "owner": null,
           "evidence": [
             {
               "kind": "document",
-              "ref": "docs/privacy-data.md",
-              "observedAt": "2026-10-05T09:41:32+00:00"
+              "ref": "release/admob.json",
+              "observedAt": "2026-10-20T17:04:13.690934+00:00"
             },
             {
               "kind": "document",
-              "ref": "release/admob.json",
-              "observedAt": "2026-10-05T09:41:32+00:00"
+              "ref": "docs/privacy-data.md",
+              "observedAt": "2026-10-20T17:04:13.690934+00:00"
             }
           ],
-          "checkedAt": "2026-10-05T09:41:32+00:00",
+          "checkedAt": "2026-10-20T17:04:13.690934+00:00",
           "reviewBy": null,
           "blocker": null,
-          "notes": "운영 광고 공급자 신호 미확인. 분석 SDK 제외를 광고 운영 신호 통과로 해석하지 않음."
+          "notes": null
         },
         {
           "id": "qa.release_ledger",
@@ -1893,16 +2142,21 @@
           ],
           "reviewCadence": "per_release",
           "status": "pass",
-          "value": "현재 APK·소스 지문·빌드/실행·광고/마켓 상태를 release/market-launch-state.json에 분리 기록.",
+          "value": "현재 후보 d1464ab의 개발, 산출물, 업로드와 내부 활성, 네이티브 미실행과 공개 미진행을 분리 기록.",
           "owner": null,
           "evidence": [
             {
               "kind": "document",
               "ref": "release/market-launch-state.json",
-              "observedAt": "2026-10-05T09:41:32+00:00"
+              "observedAt": "2026-10-20T17:04:13.690934+00:00"
+            },
+            {
+              "kind": "document",
+              "ref": "docs/google-play-release.md",
+              "observedAt": "2026-10-20T17:04:13.690934+00:00"
             }
           ],
-          "checkedAt": "2026-10-05T09:41:32+00:00",
+          "checkedAt": "2026-10-20T17:04:13.690934+00:00",
           "reviewBy": null,
           "blocker": null,
           "notes": null

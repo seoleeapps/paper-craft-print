@@ -1,0 +1,47 @@
+{
+  "identity": {
+    "package": "com.seoleeapps.papercraftprint",
+    "versionName": "1.0.0",
+    "versionCode": "1",
+    "minSdk": "24",
+    "targetSdk": "36",
+    "compileSdk": "36"
+  },
+  "application": {
+    "android:allowBackup": "false",
+    "android:appComponentFactory": "androidx.core.app.CoreComponentFactory",
+    "android:enableOnBackInvokedCallback": "false",
+    "android:extractNativeLibs": "false",
+    "android:icon": "@mipmap/ic_launcher",
+    "android:label": "@string/app_name",
+    "android:name": "com.seoleeapps.papercraftprint.MainApplication",
+    "android:roundIcon": "@mipmap/ic_launcher_round",
+    "android:supportsRtl": "true",
+    "android:theme": "@style/AppTheme"
+  },
+  "metadata": {
+    "com.google.android.gms.ads.APPLICATION_ID": "ca-app-pub-9932778305312246~2407625697",
+    "com.google.android.gms.ads.DELAY_APP_MEASUREMENT_INIT": "true",
+    "com.google.android.gms.ads.flag.OPTIMIZE_AD_LOADING": "true",
+    "com.google.android.gms.ads.flag.OPTIMIZE_INITIALIZATION": "true",
+    "expo.modules.updates.ENABLED": "false",
+    "expo.modules.updates.ENABLE_BSDIFF_PATCH_SUPPORT": "true",
+    "expo.modules.updates.EXPO_UPDATES_CHECK_ON_LAUNCH": "ALWAYS",
+    "expo.modules.updates.EXPO_UPDATES_LAUNCH_WAIT_MS": "0",
+    "org.unimodules.core.AppLoader#react-native-headless": "expo.modules.adapters.react.apploader.RNHeadlessAppLoader",
+    "com.facebook.soloader.enabled": "true",
+    "com.google.android.gms.version": "@integer/google_play_services_version"
+  },
+  "permissions": [
+    "android.permission.INTERNET",
+    "android.permission.VIBRATE",
+    "android.permission.WAKE_LOCK",
+    "android.permission.ACCESS_NETWORK_STATE",
+    "com.google.android.gms.permission.AD_ID",
+    "android.permission.ACCESS_ADSERVICES_AD_ID",
+    "android.permission.ACCESS_ADSERVICES_ATTRIBUTION",
+    "android.permission.ACCESS_ADSERVICES_TOPICS",
+    "android.permission.FOREGROUND_SERVICE",
+    "com.seoleeapps.papercraftprint.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+  ]
+}

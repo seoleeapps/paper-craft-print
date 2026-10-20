@@ -1,0 +1,21 @@
+{
+  "round": 3,
+  "attempt": 2,
+  "maximumAttempts": 2,
+  "previousCandidate": "d2e861c0290d3858f448f752ea3ba0a968463b5d",
+  "sourceSha": "1a66d90b94e27110667d5211fbf67fc2f4dea51d",
+  "plannedAt": "2026-10-20T16:05:10.051644+00:00",
+  "reason": "검수 helper가 앱 IndexedDB boot 이전에 fixture를 쓰는 경합. 앱 heading을 기다린 후 격리 fixture를 준비한다. 제품코드변경없음.",
+  "scope": [
+    "templates",
+    "editing",
+    "preview",
+    "pdf",
+    "drafts",
+    "ads",
+    "locale"
+  ],
+  "checks": "Same complete check:dev and actual web journey once on new exact SHA; inspect final renders and resolve earlier geometry. A further failure stops the round. Original failure remains under round-3.",
+  "reviewer": "qa_round_1",
+  "output": "artifacts/qa/round-3/recheck"
+}
