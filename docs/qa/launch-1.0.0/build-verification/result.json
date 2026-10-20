@@ -1,0 +1,162 @@
+{
+  "kind": "independent-L3-execution-after-build-tool-fix",
+  "isUiReviewRound": false,
+  "sourceSha": "d1464abc34dfc2f4c0af58a8abc0add97946dc31",
+  "previousVerifiedSourceSha": "1a66d90b94e27110667d5211fbf67fc2f4dea51d",
+  "plannedAt": "2026-10-20T16:25:27.322094+00:00",
+  "startedAt": "2026-10-20T16:25:27.322705+00:00",
+  "completedAt": "2026-10-20T16:27:30.948048+00:00",
+  "executor": "agent",
+  "agent": "qa_round_1",
+  "independentFromImplementer": true,
+  "environment": "dev",
+  "runtime": "actual RN Web in independent Edge",
+  "status": "pass",
+  "features": [
+    "templates",
+    "editing",
+    "preview",
+    "pdf",
+    "drafts",
+    "ads",
+    "locale"
+  ],
+  "featureResults": [
+    {
+      "id": "templates",
+      "status": "pass",
+      "evidence": [
+        "check-dev.log",
+        "journey.json",
+        "contact-layout.png",
+        "Paper-bag.png"
+      ],
+      "finding": "6종 실제 생성, 기본값과 프리셋의 A4 및 Letter 치수, 종이 초과 검사와 쇼핑백 분리 절단선 자동 검사가 통과했다. 실제 PDF에서 선을 확인했다."
+    },
+    {
+      "id": "editing",
+      "status": "pass",
+      "evidence": [
+        "journey.json",
+        "contact-editor.png",
+        "editor-ko-small-large-text.png"
+      ],
+      "finding": "6종 앞면 사진 선택과 확대, 앞면 영어 문구와 뒷면 한글 문구 입력, 999 mm 차단 및 60 mm 복구를 실행했다."
+    },
+    {
+      "id": "preview",
+      "status": "pass",
+      "evidence": [
+        "journey.json",
+        "contact-layout.png",
+        "paper-bag-layout.png"
+      ],
+      "finding": "6종 Letter 선택과 반복 토글, 상자 회전 및 카드와 책갈피 반복 배치를 실제 화면에서 확인했다."
+    },
+    {
+      "id": "pdf",
+      "status": "pass",
+      "evidence": [
+        "check-dev.log",
+        "journey.json",
+        "pdf-inspection.json",
+        "Envelope.png",
+        "Gift-box.png",
+        "Folded-card.png",
+        "Gift-tag.png",
+        "Bookmark.png",
+        "Paper-bag.png"
+      ],
+      "finding": "6개 PDF를 실제 다운로드하고 렌더 및 페이지 정보를 확인했다. A4 및 Letter PDF 12개에서 한글과 영어, 100% 안내와 50 mm 벡터 선 검사도 통과했다."
+    },
+    {
+      "id": "drafts",
+      "status": "pass",
+      "evidence": [
+        "journey.json",
+        "check-dev.log"
+      ],
+      "finding": "이전 초안과 waves 권한 복원, stars 보상 후 복제와 삭제, 새로고침 후 권한 복구를 실행했다. 저장 트랜잭션과 실패 롤백 검사도 통과했다."
+    },
+    {
+      "id": "ads",
+      "status": "pass",
+      "evidence": [
+        "journey.json",
+        "check-dev.log",
+        "home-en.png"
+      ],
+      "finding": "홈 배너 1개 및 편집, 출력과 완료의 배너 0개, no-fill 이후 무료 PDF와 동의 철회 후 배너 제거를 실제 실행했다. 실제 adapter 코드를 대체 SDK 콜백으로 실행한 중복 동의 조회와 보상 검사도 통과했다."
+    },
+    {
+      "id": "locale",
+      "status": "pass",
+      "evidence": [
+        "journey.json",
+        "home-ko-small-large-text.png",
+        "editor-ko-small-large-text.png",
+        "pdf-inspection.json"
+      ],
+      "finding": "한국어와 영어, 한글 PDF, 320×568과 CSS 텍스트 150%에서 문구 입력과 PDF 생성을 실행했다."
+    }
+  ],
+  "commands": [
+    {
+      "command": "npm run check:dev",
+      "exitCode": 0,
+      "tsTests": 26,
+      "pythonBuildBoundaryTests": 9,
+      "pdfFixtures": 12,
+      "evidence": "check-dev.log"
+    },
+    {
+      "command": "scripts/web-journey.py",
+      "status": "pass",
+      "scenarios": 12,
+      "pageErrors": [],
+      "evidence": "journey.json"
+    }
+  ],
+  "buildToolVerification": {
+    "status": "pass",
+    "scope": "Synthetic certificate PKCS7 fingerprint extraction without default keystore and duplicate signature-block rejection",
+    "evidence": "check-dev.log",
+    "signedAppBuildExecuted": false
+  },
+  "sourceComparison": {
+    "runtimeAndCoreUnchanged": true,
+    "evidence": "source-comparison.json"
+  },
+  "fullExecutions": 1,
+  "defects": [],
+  "priorUiReviewPreservation": [
+    {
+      "round": 1,
+      "manifestEntries": 44,
+      "unchanged": true
+    },
+    {
+      "round": 2,
+      "manifestEntries": 51,
+      "unchanged": true
+    },
+    {
+      "round": 3,
+      "manifestEntries": 87,
+      "unchanged": true
+    }
+  ],
+  "browserSession": {
+    "profile": "legacy-admob",
+    "sessionId": "761d2f9c040d446db7d601fdaef1c878",
+    "released": true
+  },
+  "nativeSdkAndOs": "unrun",
+  "deviceAccess": "none",
+  "physicalPrintAndAssembly": "unrun",
+  "limitations": [
+    "실제 Android 광고 SDK와 UMP 및 OS 연결은 개발 대역과 구분해 미실행으로 유지한다.",
+    "합성 PKCS7 인증서 검사는 통과했다. 실제 서명 AAB와 APK의 정적 검증 및 빌드는 별도 실행 상태다.",
+    "이 실행은 빌드 도구 변경 후 새 SHA의 독립 L3 실행 근거다. 추가 UI 검수 회차나 재설계 판정을 만들지 않았으며 기존 UI 3회와 실패 기록을 보존했다."
+  ]
+}

@@ -1,0 +1,297 @@
+{
+  "round": 3,
+  "reviewer": "qa_round_1",
+  "independentFromImplementer": true,
+  "sourceSha": "1a66d90b94e27110667d5211fbf67fc2f4dea51d",
+  "plannedAt": "2026-10-20T16:05:10.051644+00:00",
+  "startedAt": "2026-10-20T16:06:40.450335+00:00",
+  "completedAt": "2026-10-20T16:10:19.389350+00:00",
+  "status": "pass",
+  "functional": "pass",
+  "ux": "pass",
+  "initialPlan": {
+    "path": "plan.json",
+    "sourceSha": "d2e861c0290d3858f448f752ea3ba0a968463b5d",
+    "plannedAt": "2026-10-20T16:00:18.569681+00:00",
+    "startedAt": "2026-10-20T16:00:52.525487+00:00"
+  },
+  "finalRecheckPlan": "fixture-recheck-plan.json",
+  "maximumFullAttempts": 2,
+  "fullAttempt": 2,
+  "historicalFailures": [
+    {
+      "sourceSha": "d2e861c0290d3858f448f752ea3ba0a968463b5d",
+      "status": "harness-failure-preserved",
+      "evidence": [
+        "failure-traceback.txt",
+        "actual-body-failure.txt",
+        "failure.png",
+        "failure-storage-inspection.json",
+        "failure-storage-keys.json",
+        "failure-session-tabs.json"
+      ],
+      "finding": "최초 bootstrap 완료 전 fixture를 기록해 이전 QA 권한을 가진 초안이 선택됐다. Stars Ad unlock 선택자가 없었다. 실제 이전 데이터와 bundle 및 탭 상태를 보존했다. 초기화 경합의 정확한 시점은 추정이다."
+    },
+    {
+      "sourceSha": "d2e861c0290d3858f448f752ea3ba0a968463b5d",
+      "status": "diagnostic-continuation-harness-failure-preserved",
+      "evidence": [
+        "continuation-failure-traceback.txt",
+        "continuation-actual-body-failure.txt",
+        "continuation-failure.png"
+      ],
+      "finding": "고유 fixture 이관과 no-fill 무료 출력은 통과했다. 복제 클릭 직후 UI 갱신을 기다리지 않은 count 즉시 검사에서 멈췄다. 전체 여정 재실행은 아니며 원본을 보존했다."
+    }
+  ],
+  "environment": {
+    "kind": "dev",
+    "runtime": "actual RN Web in independent Microsoft Edge",
+    "url": "http://localhost:8087",
+    "viewports": [
+      "390x844",
+      "320x568 with CSS 150% text"
+    ],
+    "isolatedData": "dedicated session 87708e53a0b64f01b2acd782d75f708a; helper seeds legacy fixture after the ready heading"
+  },
+  "commands": [
+    {
+      "command": "npm run check:dev",
+      "exitCode": 0,
+      "tsTests": 26,
+      "pythonBuildBoundaryTests": 8,
+      "pdfFixtures": 12,
+      "evidence": "recheck/check-dev.log"
+    },
+    {
+      "command": "scripts/web-journey.py",
+      "status": "pass",
+      "scenarios": 12,
+      "pageErrors": [],
+      "evidence": "recheck/journey.json"
+    },
+    {
+      "command": "large-photo-browser.py",
+      "status": "pass",
+      "evidence": "recheck/large-photo.json"
+    },
+    {
+      "command": "paper-bag cut and glue contact audit",
+      "status": "pass",
+      "evidence": [
+        "recheck/paper-bag-cut-audit.json",
+        "recheck/glue-contact-analysis.json"
+      ]
+    }
+  ],
+  "features": [
+    {
+      "id": "templates",
+      "functional": {
+        "verdict": "pass",
+        "evidence": [
+          "recheck/check-dev.log",
+          "recheck/journey.json",
+          "recheck/paper-bag-cut-audit.json",
+          "recheck/Paper-bag.png"
+        ],
+        "finding": "6종 기본값과 프리셋이 A4 및 Letter에 100% 치수로 배치된다. 쇼핑백 바닥 경계 3곳의 폭 1 mm 절단 틈 양변과 몸통 끝 연결선이 모두 있고 외곽 18개 꼭짓점의 연결 차수가 2다."
+      },
+      "ux": {
+        "verdict": "pass",
+        "evidence": [
+          "recheck/check-dev.log",
+          "recheck/journey.json",
+          "recheck/paper-bag-cut-audit.json",
+          "recheck/Paper-bag.png"
+        ],
+        "finding": "홈의 이름, 치수와 전개도 썸네일로 도안을 구분한다. 쇼핑백은 바닥 날개를 분리하는 실제 절단 틈이 생겼고 조립 순서가 구체화됐다."
+      }
+    },
+    {
+      "id": "editing",
+      "functional": {
+        "verdict": "pass",
+        "evidence": [
+          "recheck/journey.json",
+          "recheck/contact-editor.png",
+          "recheck/editor-ko-small-large-text.png",
+          "recheck/large-photo-editor.png"
+        ],
+        "finding": "6종에서 앞면 사진과 확대, 앞뒷면 문구 입력을 실제 실행했다. 999 mm 입력은 출력이 차단되고 60 mm로 복구하면 다시 허용된다. 추가 10,497,196 byte 사진도 정상 편집됐다."
+      },
+      "ux": {
+        "verdict": "pass",
+        "evidence": [
+          "recheck/journey.json",
+          "recheck/contact-editor.png",
+          "recheck/editor-ko-small-large-text.png",
+          "recheck/large-photo-editor.png"
+        ],
+        "finding": "치수 범위와 조립 안내, 문구 글자 수, 사진 제거 및 확대와 이동 조작이 보인다. 320×568 및 텍스트 150%에서 문구 입력과 고정 출력 버튼을 사용할 수 있다."
+      }
+    },
+    {
+      "id": "preview",
+      "functional": {
+        "verdict": "pass",
+        "evidence": [
+          "recheck/contact-layout.png",
+          "recheck/paper-bag-layout.png",
+          "recheck/paper-bag-cut-audit.json",
+          "recheck/glue-contact-analysis.json"
+        ],
+        "finding": "6종 실제 미리보기에서 Letter 선택과 반복 토글을 실행했다. 카드와 책갈피 2개 반복 및 회전된 상자, 사진과 문구 방향이 PDF와 일치한다. 쇼핑백 바닥 절단 틈이 실제 화면에도 표시된다."
+      },
+      "ux": {
+        "verdict": "pass",
+        "evidence": [
+          "recheck/contact-layout.png",
+          "recheck/paper-bag-layout.png",
+          "recheck/paper-bag-cut-audit.json",
+          "recheck/glue-contact-analysis.json"
+        ],
+        "finding": "종이, 반복 수량, 선의 의미와 100% 출력 안내를 읽을 수 있다. 쇼핑백은 작은 날개, 앞 날개, 풀칠, 뒷 날개의 순서가 표시되며 인쇄면과 빈 면의 접촉은 기하 계산과 일치한다."
+      }
+    },
+    {
+      "id": "pdf",
+      "functional": {
+        "verdict": "pass",
+        "evidence": [
+          "recheck/check-dev.log",
+          "recheck/journey.json",
+          "recheck/pdf-inspection.json",
+          "recheck/Envelope.png",
+          "recheck/Gift-box.png",
+          "recheck/Folded-card.png",
+          "recheck/Gift-tag.png",
+          "recheck/Bookmark.png",
+          "recheck/Paper-bag.png"
+        ],
+        "finding": "브라우저에서 내려받은 6개 PDF를 Poppler로 렌더링하고 1페이지 Letter 크기를 확인했다. A4 및 Letter 개발 PDF 12개는 한글, 영어, 100% 안내와 50 mm 벡터 검사를 통과했다. 수정된 쇼핑백 절단선도 PDF에 존재한다."
+      },
+      "ux": {
+        "verdict": "pass",
+        "evidence": [
+          "recheck/check-dev.log",
+          "recheck/journey.json",
+          "recheck/pdf-inspection.json",
+          "recheck/Envelope.png",
+          "recheck/Gift-box.png",
+          "recheck/Folded-card.png",
+          "recheck/Gift-tag.png",
+          "recheck/Bookmark.png",
+          "recheck/Paper-bag.png"
+        ],
+        "finding": "직접 본 렌더에서 사진과 문구, 자르기 선과 접는 선, 접착 해칭, 확인선과 조립 안내가 겹치거나 종이 밖으로 나가지 않는다. 완료 화면은 저장과 공유 및 인쇄 선택을 제공한다."
+      }
+    },
+    {
+      "id": "drafts",
+      "functional": {
+        "verdict": "pass",
+        "evidence": [
+          "recheck/journey.json",
+          "recheck/large-photo.json",
+          "recheck/large-photo-editor.png",
+          "recheck/large-photo-restored.png",
+          "recheck/drafts-en-banner.png"
+        ],
+        "finding": "정확한 새 fixture에서 이전 봉투와 waves 권한이 복구됐고 stars 보상, 복제, 삭제 및 재시작 복구가 동작했다. IndexedDB에 정규화 사진 6,565,536 bytes를 보관하고 새로고침, 복제와 한 개 삭제 후 해시가 동일함을 확인했다."
+      },
+      "ux": {
+        "verdict": "pass",
+        "evidence": [
+          "recheck/journey.json",
+          "recheck/large-photo.json",
+          "recheck/large-photo-editor.png",
+          "recheck/large-photo-restored.png",
+          "recheck/drafts-en-banner.png"
+        ],
+        "finding": "큰 사진이 재실행 후 실제 미리보기에 돌아온다. 초안 제목, 문구와 치수, 복제 및 삭제 버튼, 새 작업 버튼과 배너가 구분된다."
+      }
+    },
+    {
+      "id": "ads",
+      "functional": {
+        "verdict": "pass",
+        "evidence": [
+          "recheck/check-dev.log",
+          "recheck/journey.json",
+          "recheck/large-photo.json",
+          "recheck/home-en-banner.png",
+          "recheck/drafts-en-banner.png"
+        ],
+        "finding": "실제 ads.ts를 대체 SDK 콜백과 실행한 검사에서 초기 동의 조회 캐시와 SDK 단일 초기화, privacy 재확인 및 철회가 통과했다. Web no-fill 후 무료 PDF와 동의 거절 후 무료 한국어 PDF가 동작했다. 홈과 내 작업에 각 배너 1개가 보이고 DOM 인스턴스가 동일하게 유지된다."
+      },
+      "ux": {
+        "verdict": "pass",
+        "evidence": [
+          "recheck/check-dev.log",
+          "recheck/journey.json",
+          "recheck/large-photo.json",
+          "recheck/home-en-banner.png",
+          "recheck/drafts-en-banner.png"
+        ],
+        "finding": "홈과 내 작업 광고는 Advertisement 표기와 여백으로 버튼과 분리된다. 편집, 출력과 완료에는 배너가 없고 광고 실패가 무료 제작을 막지 않는다. 실제 네이티브 광고 송출은 미검수다."
+      }
+    },
+    {
+      "id": "locale",
+      "functional": {
+        "verdict": "pass",
+        "evidence": [
+          "recheck/journey.json",
+          "recheck/home-en.png",
+          "recheck/home-ko-small-large-text.png",
+          "recheck/editor-ko-small-large-text.png",
+          "recheck/pdf-inspection.json"
+        ],
+        "finding": "영어와 한국어 전환, 한글 PDF, 320×568 및 CSS 텍스트 150%에서 입력과 PDF 생성이 동작했다."
+      },
+      "ux": {
+        "verdict": "pass",
+        "evidence": [
+          "recheck/journey.json",
+          "recheck/home-en.png",
+          "recheck/home-ko-small-large-text.png",
+          "recheck/editor-ko-small-large-text.png",
+          "recheck/pdf-inspection.json"
+        ],
+        "finding": "작은 화면의 큰 글씨는 문구와 카드 치수를 줄바꿈하며 입력과 출력이 가능하다. 화면 및 PDF 한글이 깨지지 않는다."
+      }
+    }
+  ],
+  "round2ResolutionEvidence": [
+    {
+      "defectId": "paper-bag-bottom-flap-cuts",
+      "previousSourceSha": "39bea11cfac77834d7b253614094e775c4336a3f",
+      "resolvedOnSourceSha": "1a66d90b94e27110667d5211fbf67fc2f4dea51d",
+      "status": "resolved-in-development-geometry-and-render",
+      "evidence": [
+        "recheck/paper-bag-cut-audit.json",
+        "recheck/Paper-bag.png",
+        "recheck/paper-bag-layout.png",
+        "recheck/glue-contact-analysis.json"
+      ],
+      "finding": "세 경계에 body 끝까지 이어지는 1 mm 폭의 닫힌 절단 틈이 있으며 접힘 순서는 작은 날개, 앞 날개, 인쇄면 풀칠, 뒷 날개다. 앞 날개 인쇄면과 마지막 뒷 날개 빈 면이 접촉한다.",
+      "physicalAssembly": "unrun"
+    }
+  ],
+  "defects": [],
+  "limitations": [
+    "실제 Android 광고 SDK, UMP 폼, 배너와 보상 광고 송출은 미실행이다. 실제 adapter 코드를 대체 SDK 콜백과 실행한 검사만 통과했다.",
+    "IndexedDB와 브라우저 사진 선택 및 다운로드를 검수했다. Android SQLite, 사진 권한과 OS 저장 및 공유 및 인쇄는 미실행이다.",
+    "텍스트 150%는 RN Web CSS 확대이며 Android 시스템 글꼴과 화면 키보드 검수는 아니다.",
+    "쇼핑백 풀칠 판정은 두께 0의 종이와 인쇄면이 몸통 바깥이라는 전제로 계산했다. 실물 인쇄 및 조립은 미확인이다.",
+    "이 회차에 최초 실행 및 좁은 진단 실패가 있었다. 제품 코드를 바꾸지 않고 helper 대기만 고친 새 SHA에서 계획한 단 한 번의 전체 재확인을 실행했다. 실패를 통과로 소급 변경하지 않았다."
+  ],
+  "nativeSdkAndOs": "unrun",
+  "physicalPrintAndAssembly": "unrun",
+  "deviceAccess": "none",
+  "browserSession": {
+    "profile": "legacy-admob",
+    "sessionId": "87708e53a0b64f01b2acd782d75f708a",
+    "released": true
+  }
+}

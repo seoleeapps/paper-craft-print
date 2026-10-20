@@ -1,0 +1,19 @@
+{
+  "round": 2,
+  "sourceSha": "39bea11cfac77834d7b253614094e775c4336a3f",
+  "plannedAt": "2026-10-20T15:43:28.158139+00:00",
+  "persona": "오류 복구와 접근성 검수자",
+  "scope": [
+    "templates",
+    "editing",
+    "preview",
+    "pdf",
+    "drafts",
+    "ads",
+    "locale"
+  ],
+  "environment": "RN Web http://localhost:8087, independent browser data",
+  "checks": "All seven features; run check:dev and complete web-journey. Focus 320x568, large text, keyboard focus and clear navigation, out-of-range and paper overflow, no-fill and denied consent with free PDF, draft deletion cancellation and reload. Inspect actual renders. Native SDK/OS unrun.",
+  "evidence": "artifacts/qa/round-2",
+  "reviewer": "qa_round_2"
+}

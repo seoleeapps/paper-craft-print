@@ -1,0 +1,22 @@
+{
+  "sourceSha": "d1464abc34dfc2f4c0af58a8abc0add97946dc31",
+  "previousSourceSha": "1a66d90b94e27110667d5211fbf67fc2f4dea51d",
+  "trees": {
+    "apps": {
+      "current": "4d50a028eb0d8e6c3b0506f164d955dbf6a88801",
+      "previous": "4d50a028eb0d8e6c3b0506f164d955dbf6a88801",
+      "identical": true
+    },
+    "packages": {
+      "current": "8c52f8d7ec9df39443069c8b39f75fcde7944f7f",
+      "previous": "8c52f8d7ec9df39443069c8b39f75fcde7944f7f",
+      "identical": true
+    }
+  },
+  "changedFiles": [
+    "docs/product-spec.md",
+    "docs/qa/2026-10-21-public-launch.md",
+    "scripts/build-android.py",
+    "scripts/tests/test_build_android.py"
+  ]
+}

@@ -3,7 +3,7 @@
   "app": {
     "name": "Paper Craft Print",
     "repo": "seoleeapps/paper-craft-print",
-    "sourceRevision": "39bea11cfac77834d7b253614094e775c4336a3f"
+    "sourceRevision": "d1464abc34dfc2f4c0af58a8abc0add97946dc31"
   },
   "release": {
     "version": "1.0.0",
@@ -12,7 +12,8 @@
     "countries": [
       "all-available"
     ],
-    "rolloutMode": "full"
+    "rolloutMode": "full",
+    "tagStatus": "not-created; candidate frozen by full SHA"
   },
   "deploymentApproval": {
     "status": "approved",
@@ -28,30 +29,41 @@
   },
   "commonGates": {
     "candidate": {
-      "status": "pending",
-      "evidence": [],
-      "checkedAt": null,
+      "status": "pass",
+      "evidence": [
+        "https://github.com/seoleeapps/paper-craft-print/commit/d1464abc34dfc2f4c0af58a8abc0add97946dc31",
+        "docs/qa/launch-1.0.0/build-verification/result.json",
+        "release/market-launch-state.json: release.tagStatus records no tag yet"
+      ],
+      "checkedAt": "2026-10-20T17:04:13.690934+00:00",
       "blocker": null
     },
     "quality": {
-      "status": "pending",
-      "evidence": [],
-      "checkedAt": null,
+      "status": "pass",
+      "evidence": [
+        "docs/qa/launch-1.0.0/round-1/result.json",
+        "docs/qa/launch-1.0.0/round-2/result.json",
+        "docs/qa/launch-1.0.0/round-3/result.json",
+        "docs/qa/launch-1.0.0/build-verification/result.json",
+        "https://github.com/seoleeapps/paper-craft-print/actions/runs/39457200634"
+      ],
+      "checkedAt": "2026-10-20T17:04:13.690934+00:00",
       "blocker": null
     },
     "production_dependencies": {
-      "status": "pending",
+      "status": "pass",
       "evidence": [
-        "계정 잠금 해제 및 앱 등록 readback, 전용 업로드 키 두곳 복원검사 통과.",
-        "release/admob.json"
+        "release/admob.json",
+        "전용 업로드 키 local 및 BeeStation 암호화 백업 복원 통과",
+        "https://www.seorilabs.com/en/apps/paper-craft-print/privacy/"
       ],
-      "checkedAt": "2026-10-20T15:53:08.791775+00:00",
-      "blocker": "서명 AAB와 최종 네이티브 필수 검수, 공급자 처리 확인 전"
+      "checkedAt": "2026-10-20T17:04:13.690934+00:00",
+      "blocker": null
     },
     "observability": {
       "status": "na",
       "evidence": [
-        "사용자가 Firebase, 서버와 이용 분석 제외. 광고 승인은별도release/admob.json에기록"
+        "사용자가 Firebase, 서버와 이용 분석을 제외했다. 광고 운영 상태는 release/admob.json에 별도 기록한다."
       ],
       "checkedAt": "2026-10-20T15:53:08.791775+00:00",
       "blocker": null
@@ -60,7 +72,7 @@
   "markets": {
     "google_play": {
       "objective": "public_live",
-      "state": "pending",
+      "state": "processing",
       "identity": {
         "applicationId": "com.seoleeapps.papercraftprint",
         "version": "1.0.0",
@@ -70,45 +82,72 @@
       },
       "gates": {
         "candidate": {
-          "status": "pending",
-          "evidence": [],
-          "checkedAt": null,
+          "status": "pass",
+          "evidence": [
+            "https://github.com/seoleeapps/paper-craft-print/commit/d1464abc34dfc2f4c0af58a8abc0add97946dc31",
+            "docs/qa/launch-1.0.0/build-verification/result.json"
+          ],
+          "checkedAt": "2026-10-20T17:04:13.690934+00:00",
           "blocker": null
         },
         "artifact": {
-          "status": "pending",
-          "evidence": [],
-          "checkedAt": null,
+          "status": "pass",
+          "evidence": [
+            "docs/qa/launch-1.0.0/static-verification-report.json",
+            "AAB SHA256 32f7596b1a0d841c3a0577603f1ba261a6fe8b07052e1a7ae39129e757f0ac69"
+          ],
+          "checkedAt": "2026-10-20T17:04:13.690934+00:00",
           "blocker": null
         },
         "upload": {
-          "status": "pending",
-          "evidence": [],
-          "checkedAt": null,
+          "status": "pass",
+          "evidence": [
+            "docs/qa/launch-1.0.0/play-internal-readback.json",
+            "versionCode 1 uploaded bundle hash equals verified local AAB"
+          ],
+          "checkedAt": "2026-10-20T17:04:13.690934+00:00",
           "blocker": null
         },
         "processing": {
-          "status": "pending",
-          "evidence": [],
-          "checkedAt": null,
+          "status": "pass",
+          "evidence": [
+            "docs/qa/launch-1.0.0/play-internal-readback.json",
+            "Console internal active, existing internal group2 selected",
+            "https://play.google.com/apps/internaltest/4701734928185552472"
+          ],
+          "checkedAt": "2026-10-20T17:04:13.690934+00:00",
           "blocker": null
         },
         "qa": {
           "status": "pending",
-          "evidence": [],
-          "checkedAt": null,
+          "evidence": [
+            "docs/qa/launch-1.0.0/build-verification/report.md",
+            "별도 Android 기기 사용 승인 요청, 조회 및 설치 미실행",
+            "docs/google-play-release.md#남은-순서"
+          ],
+          "checkedAt": "2026-10-20T17:04:13.690934+00:00",
           "blocker": null
         },
         "metadata": {
-          "status": "pending",
-          "evidence": [],
-          "checkedAt": null,
+          "status": "pass",
+          "evidence": [
+            "play-store/google-play.config.json",
+            "docs/qa/launch-1.0.0/play-listing-verified.json",
+            "docs/qa/launch-1.0.0/play-listing-ko-verified.json",
+            "Console Art and Design category and support fields read back"
+          ],
+          "checkedAt": "2026-10-20T17:04:13.690934+00:00",
           "blocker": null
         },
         "policy": {
-          "status": "pending",
-          "evidence": [],
-          "checkedAt": null,
+          "status": "pass",
+          "evidence": [
+            "docs/privacy-data.md",
+            "play-store/policy/data-safety.csv",
+            "Console app-content attention empty, IARC completed, age18+, ads yes, no login, government/finance/health none",
+            "docs/qa/launch-1.0.0/play-content-overview.txt"
+          ],
+          "checkedAt": "2026-10-20T17:04:13.690934+00:00",
           "blocker": null
         },
         "submission": {
@@ -143,6 +182,27 @@
           "https://play.google.com/console/u/0/developers/5547060480954653351/app/4975681274275501151/app-dashboard",
           "Publisher reviews GET HTTP200 for com.seoleeapps.papercraftprint"
         ]
+      },
+      "internalTesting": {
+        "status": "active",
+        "versionCode": 1,
+        "releaseName": "1.0.0 (1)",
+        "testerGroup": "기존 내부테스트 그룹",
+        "testerCount": 2,
+        "optInUrl": "https://play.google.com/apps/internaltest/4701734928185552472"
+      },
+      "publicReadback": {
+        "httpStatus": 404,
+        "url": "https://play.google.com/store/apps/details?id=com.seoleeapps.papercraftprint&hl=en&gl=US",
+        "checkedAt": "2026-10-20T17:04:13.690934+00:00",
+        "publicLive": false
+      },
+      "countryConfiguration": {
+        "status": "saved",
+        "targetedCount": 178,
+        "includesOtherCountriesAndTerritories": true,
+        "publicDeployment": false,
+        "evidence": "docs/qa/launch-1.0.0/play-production-countries.json"
       }
     }
   }

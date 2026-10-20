@@ -1,0 +1,229 @@
+{
+  "round": 1,
+  "reviewer": "qa_round_1",
+  "independentFromImplementer": true,
+  "sourceSha": "39bea11cfac77834d7b253614094e775c4336a3f",
+  "plannedAt": "2026-10-20T15:38:06.650772+00:00",
+  "startedAt": "2026-10-20T15:39:10.260369+00:00",
+  "completedAt": "2026-10-20T15:42:47.795493+00:00",
+  "status": "pass",
+  "functional": "pass",
+  "ux": "pass",
+  "environment": {
+    "kind": "dev",
+    "runtime": "actual RN Web via isolated Microsoft Edge",
+    "url": "http://localhost:8087",
+    "viewports": [
+      "390x844",
+      "320x568 with CSS 150% text"
+    ],
+    "isolatedData": "dedicated session f508c345483a43c5b074cd1058cb7e1a with seeded legacy project; no root browser accessed"
+  },
+  "commands": [
+    {
+      "command": "npm run check:dev",
+      "exitCode": 0,
+      "evidence": "check-dev.log",
+      "tests": 25,
+      "pdfFixtures": 12
+    },
+    {
+      "command": "scripts/web-journey.py run(page,output=artifacts/qa/round-1,url=http://localhost:8087)",
+      "status": "pass",
+      "scenarios": 12,
+      "pageErrors": [],
+      "evidence": "journey.json"
+    }
+  ],
+  "features": [
+    {
+      "id": "templates",
+      "functional": {
+        "verdict": "pass",
+        "evidence": [
+          "check-dev.log",
+          "journey.json",
+          "Envelope.pdf",
+          "Gift-box.pdf",
+          "Folded-card.pdf",
+          "Gift-tag.pdf",
+          "Bookmark.pdf",
+          "Paper-bag.pdf"
+        ],
+        "finding": "6종 생성, 기본값과 프리셋의 A4 및 Letter 원치수 배치, 닫힌 자르기 선과 종이 초과 차단을 확인했다."
+      },
+      "ux": {
+        "verdict": "pass",
+        "evidence": [
+          "home-en.png",
+          "home-ko-consent-denied.png",
+          "gift-tag-editor.png",
+          "paper-bag-editor.png"
+        ],
+        "finding": "홈에 6종 이름, 치수, 실제 전개도 썸네일이 보이며 조립 방법이 편집과 출력에 제공된다."
+      }
+    },
+    {
+      "id": "editing",
+      "functional": {
+        "verdict": "pass",
+        "evidence": [
+          "journey.json",
+          "check-dev.log",
+          "envelope-editor.png",
+          "gift-box-editor.png",
+          "folded-card-editor.png",
+          "gift-tag-editor.png",
+          "bookmark-editor.png",
+          "paper-bag-editor.png"
+        ],
+        "finding": "6종 앞면 문구, 사진 선택과 확대, 뒷면 한글 문구를 입력하고 PDF까지 진행했다. 999 mm 입력 차단 후 60 mm 복구를 확인했다."
+      },
+      "ux": {
+        "verdict": "pass",
+        "evidence": [
+          "envelope-editor.png",
+          "paper-bag-editor.png",
+          "editor-ko-small-large-text.png"
+        ],
+        "finding": "치수 범위, 사진 제거, 확대와 이동, 문구 글자 수가 보이며 고정된 출력 버튼은 콘텐츠와 분리된다."
+      }
+    },
+    {
+      "id": "preview",
+      "functional": {
+        "verdict": "pass",
+        "evidence": [
+          "journey.json",
+          "envelope-layout.png",
+          "gift-box-layout.png",
+          "folded-card-layout.png",
+          "gift-tag-layout.png",
+          "bookmark-layout.png",
+          "paper-bag-layout.png"
+        ],
+        "finding": "6종 출력 배치 화면에서 Letter 선택과 반복 토글이 동작했다. 카드와 책갈피의 2개 반복, 회전된 상자, 사진과 한글 문구의 방향이 PDF와 일치한다."
+      },
+      "ux": {
+        "verdict": "pass",
+        "evidence": [
+          "folded-card-layout.png",
+          "gift-box-layout.png",
+          "paper-bag-layout.png"
+        ],
+        "finding": "종이 종류, 반복 여부와 수량, 자르기 및 접기 선 안내, 조립 안내, 100% 출력과 50 mm 측정 안내가 출력 버튼 앞에 보인다."
+      }
+    },
+    {
+      "id": "pdf",
+      "functional": {
+        "verdict": "pass",
+        "evidence": [
+          "journey.json",
+          "pdf-inspection.json",
+          "check-dev.log",
+          "Envelope.png",
+          "Gift-box.png",
+          "Folded-card.png",
+          "Gift-tag.png",
+          "Bookmark.png",
+          "Paper-bag.png"
+        ],
+        "finding": "브라우저에서 저장한 6개 PDF를 Poppler로 열고 1페이지 Letter 크기를 확인했다. 12개 A4/Letter 개발 PDF에서 한글, 영어, 100% 안내와 실제 50 mm 벡터 선을 검사했다."
+      },
+      "ux": {
+        "verdict": "pass",
+        "evidence": [
+          "Envelope.png",
+          "Gift-box.png",
+          "Folded-card.png",
+          "Gift-tag.png",
+          "Bookmark.png",
+          "Paper-bag.png",
+          "actual-body-final.txt"
+        ],
+        "finding": "렌더링에서 선, 접착 해칭, 사진, 문구와 짧은 조립 안내가 겹치거나 종이 밖으로 나가지 않는다. 완료 화면에 저장, 공유와 인쇄 선택이 제공된다."
+      }
+    },
+    {
+      "id": "drafts",
+      "functional": {
+        "verdict": "pass",
+        "evidence": [
+          "journey.json",
+          "check-dev.log",
+          "supplement.json"
+        ],
+        "finding": "kind 없는 이전 봉투와 waves 권한 복구, stars 보상 후 복제, 삭제, 새로고침 복구를 확인했다. 저장 트랜잭션과 실패 롤백 검사도 통과했다."
+      },
+      "ux": {
+        "verdict": "pass",
+        "evidence": [
+          "drafts-en.png",
+          "drafts-en-legacy.png",
+          "supplement.json"
+        ],
+        "finding": "제목, 치수와 문구로 작업을 구분할 수 있고 복제 및 삭제 버튼, 새 작업 버튼과 광고가 분리된다."
+      }
+    },
+    {
+      "id": "ads",
+      "functional": {
+        "verdict": "pass",
+        "evidence": [
+          "journey.json",
+          "supplement.json",
+          "check-dev.log"
+        ],
+        "finding": "홈과 내 작업 배너 각 1개, 편집 및 출력 및 완료 배너 0개를 확인했다. no-fill 무료 출력, 동의 철회 및 재시작 후 배너 0개, 재동의 후 홈 및 내 작업 배너 1개를 확인했다. 보상 중복과 SDK 초기화 중복 방지의 개발 검사도 통과했다."
+      },
+      "ux": {
+        "verdict": "pass",
+        "evidence": [
+          "home-en.png",
+          "drafts-en.png",
+          "settings-en.png",
+          "home-ko-consent-denied.png"
+        ],
+        "finding": "광고 표기와 여백이 있고 내 작업의 새 작업 버튼과 분리된다. 설정에서 광고 개인정보 선택과 로컬 보관 설명을 읽을 수 있다."
+      }
+    },
+    {
+      "id": "locale",
+      "functional": {
+        "verdict": "pass",
+        "evidence": [
+          "journey.json",
+          "supplement.json",
+          "pdf-inspection.json"
+        ],
+        "finding": "한국어와 영어 전환, 320×568 및 텍스트 150%에서 입력과 PDF 생성, 390×844에서 수평 문서 넘침 없음이 확인됐다."
+      },
+      "ux": {
+        "verdict": "pass",
+        "evidence": [
+          "home-en.png",
+          "home-ko-small-large-text.png",
+          "editor-ko-small-large-text.png",
+          "settings-en.png"
+        ],
+        "finding": "작은 화면의 큰 글씨에서도 카드가 줄바꿈되고 문구 입력과 출력 버튼이 접근 가능하다. 화면과 PDF 한글이 깨지지 않는다."
+      }
+    }
+  ],
+  "defects": [],
+  "limitations": [
+    "실제 Android 배너, UMP 동의 폼과 SDK 초기화 및 테스트 광고 송출은 미실행이다. RN Web 광고는 개발 대역이다.",
+    "브라우저 파일 선택, localStorage, 다운로드와 공유 및 인쇄 대역을 검수했다. Android 사진 접근 권한, SQLite 재시작 보관, OS 저장 및 공유 및 인쇄는 미실행이다.",
+    "큰 글씨는 RN Web 텍스트를 CSS 150%로 확대한 개발 검수이며 Android 시스템 글꼴 확대 검수는 아니다.",
+    "실물 인쇄와 조립은 승인 범위에 따라 미확인으로 남긴다.",
+    "브라우저 여정은 도안 간 반복 설정을 유지하므로 토글 후 각 화면에 표시된 상태를 확인했다. 모든 도안의 반복 배치 경계는 개발 자동 검사로 확인했다."
+  ],
+  "nativeSdkAndOs": "unrun",
+  "deviceAccess": "none; no Android or iOS enumeration or manipulation",
+  "browserSession": {
+    "profile": "legacy-admob",
+    "sessionId": "f508c345483a43c5b074cd1058cb7e1a",
+    "released": true
+  }
+}

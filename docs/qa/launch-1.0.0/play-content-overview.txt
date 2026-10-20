@@ -1,0 +1,30 @@
+Google Play Console 로드 중
+notifications_unread
+읽지 않은 알림
+more_vert
+home
+badge
+play_prism
+dashboard
+bar_chart
+overview
+shield
+rocket_launch
+vital_signs
+finance_mode
+sell
+앱 콘텐츠
+앱의 콘텐츠를 알려주세요. 앱이 Google Play 정책을 준수하는지 확인하기 위함입니다. 자세히 알아보기
+주의 필요
+조치됨
+privacy_tip
+
+모두 확인했습니다. 조치됨 탭에서 완료된 선언을 확인하세요. 앞으로 완료해야 할 모든 정책 선언이 여기에 표시됩니다.
+
+제품 업데이트
+상태 대시보드
+도움말
+© 2026 Google
+개인 정보 보호
+개발자 배포 계약
+서비스 약관
