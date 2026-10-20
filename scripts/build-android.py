@@ -166,6 +166,13 @@ def aab_certificate(path, env):
                                env=env, input_bytes=archive.read(blocks[0])))
 
 
+def apk_certificates(output):
+    # Build Tools 37 labels signers by scheme; older versions number them.
+    return {digest.lower() for digest in re.findall(
+        r"^(?:Signer #\d+|V\d(?:\.\d+)? Signer):? certificate SHA-256 digest: ([0-9a-fA-F]{64})\s*$",
+        output, re.M)}
+
+
 def manifest_identity(text):
     manifest = ET.fromstring(text)
     identity = {"package": manifest.get("package"), "versionName": manifest.get(ANDROID + "versionName"),
@@ -244,8 +251,7 @@ def build(root, mode, env):
             raise BuildError("AAB JAR signature was not verified")
         actual_cert = aab_certificate(aab, env)
         apk_signature = run([str(tools / "apksigner"), "verify", "--print-certs", str(apk)], env=env, log=output / "apk-signature.txt")
-        apk_certs = re.findall(r"Signer #\d+ certificate SHA-256 digest: ([0-9a-fA-F]+)", apk_signature)
-        if actual_cert != expected_cert or [value.lower() for value in apk_certs] != [expected_cert]:
+        if actual_cert != expected_cert or apk_certificates(apk_signature) != {expected_cert}:
             raise BuildError("AAB or APK is not signed with the registered upload key")
         badging = run([str(tools / "aapt2"), "dump", "badging", str(apk)], env=env, log=output / "apk-manifest.txt")
         package_line = next((line for line in badging.splitlines() if line.startswith("package: ")), "")

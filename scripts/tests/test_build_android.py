@@ -15,6 +15,19 @@ SPEC.loader.exec_module(builder)
 
 
 class BuildBoundaries(unittest.TestCase):
+    def test_apksigner_current_and_legacy_certificate_formats(self):
+        digest, other = "a" * 64, "b" * 64
+        for line in (f"Signer #1 certificate SHA-256 digest: {digest}",
+                     f"V2 Signer: certificate SHA-256 digest: {digest}"):
+            self.assertEqual(builder.apk_certificates(line), {digest})
+        self.assertEqual(builder.apk_certificates(
+            f"V2 Signer: certificate SHA-256 digest: {digest}\n"
+            f"V3 Signer: certificate SHA-256 digest: {digest}"), {digest})
+        self.assertEqual(builder.apk_certificates(
+            f"Signer #1 certificate SHA-256 digest: {digest}\n"
+            f"Signer #2 certificate SHA-256 digest: {other}"), {digest, other})
+        self.assertEqual(builder.apk_certificates("unrecognized certificate output"), set())
+
     def test_aab_certificate_reads_pkcs7_without_default_keystore(self):
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
