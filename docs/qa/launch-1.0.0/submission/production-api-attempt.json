@@ -1,0 +1,603 @@
+{
+  "startedAt": "2026-10-21T00:26:48.838747+00:00",
+  "packageName": "com.seoleeapps.papercraftprint",
+  "sourceSha": "d1464abc34dfc2f4c0af58a8abc0add97946dc31",
+  "editId": "08853242650215308977",
+  "nativeExecution": "unrun; no device authorization",
+  "approval": "User explicitly requested review submission after native-unrun status was reported.",
+  "before": {
+    "track": "production"
+  },
+  "countries": {
+    "countries": [
+      {
+        "countryCode": "AE"
+      },
+      {
+        "countryCode": "AG"
+      },
+      {
+        "countryCode": "AL"
+      },
+      {
+        "countryCode": "AM"
+      },
+      {
+        "countryCode": "AO"
+      },
+      {
+        "countryCode": "AR"
+      },
+      {
+        "countryCode": "AT"
+      },
+      {
+        "countryCode": "AU"
+      },
+      {
+        "countryCode": "AW"
+      },
+      {
+        "countryCode": "AZ"
+      },
+      {
+        "countryCode": "BA"
+      },
+      {
+        "countryCode": "BD"
+      },
+      {
+        "countryCode": "BE"
+      },
+      {
+        "countryCode": "BF"
+      },
+      {
+        "countryCode": "BG"
+      },
+      {
+        "countryCode": "BH"
+      },
+      {
+        "countryCode": "BJ"
+      },
+      {
+        "countryCode": "BM"
+      },
+      {
+        "countryCode": "BO"
+      },
+      {
+        "countryCode": "BR"
+      },
+      {
+        "countryCode": "BS"
+      },
+      {
+        "countryCode": "BW"
+      },
+      {
+        "countryCode": "BY"
+      },
+      {
+        "countryCode": "BZ"
+      },
+      {
+        "countryCode": "CA"
+      },
+      {
+        "countryCode": "CD"
+      },
+      {
+        "countryCode": "CG"
+      },
+      {
+        "countryCode": "CH"
+      },
+      {
+        "countryCode": "CI"
+      },
+      {
+        "countryCode": "CL"
+      },
+      {
+        "countryCode": "CM"
+      },
+      {
+        "countryCode": "CN"
+      },
+      {
+        "countryCode": "CO"
+      },
+      {
+        "countryCode": "CR"
+      },
+      {
+        "countryCode": "CU"
+      },
+      {
+        "countryCode": "CV"
+      },
+      {
+        "countryCode": "CY"
+      },
+      {
+        "countryCode": "CZ"
+      },
+      {
+        "countryCode": "DE"
+      },
+      {
+        "countryCode": "DJ"
+      },
+      {
+        "countryCode": "DK"
+      },
+      {
+        "countryCode": "DM"
+      },
+      {
+        "countryCode": "DO"
+      },
+      {
+        "countryCode": "DZ"
+      },
+      {
+        "countryCode": "EC"
+      },
+      {
+        "countryCode": "EE"
+      },
+      {
+        "countryCode": "EG"
+      },
+      {
+        "countryCode": "ER"
+      },
+      {
+        "countryCode": "ES"
+      },
+      {
+        "countryCode": "ET"
+      },
+      {
+        "countryCode": "FI"
+      },
+      {
+        "countryCode": "FJ"
+      },
+      {
+        "countryCode": "FM"
+      },
+      {
+        "countryCode": "FR"
+      },
+      {
+        "countryCode": "GA"
+      },
+      {
+        "countryCode": "GB"
+      },
+      {
+        "countryCode": "GD"
+      },
+      {
+        "countryCode": "GE"
+      },
+      {
+        "countryCode": "GH"
+      },
+      {
+        "countryCode": "GI"
+      },
+      {
+        "countryCode": "GM"
+      },
+      {
+        "countryCode": "GN"
+      },
+      {
+        "countryCode": "GR"
+      },
+      {
+        "countryCode": "GT"
+      },
+      {
+        "countryCode": "GW"
+      },
+      {
+        "countryCode": "HK"
+      },
+      {
+        "countryCode": "HN"
+      },
+      {
+        "countryCode": "HR"
+      },
+      {
+        "countryCode": "HT"
+      },
+      {
+        "countryCode": "HU"
+      },
+      {
+        "countryCode": "ID"
+      },
+      {
+        "countryCode": "IE"
+      },
+      {
+        "countryCode": "IL"
+      },
+      {
+        "countryCode": "IN"
+      },
+      {
+        "countryCode": "IQ"
+      },
+      {
+        "countryCode": "IR"
+      },
+      {
+        "countryCode": "IS"
+      },
+      {
+        "countryCode": "IT"
+      },
+      {
+        "countryCode": "JM"
+      },
+      {
+        "countryCode": "JO"
+      },
+      {
+        "countryCode": "JP"
+      },
+      {
+        "countryCode": "KE"
+      },
+      {
+        "countryCode": "KG"
+      },
+      {
+        "countryCode": "KH"
+      },
+      {
+        "countryCode": "KM"
+      },
+      {
+        "countryCode": "KN"
+      },
+      {
+        "countryCode": "KR"
+      },
+      {
+        "countryCode": "KW"
+      },
+      {
+        "countryCode": "KY"
+      },
+      {
+        "countryCode": "KZ"
+      },
+      {
+        "countryCode": "LA"
+      },
+      {
+        "countryCode": "LB"
+      },
+      {
+        "countryCode": "LC"
+      },
+      {
+        "countryCode": "LI"
+      },
+      {
+        "countryCode": "LK"
+      },
+      {
+        "countryCode": "LR"
+      },
+      {
+        "countryCode": "LT"
+      },
+      {
+        "countryCode": "LU"
+      },
+      {
+        "countryCode": "LV"
+      },
+      {
+        "countryCode": "LY"
+      },
+      {
+        "countryCode": "MA"
+      },
+      {
+        "countryCode": "MC"
+      },
+      {
+        "countryCode": "MD"
+      },
+      {
+        "countryCode": "MK"
+      },
+      {
+        "countryCode": "ML"
+      },
+      {
+        "countryCode": "MM"
+      },
+      {
+        "countryCode": "MN"
+      },
+      {
+        "countryCode": "MO"
+      },
+      {
+        "countryCode": "MT"
+      },
+      {
+        "countryCode": "MU"
+      },
+      {
+        "countryCode": "MV"
+      },
+      {
+        "countryCode": "MX"
+      },
+      {
+        "countryCode": "MY"
+      },
+      {
+        "countryCode": "MZ"
+      },
+      {
+        "countryCode": "NA"
+      },
+      {
+        "countryCode": "NE"
+      },
+      {
+        "countryCode": "NG"
+      },
+      {
+        "countryCode": "NI"
+      },
+      {
+        "countryCode": "NL"
+      },
+      {
+        "countryCode": "NO"
+      },
+      {
+        "countryCode": "NP"
+      },
+      {
+        "countryCode": "NZ"
+      },
+      {
+        "countryCode": "OM"
+      },
+      {
+        "countryCode": "PA"
+      },
+      {
+        "countryCode": "PE"
+      },
+      {
+        "countryCode": "PG"
+      },
+      {
+        "countryCode": "PH"
+      },
+      {
+        "countryCode": "PK"
+      },
+      {
+        "countryCode": "PL"
+      },
+      {
+        "countryCode": "PT"
+      },
+      {
+        "countryCode": "PY"
+      },
+      {
+        "countryCode": "QA"
+      },
+      {
+        "countryCode": "RO"
+      },
+      {
+        "countryCode": "RS"
+      },
+      {
+        "countryCode": "RU"
+      },
+      {
+        "countryCode": "RW"
+      },
+      {
+        "countryCode": "SA"
+      },
+      {
+        "countryCode": "SB"
+      },
+      {
+        "countryCode": "SC"
+      },
+      {
+        "countryCode": "SD"
+      },
+      {
+        "countryCode": "SE"
+      },
+      {
+        "countryCode": "SG"
+      },
+      {
+        "countryCode": "SI"
+      },
+      {
+        "countryCode": "SK"
+      },
+      {
+        "countryCode": "SL"
+      },
+      {
+        "countryCode": "SM"
+      },
+      {
+        "countryCode": "SN"
+      },
+      {
+        "countryCode": "SO"
+      },
+      {
+        "countryCode": "SR"
+      },
+      {
+        "countryCode": "SV"
+      },
+      {
+        "countryCode": "TC"
+      },
+      {
+        "countryCode": "TD"
+      },
+      {
+        "countryCode": "TG"
+      },
+      {
+        "countryCode": "TH"
+      },
+      {
+        "countryCode": "TJ"
+      },
+      {
+        "countryCode": "TM"
+      },
+      {
+        "countryCode": "TN"
+      },
+      {
+        "countryCode": "TO"
+      },
+      {
+        "countryCode": "TR"
+      },
+      {
+        "countryCode": "TT"
+      },
+      {
+        "countryCode": "TW"
+      },
+      {
+        "countryCode": "TZ"
+      },
+      {
+        "countryCode": "UA"
+      },
+      {
+        "countryCode": "UG"
+      },
+      {
+        "countryCode": "US"
+      },
+      {
+        "countryCode": "UY"
+      },
+      {
+        "countryCode": "UZ"
+      },
+      {
+        "countryCode": "VA"
+      },
+      {
+        "countryCode": "VE"
+      },
+      {
+        "countryCode": "VG"
+      },
+      {
+        "countryCode": "VN"
+      },
+      {
+        "countryCode": "VU"
+      },
+      {
+        "countryCode": "WS"
+      },
+      {
+        "countryCode": "YE"
+      },
+      {
+        "countryCode": "ZA"
+      },
+      {
+        "countryCode": "ZM"
+      },
+      {
+        "countryCode": "ZW"
+      }
+    ],
+    "restOfWorld": true
+  },
+  "request": {
+    "track": "production",
+    "releases": [
+      {
+        "name": "1.0.0 (1)",
+        "versionCodes": [
+          "1"
+        ],
+        "status": "completed",
+        "releaseNotes": [
+          {
+            "language": "ko-KR",
+            "text": "첫 버전입니다. 봉투, 선물 상자, 접이식 카드, 선물 태그, 책갈피, 종이 쇼핑백을 사진과 문구로 꾸미고 A4 또는 Letter PDF로 저장하세요."
+          },
+          {
+            "language": "en-US",
+            "text": "First release. Personalize envelopes, gift boxes, folded cards, gift tags, bookmarks and paper bags with photos and notes, then export A4 or Letter PDFs."
+          }
+        ]
+      }
+    ]
+  },
+  "updateResponse": {
+    "track": "production",
+    "releases": [
+      {
+        "name": "1.0.0 (1)",
+        "versionCodes": [
+          "1"
+        ],
+        "releaseNotes": [
+          {
+            "language": "ko-KR",
+            "text": "첫 버전입니다. 봉투, 선물 상자, 접이식 카드, 선물 태그, 책갈피, 종이 쇼핑백을 사진과 문구로 꾸미고 A4 또는 Letter PDF로 저장하세요."
+          },
+          {
+            "language": "en-US",
+            "text": "First release. Personalize envelopes, gift boxes, folded cards, gift tags, bookmarks and paper bags with photos and notes, then export A4 or Letter PDFs."
+          }
+        ],
+        "status": "completed"
+      }
+    ]
+  },
+  "status": "provider_rejected",
+  "failedPhase": "edits.validate",
+  "httpStatus": 400,
+  "error": {
+    "error": {
+      "code": 400,
+      "message": "Only releases with status draft may be created on draft app.",
+      "status": "INVALID_ARGUMENT"
+    }
+  },
+  "uncommittedEditDeleted": true,
+  "completedAt": "2026-10-21T00:26:53.070927+00:00"
+}

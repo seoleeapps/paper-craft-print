@@ -13,7 +13,7 @@
   },
   "ledger": {
     "createdAt": "2026-10-05T07:23:18Z",
-    "updatedAt": "2026-10-20T17:04:13.690934+00:00",
+    "updatedAt": "2026-10-21T00:28:15.184112+00:00",
     "currentReleaseLedger": "release/market-launch-state.json"
   },
   "sections": {
@@ -603,7 +603,7 @@
           ],
           "reviewCadence": "per_release",
           "status": "pass",
-          "value": "첫 공개 후보 1.0.0(1), 실제 소스 d1464ab와 산출물 해시 고정. v1.0.0 태그는 아직 생성하지 않았다.",
+          "value": "첫 공개 후보 1.0.0(1), 실제 앱 소스 d1464ab와 산출물 해시 고정. v1.0.0 태그 생성, GitHub Release는 draft이며 개발 근거를 보관했다.",
           "owner": null,
           "evidence": [
             {
@@ -617,7 +617,7 @@
               "observedAt": "2026-10-20T17:04:13.690934+00:00"
             }
           ],
-          "checkedAt": "2026-10-20T17:04:13.690934+00:00",
+          "checkedAt": "2026-10-21T00:28:15.184112+00:00",
           "reviewBy": null,
           "blocker": null,
           "notes": null
@@ -657,7 +657,7 @@
           ],
           "reviewCadence": "per_release",
           "status": "pending",
-          "value": "서명 빌드와 내부 업로드 및 읽기 검증 완료. 프로덕션 제출과 공개 자동화 또는 수동 실행은 아직 미실행.",
+          "value": "서명 빌드와 내부 업로드 및 조회 완료. 프로덕션 심사 API 시도는 초안 앱 제한으로 거절. Console Google 재인증 대기이며 심사 제출 및 공개 미완료.",
           "owner": null,
           "evidence": [
             {
@@ -671,7 +671,7 @@
               "observedAt": "2026-10-20T17:04:13.690934+00:00"
             }
           ],
-          "checkedAt": "2026-10-20T17:04:13.690934+00:00",
+          "checkedAt": "2026-10-21T00:28:15.184112+00:00",
           "reviewBy": null,
           "blocker": null,
           "notes": null
