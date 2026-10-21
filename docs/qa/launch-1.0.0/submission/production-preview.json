@@ -1,0 +1,13 @@
+{
+  "checkedAt": "2026-10-21T00:40:13.042999+00:00",
+  "url": "https://play.google.com/console/u/0/developers/5547060480954653351/app/4975681274275501151/tracks/4697673279003795105/releases/1/review",
+  "version": "1.0.0 (1)",
+  "warning": "No R8/Proguard deobfuscation file; candidate does not enable R8 minification",
+  "blockingErrors": 0,
+  "releaseNotesLanguages": [
+    "en-US",
+    "ko-KR"
+  ],
+  "saved": false,
+  "submitted": false
+}

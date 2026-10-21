@@ -1,6 +1,6 @@
 # Paper Craft Print Google Play 출시 기록
 
-2026-10-21 현재 `1.0.0 (1)`은 내부 테스트에서 활성화됐다. 사용자가 현재 후보의 심사 제출을 지시해 전송을 시도했으나, API가 첫 출시 초안 앱의 전송을 거절했다. Console 재로그인 대기이며 공개 심사는 아직 제출하지 않았다. 이전 공개 스토어 조회는 HTTP 404다. 개발 환경 L3 검수와 산출물 정적 검증은 통과했으며, 실제 Android 광고 SDK와 OS 연동은 별도 기기 사용 승인 대기로 미실행이다.
+2026-10-21 09:41 KST에 `1.0.0 (1)`을 Google Play 프로덕션 심사로 제출했다. 제출 ID는 `1`이며 제출 활동과 세부정보에서 `검토 중`을 읽었다. 무료, 국가177개 및 기타 국가, 전체 출시 설정이다. 관리형 게시가 꺼져 있어 승인 후 자동 공개된다. 현재 공개 스토어의 미국 및 한국 조회는 HTTP404이며 승인 또는 공개 완료를 뜻하지 않는다. 개발 환경 L3와 산출물 정적 검증은 통과했으며 실제 Android SDK 및 OS 실행과 실물 인쇄 및 조립은 미확인이다.
 
 ## 고정한 출시 대상
 
@@ -51,7 +51,7 @@ Gradle 빌드는 성공했지만 기존 검증 코드가 Build Tools37의 `V2 Si
 | IARC | 완료. ESRB Everyone, PEGI3, USK0, ClassInd Livre, IARC3, 한국3세 이상 |
 | Data safety | 실제 SDK와 공식 공개 자료를 대조한 CSV를 가져오고 저장 결과 확인 |
 | 국가 | 프로덕션 국가 설정 178개 타겟팅됨. 실제 공개 배포를 뜻하지 않음 |
-| 공개 심사와 배포 | 미제출. production 트랙의 release 없음 |
+| 공개 심사와 배포 | 제출1, 1.0.0(1), 검토 중. API production completed는 공개 완료가 아님 |
 
 [내부 테스트 참여 링크](https://play.google.com/apps/internaltest/4701734928185552472)는 지정된 테스터용이다. 현재 표시는 검토 전 임시 이름일 수 있다. 사용자 테스트 확인은 다음 단계의 승인 조건이 아니다.
 
@@ -68,13 +68,13 @@ Gradle 빌드는 성공했지만 기존 검증 코드가 Build Tools37의 `V2 Si
 
 정확한 패키지로 Play 앱을 검색했으나 일치 항목이 없어 스토어 연결을 저장하지 못했다. 앱은 검토 필요와 광고 게재 제한 상태다. 앱별 app-ads.txt 인증, 준비 상태 승인, 현재 후보의 SDK 요청 및 실제 운영 광고 표시는 미확인이다. [AdMob 기록](../release/admob.json)에 0.1.0의 과거 보상 광고 검수와 현재 미실행 상태를 구분했다. 광고 오류나 재고 없음이 무료 도안과 PDF 제작을 막지는 않는다.
 
-## 남은 순서
+## 현재 심사와 남은 확인
 
-1. 사용자의 후속 지시 `심사제출해`에 따라 현재 후보를 Console에서 심사 제출한다. API는 초안 앱 제한으로 거절했고 임시 편집을 삭제했다. 열린 전용 Edge 로그인 창의 재인증 후 실제 계정, 앱과 제출 목록을 읽는다.
-2. `v1.0.0` 태그와 draft GitHub Release에 개발 근거를 보관했다. 같은 후보의 중앙 출시 전 검사, 전체 언어 소개와 정책 페이지 및 파일 해시를 다시 대조해 통과했다. 같은 versionCode를 무료, 178개 국가 설정, 100% 프로덕션으로 제출하고 실제 제출 ID와 검토 상태를 읽는다.
-3. 승인 후 공개하고 공개 스토어의 패키지, 버전과 국가별 이용 가능 상태를 확인한다. AdMob 스토어 연결과 앱 승인 및 송출은 별도로 갱신한다.
+1. Console 제출1에서 현재 후보 1.0.0(1)과 변경사항12개, `검토 중`을 확인했다. 첫 게시 개요 조회에는 검토 전 빠른 검사가 실행 중이었다. 제출 활동의 상태와 별도로 기록한다.
+2. 관리형 게시 사용 중지와 전체 출시 설정을 유지했다. Google 승인 후 자동 공개되는 흐름이며 아직 승인되지 않았다. 공개 스토어의 패키지, 버전과 국가별 이용 가능 상태를 다시 읽어야 공개 완료다.
+3. Android SDK와 OS 연동은 기기 사용 승인 및 실행 없이 미확인으로 보존한다. AdMob 스토어 연결, 앱 승인과 운영 송출은 별도로 확인한다. 실물 인쇄와 조립은 출시 조건에서 제외되어 미확인이다.
 
-현재 상태의 정본은 [후보별 출시 원장](../release/market-launch-state.json)이다. 공개 완료 검사에 남은 항목은 QA, 심사 제출, 승인, 공개와 공개 확인이며 완료로 표시하지 않았다.
+현재 상태의 정본은 [후보별 출시 원장](../release/market-launch-state.json)이다. 공개 완료 검사에는 QA, 승인, 공개와 공개 확인이 남아 있다. 원장의 연속 단계 계산상 state는 processing이지만 제출 gate는 실제 증거로 pass이며 제출1 상태는 검토 중이다.
 
 ## 2026-10-21 심사 제출 시도
 
@@ -82,4 +82,12 @@ Gradle 빌드는 성공했지만 기존 검증 코드가 Build Tools37의 `V2 Si
 
 실제 API 재조회에서 production release 없음, AAB 해시 일치, 국가177개 및 restOfWorld=true를 확인했다. 한국어와 영어 등록정보는 각11개 비교 항목이 일치했고 두 개인정보 페이지의 HTTP200과 제품 및 패키지를 확인했다. 같은 후보의 중앙 before-release L3도 다시 통과했다.
 
-API의 production update는 임시 편집에서 수락됐지만 validate가 HTTP400 `Only releases with status draft may be created on draft app.`으로 거절했다. commit은 호출하지 않았고 임시 편집을 삭제했다. 새 API 조회에서도 production release는 없다. 실제 심사 제출을 완료하려면 Console에서 첫 출시를 전송해야 한다. Google 자동 로그인은 provider_blocked 상태여서 전용 수동 로그인 창을 열고 사용자 재인증을 요청했다. [시도와 실제 재조회](qa/launch-1.0.0/submission/)를 보존한다.
+API의 production update는 임시 편집에서 수락됐지만 validate가 HTTP400 `Only releases with status draft may be created on draft app.`으로 거절했다. commit은 호출하지 않았고 임시 편집을 삭제했다. 새 API 조회에서도 production release는 없다. 당시 실제 심사 제출을 완료하려면 Console에서 첫 출시 전송이 필요했다. Google 자동 로그인은 provider_blocked 상태여서 전용 수동 로그인 창을 열고 사용자 재인증을 요청했다. 이 첫 시도는 미제출 이력으로 유지하며 후속 성공 기록과 구분한다. [시도와 실제 재조회](qa/launch-1.0.0/submission/)를 보존한다.
+
+## 2026-10-21 Console 심사 제출 완료
+
+사용자의 로그인 완료 응답 뒤 실제 Google identity, Seolee Apps 개인 계정과 개발자 ID 및 앱 소유를 다시 확인했다. 기존 내부 테스트 AAB versionCode1을 라이브러리에서 선택하고 동일 출시명과 en-US 및 ko-KR 노트를 입력했다. 제출 직전 국가178행이 모두 타겟팅됨을 읽었다.
+
+출시 미리보기에는 가독화 파일 경고1개와 차단 오류0개가 있었다. 이 후보는 R8 난독화를 켜지 않았으며 가짜 매핑 파일을 추가하지 않았다. 게시 개요의 변경사항12개와 전체 출시, 관리형 게시 사용 중지를 확인한 뒤 전송했다. Console은 변경사항12개 전송 완료를 표시했고 [제출1](https://play.google.com/console/u/0/developers/5547060480954653351/app/4975681274275501151/publishing/submission-activity/1/details)에 2026-10-21 09:41, 소스 Play Console, 상태 검토 중이 기록됐다.
+
+[제출 조회 JSON](qa/launch-1.0.0/submission/play-review-submission-1.json), [제출 세부정보](qa/launch-1.0.0/submission/submission-1-details.txt)와 [제출 후 API 조회](qa/launch-1.0.0/submission/publisher-after-submit.json)를 보존했다. API의 production completed는 전체 출시 의도이며 Google 심사 승인이나 공개 완료를 뜻하지 않는다. AAB 해시는 기존 고정 파일과 같고 미국 및 한국 공개 페이지는 HTTP404다. 기기를 조회하거나 조작하지 않았다.

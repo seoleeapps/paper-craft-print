@@ -1,0 +1,28 @@
+{
+  "checkedAt": "2026-10-21T00:42:38.512090+00:00",
+  "packageName": "com.seoleeapps.papercraftprint",
+  "developerAccountId": "5547060480954653351",
+  "consoleAppId": "4975681274275501151",
+  "versionName": "1.0.0",
+  "versionCode": 1,
+  "sourceSha": "d1464abc34dfc2f4c0af58a8abc0add97946dc31",
+  "tag": "v1.0.0",
+  "submissionId": "1",
+  "confirmationClickedAt": "2026-10-21T00:41:30.547681+00:00",
+  "consoleSubmittedAtLocal": "2026-10-21 09:41 KST",
+  "consoleState": "검토 중",
+  "submissionDetailsUrl": "https://play.google.com/console/u/0/developers/5547060480954653351/app/4975681274275501151/publishing/submission-activity/1/details",
+  "changes": 12,
+  "rollout": "full",
+  "targetedCountryRows": 178,
+  "apiCountries": 177,
+  "restOfWorld": true,
+  "managedPublishing": false,
+  "publishAfterApproval": "automatic",
+  "publicLive": false,
+  "nativeExecution": "unrun; no device operations authorized or performed",
+  "limitations": [
+    "Publishing overview still showed Google pre-review quick checks running at first readback. Submission activity and submission1 details report 검토 중.",
+    "Review, approval, release and public readback are separate states."
+  ]
+}

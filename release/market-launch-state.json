@@ -154,14 +154,14 @@
           "blocker": null
         },
         "submission": {
-          "status": "blocked",
+          "status": "pass",
           "evidence": [
-            "docs/qa/launch-1.0.0/submission/production-api-attempt.json",
-            "docs/qa/launch-1.0.0/submission/production-preflight.json",
-            "Google browser automatic sign-in returned provider_blocked; dedicated manual login window opened"
+            "docs/qa/launch-1.0.0/submission/play-review-submission-1.json",
+            "docs/qa/launch-1.0.0/submission/submission-1-details.txt",
+            "https://play.google.com/console/u/0/developers/5547060480954653351/app/4975681274275501151/publishing/submission-activity/1/details"
           ],
-          "checkedAt": "2026-10-21T00:28:15.184112+00:00",
-          "blocker": "First production submission requires Console: API edits.validate returned HTTP400 Only releases with status draft may be created on draft app. Console Google reauthentication is pending."
+          "checkedAt": "2026-10-21T00:42:38.512090+00:00",
+          "blocker": null
         },
         "approval": {
           "status": "pending",
@@ -201,15 +201,20 @@
       "publicReadback": {
         "httpStatus": 404,
         "url": "https://play.google.com/store/apps/details?id=com.seoleeapps.papercraftprint&hl=en&gl=US",
-        "checkedAt": "2026-10-20T17:04:13.690934+00:00",
-        "publicLive": false
+        "checkedAt": "2026-10-21T00:45:04.939889+00:00",
+        "countries": [
+          "US",
+          "KR"
+        ],
+        "publicLive": false,
+        "evidence": "docs/qa/launch-1.0.0/submission/public-store-after-submit.json"
       },
       "countryConfiguration": {
         "status": "saved",
         "targetedCount": 178,
         "includesOtherCountriesAndTerritories": true,
         "publicDeployment": false,
-        "evidence": "docs/qa/launch-1.0.0/play-production-countries.json",
+        "evidence": "docs/qa/launch-1.0.0/submission/countries-before-submit.json",
         "apiReadback": {
           "countryCodes": 177,
           "restOfWorld": true,
@@ -227,7 +232,27 @@
         "deviceAuthorized": false,
         "passed": false,
         "evidence": "docs/qa/launch-1.0.0/build-verification/report.md"
-      }
+      },
+      "review": {
+        "submissionId": "1",
+        "versionName": "1.0.0",
+        "versionCode": 1,
+        "consoleState": "검토 중",
+        "submittedAtDisplay": "2026-10-21 09:41 KST",
+        "confirmedAtClient": "2026-10-21T00:41:30.547681+00:00",
+        "checkedAt": "2026-10-21T00:42:38.512090+00:00",
+        "url": "https://play.google.com/console/u/0/developers/5547060480954653351/app/4975681274275501151/publishing/submission-activity/1/details",
+        "changeCount": 12,
+        "managedPublishing": false,
+        "publishAfterApproval": "automatic",
+        "preReviewQuickChecks": "running at first publishing-overview readback; submission1 state is 검토 중"
+      },
+      "productionTrack": {
+        "status": "completed",
+        "meaning": "intended full production rollout; does not prove review approval or public availability",
+        "evidence": "docs/qa/launch-1.0.0/submission/publisher-after-submit.json"
+      },
+      "stateExplanation": "state processing is the highest continuous passed gate because qa remains pending. Actual submission1 has passed and Console state is 검토 중; native execution is not changed to pass."
     }
   }
 }

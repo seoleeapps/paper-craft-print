@@ -13,7 +13,7 @@
   },
   "ledger": {
     "createdAt": "2026-10-05T07:23:18Z",
-    "updatedAt": "2026-10-21T00:28:15.184112+00:00",
+    "updatedAt": "2026-10-21T00:44:22.535622+00:00",
     "currentReleaseLedger": "release/market-launch-state.json"
   },
   "sections": {
@@ -657,7 +657,7 @@
           ],
           "reviewCadence": "per_release",
           "status": "pending",
-          "value": "서명 빌드와 내부 업로드 및 조회 완료. 프로덕션 심사 API 시도는 초안 앱 제한으로 거절. Console Google 재인증 대기이며 심사 제출 및 공개 미완료.",
+          "value": "고정 후보 1.0.0(1)을 Console 제출1로 심사 전송하고 검토 중 상태를 확인했다. 관리형 게시 사용 중지로 승인 후 자동 공개 예정이며 공개 확인은 남았다.",
           "owner": null,
           "evidence": [
             {
@@ -671,7 +671,7 @@
               "observedAt": "2026-10-20T17:04:13.690934+00:00"
             }
           ],
-          "checkedAt": "2026-10-21T00:28:15.184112+00:00",
+          "checkedAt": "2026-10-21T00:44:22.535622+00:00",
           "reviewBy": null,
           "blocker": null,
           "notes": null
@@ -1843,7 +1843,7 @@
           ],
           "reviewCadence": "per_release",
           "status": "pending",
-          "value": "무료 전세계100% 승인, 178개 국가 설정 저장. 현재는 지정된 내부 테스터2명에게 활성, 공개 미진행.",
+          "value": "무료 전세계100% 승인, 177개 국가와 기타 국가를 포함한 178행 타겟팅. 현재 제출1 검토 중이며 공개 페이지 미국과 한국 HTTP404.",
           "owner": null,
           "evidence": [
             {
@@ -1857,7 +1857,7 @@
               "observedAt": "2026-10-20T17:04:13.690934+00:00"
             }
           ],
-          "checkedAt": "2026-10-20T17:04:13.690934+00:00",
+          "checkedAt": "2026-10-21T00:44:22.535622+00:00",
           "reviewBy": null,
           "blocker": null,
           "notes": null
