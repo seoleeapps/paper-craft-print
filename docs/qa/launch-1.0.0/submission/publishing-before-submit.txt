@@ -1,0 +1,99 @@
+Google Play Console 로드 중
+notifications_unread
+읽지 않은 알림
+more_vert
+home
+badge
+play_prism
+dashboard
+bar_chart
+overview
+shield
+rocket_launch
+vital_signs
+finance_mode
+sell
+게시 개요
+앱 변경사항의 개요를 확인하고, 변경사항을 전송하여 검토를 받거나 게시할 시점을 관리하세요. 더보기
+sync_disabled
+관리형 게시가 사용 중지됨
+arrow_drop_down
+제출 활동
+arrow_right_alt
+info
+지역 차단 규정
+expand_less
+EU에서 앱을 배포하는 경우 지역 차단 규정(EU) 2018/302를 참조하세요.
+자세히 알아보기
+닫기
+변경사항이 아직 검토를 위해 제출되지 않음
+help
+검토를 위해 변경사항 12개 제출
+숨기기
+expand_less
+inventory
+이제 검토를 위해 변경사항을 전송할 수 있습니다. 앱을 검토하는 과정에서 추가 문제가 발견될 수도 있습니다.
+자세히 알아보기
+변경된 항목
+설명
+rocket_launch
+프로덕션
+나중을 위해 저장
+1.0.0 (1)
+전체 출시 시작
+more_vert
+국가/지역
+177개 국가/지역 추가: 가나, 가봉 외 175개
+more_vert
+국가/지역
+기타 국가 추가
+more_vert
+play_prism
+스토어 등록정보
+나중을 위해 저장
+영어(미국) – en-US
+기본 스토어 등록정보
+언어를 추가합니다. 앱 이름(Paper Craft Print) 및 다른 모든 필수 정보가 제공되었습니다.
+more_vert
+한국어 – ko-KR
+기본 스토어 등록정보
+언어를 추가합니다. 앱 이름(Paper Craft Print) 및 다른 모든 필수 정보가 제공되었습니다.
+more_vert
+android_security_privacy_safe
+앱 콘텐츠
+콘텐츠 등급
+새 설문지 제출
+more_vert
+타겟층 및 콘텐츠
+타겟층 및 콘텐츠 정보를 업데이트합니다. 타겟 연령대는 만 18세 이상입니다.
+more_vert
+개인정보처리방침
+개인정보처리방침 URL을 https://www.seorilabs.com/en/apps/paper-craft-print/privacy/(으)로 설정
+more_vert
+광고 선언
+광고 선언 업데이트
+more_vert
+데이터 보안
+데이터 보안 설문지 작성
+more_vert
+건강 앱
+건강 앱 선언 완료
+more_vert
+play_prism
+스토어 설정
+앱 카테고리
+앱 카테고리(예술/디자인 앱) 선택
+more_vert
+제출해 주신 내용
+다음 목록의 항목은 게시되지 않았지만 앱 검토 시 고려됩니다.
+앱 콘텐츠: 로그인 세부정보 안내 업데이트(특수한 액세스 권한 없이 모든 기능 사용 가능)
+앱 콘텐츠: '광고 ID' 선언이 업데이트되었습니다.
+앱 콘텐츠: '정부 앱' 선언 업데이트됨
+앱 콘텐츠: '금융 기능' 선언 업데이트됨
+제품 업데이트
+상태 대시보드
+도움말
+© 2026 Google
+개인 정보 보호
+개발자 배포 계약
+서비스 약관

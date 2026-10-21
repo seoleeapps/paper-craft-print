@@ -39,3 +39,7 @@
 독립 검수자 `play_metadata`가 실제 서명 AAB와 APK를 2026-10-20 16:39:41–16:41:22 UTC에 정적 검사했다. 서명, 인증서, 패키지와 버전, 실제 포함 SDK, 권한과 16KB 정렬을 확인했다. 원본 빌드 스크립트의 apksigner 출력 파서 실패를 보존하고 [별도 정적 검증 보고서](launch-1.0.0/static-verification-report.md)를 만들었다. 이후 [PR #3](https://github.com/seoleeapps/paper-craft-print/pull/3)의 파서 수정은 앱 재빌드로 취급하지 않는다.
 
 같은 AAB SHA-256 `32f7596b1a0d841c3a0577603f1ba261a6fe8b07052e1a7ae39129e757f0ac69`가 Play API에 등록됐고 내부 트랙 `1.0.0 (1)`이 completed다. Console에서도 내부 테스트 활성과 기존 테스터 2명을 다시 읽었다. 실제 Android 배너와 UMP, Photo Picker, 폴더 저장과 공유 및 인쇄는 여전히 미실행이다. 심사 제출과 공개도 아직 진행하지 않았다.
+
+## Console 심사 제출
+
+2026-10-21 09:41 KST에 현재 AAB 후보 d1464ab의 1.0.0(1)을 제출1로 전송했다. 제출 활동과 세부정보가 검토 중을 표시하며, 관리형 게시 사용 중지로 승인 후 자동 공개 예정임을 확인했다. [실제 제출 근거](launch-1.0.0/submission/play-review-submission-1.json)를 보관한다. 이 작업은 새 앱 빌드나 네이티브 실행이 아니며 기존 미실행과 실패 기록을 변경하지 않았다.

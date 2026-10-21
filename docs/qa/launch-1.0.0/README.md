@@ -23,4 +23,6 @@ Data safety CSV는 공개 사본에서 줄바꿈을 LF로 통일하고 질문 �
 
 `metadata-validation.json`의 제품 원장 구조 검사는 통과했다. 제품 원장 전체 검사와 공개 완료 검사는 아직 미완료이며 각 종료 코드와 남은 항목을 그대로 보존했다.
 
-`submission/`에는 후속 심사 제출 지시에 따른 실제 API 시도와 국가 및 파일 재조회, 양언어 등록정보 비교를 보관했다. API 거절과 Console 재로그인 대기이며 제출 완료 근거는 아니다. 태그는 v1.0.0으로 고정했고 GitHub Release는 draft다.
+`submission/`에는 후속 심사 제출 지시에 따른 실제 API 시도와 국가 및 파일 재조회, 양언어 등록정보 비교를 보관했다. API 거절은 최초 실패 이력이다. 후속 Console 제출 성공은 아래 현재 기록과 구분한다. 태그는 v1.0.0으로 고정했고 GitHub Release는 draft다.
+
+`submission/play-review-submission-1.json`과 `submission-1-details.txt`는 2026-10-21 09:41 KST의 실제 제출1, 버전1.0.0(1), 변경사항12개와 검토 중 상태다. 최초 API 거절을 지우거나 성공으로 다시 쓰지 않았다. 관리형 게시 사용 중지로 승인 후 자동 공개 예정이며, 현재 승인과 공개는 미확인이다.
