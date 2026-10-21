@@ -13,7 +13,10 @@
       "all-available"
     ],
     "rolloutMode": "full",
-    "tagStatus": "not-created; candidate frozen by full SHA"
+    "tagStatus": "created",
+    "tagObject": "11f23283b08c560803e4687607e4ee14b38514a1",
+    "tagTarget": "d1464abc34dfc2f4c0af58a8abc0add97946dc31",
+    "githubReleaseStatus": "draft; development evidence stored"
   },
   "deploymentApproval": {
     "status": "approved",
@@ -33,9 +36,9 @@
       "evidence": [
         "https://github.com/seoleeapps/paper-craft-print/commit/d1464abc34dfc2f4c0af58a8abc0add97946dc31",
         "docs/qa/launch-1.0.0/build-verification/result.json",
-        "release/market-launch-state.json: release.tagStatus records no tag yet"
+        "https://github.com/seoleeapps/paper-craft-print/tree/v1.0.0"
       ],
-      "checkedAt": "2026-10-20T17:04:13.690934+00:00",
+      "checkedAt": "2026-10-21T00:28:15.184112+00:00",
       "blocker": null
     },
     "quality": {
@@ -151,10 +154,14 @@
           "blocker": null
         },
         "submission": {
-          "status": "pending",
-          "evidence": [],
-          "checkedAt": null,
-          "blocker": null
+          "status": "blocked",
+          "evidence": [
+            "docs/qa/launch-1.0.0/submission/production-api-attempt.json",
+            "docs/qa/launch-1.0.0/submission/production-preflight.json",
+            "Google browser automatic sign-in returned provider_blocked; dedicated manual login window opened"
+          ],
+          "checkedAt": "2026-10-21T00:28:15.184112+00:00",
+          "blocker": "First production submission requires Console: API edits.validate returned HTTP400 Only releases with status draft may be created on draft app. Console Google reauthentication is pending."
         },
         "approval": {
           "status": "pending",
@@ -202,7 +209,24 @@
         "targetedCount": 178,
         "includesOtherCountriesAndTerritories": true,
         "publicDeployment": false,
-        "evidence": "docs/qa/launch-1.0.0/play-production-countries.json"
+        "evidence": "docs/qa/launch-1.0.0/play-production-countries.json",
+        "apiReadback": {
+          "countryCodes": 177,
+          "restOfWorld": true,
+          "checkedAt": "2026-10-21T00:27:27.754507+00:00",
+          "evidence": "docs/qa/launch-1.0.0/submission/production-preflight.json"
+        }
+      },
+      "submissionInstruction": {
+        "text": "심사제출해",
+        "recordedAt": "2026-10-21T00:28:15.184112+00:00",
+        "context": "User explicitly requested submission after the native-unrun state was reported. No device use was authorized or performed; native evidence stays unrun."
+      },
+      "nativeValidation": {
+        "status": "unrun",
+        "deviceAuthorized": false,
+        "passed": false,
+        "evidence": "docs/qa/launch-1.0.0/build-verification/report.md"
       }
     }
   }
